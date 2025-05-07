@@ -1,0 +1,91 @@
+\section{二维随机变量函数的分布}
+
+本节简单介绍二维随机变量的函数的分布。
+
+本节要点：
+\begin{itemize}
+    \item 了解二维随机变量函数的概念；
+    \item 了解几个独立同分布随机变量的叠加。
+\end{itemize}
+
+%============================================================
+\subsection{二维随机变量函数的概念}
+
+\begin{definition}[二维随机变量的函数]
+设$\left( X,Y \right) $为二维随机变量，若$Z=g\left( X,Y \right) $依然为随机变量，则称$Z=g\left( X,Y \right) $为{\bf 二维随机变量$\left( X,Y \right) $的函数}。
+\end{definition}
+
+当$\left( X,Y \right) $为离散变量时，$Z=g\left( X,Y \right) $也为离散变量，其分布律可由列表的方式计算，注意需将相同值的概率进行合并。
+当$\left( X,Y \right) $为连续变量时，$Z=g\left( X,Y \right) $可能是连续的、离散的，或者不定的。
+
+%============================================================
+\subsection{二维离散型随机变量的函数}
+
+\begin{tcolorbox}
+当$\left( X,Y \right) $为离散变量时，$Z=g\left( X,Y \right) $也为离散变量。
+这种情况较为简单，重点是两个比较常见的分布的函数。
+\end{tcolorbox}
+
+\begin{theorem}
+若随机变量$X,Y$独立且各自服从二项分布，则它们的和也服从二项分布：
+\[
+\begin{cases}
+	X\sim B\left( m,p \right)\\
+	Y\sim B\left( n,p \right)\\
+\end{cases}\Rightarrow X+Y\sim B\left( m+n,p \right)
+\]
+\end{theorem}
+
+\begin{theorem}
+若随机变量$X,Y$独立且各自服从泊松分布，则它们的和也服从泊松分布：
+\[
+\begin{cases}
+	X\sim P\left( \lambda _1 \right)\\
+	Y\sim P\left( \lambda _2 \right)\\
+\end{cases}\Rightarrow X+Y\sim P\left( \lambda _1+\lambda _2 \right)
+\]
+\end{theorem}
+
+%============================================================
+\subsection{二维连续型随机变量的函数}
+
+\begin{theorem}[卷积公式]
+设二维随机变量$\left( X,Y \right) $有密度函数$f=\left( x,y \right) $，若$Z=X+Y$，则$Z$的密度函数为：
+\[
+f_Z\left( Z \right) =\int_{-\infty}^{+\infty}{f\left( x,z-x \right) dx}=\int_{-\infty}^{+\infty}{f\left( z-y,y \right) dy}
+\]
+若$X,Y$相互独立，则：
+\[
+f_Z\left( Z \right) =\int_{-\infty}^{+\infty}{f\left( x \right) f\left( z-x \right) dx}=\int_{-\infty}^{+\infty}{f\left( y \right) f\left( z-y \right) dy}
+\]
+该公式称为{\bf 卷积公式}。
+\end{theorem}
+
+\begin{theorem}
+设两个独立的随机变量$X,Y$各自服从正态分布，则它们的线性组合也服从正态分布：
+\[
+\begin{cases}
+	X\sim N\left( \mu _1,{\sigma _1}^2 \right)\\
+	Y\sim N\left( \mu _2,{\sigma _2}^2 \right)\\
+\end{cases}\Rightarrow Z=aX+bY\sim N\left( a\mu _1+b\mu _2,a^2{\sigma _1}^2+b^2{\sigma _2}^2 \right)
+\]
+其中，$a,b$不能同时为0。
+\end{theorem}
+
+\begin{theorem}
+设二维随机变量$\left( X,Y \right) $服从正态分布，则它们的线性组合也服从正态分布：
+\begin{align*}
+&\left( X,Y \right) \sim N\left( \mu _1,{\sigma _1}^2,\mu _2,{\sigma _2}^2,\rho \right) \\
+&\Rightarrow \\
+&Z=aX+bY\sim N\left( a\mu _1+b\mu _2,a^2{\sigma _1}^2+b^2{\sigma _2}^2 \right)
+\end{align*}
+其中，$a,b$不能同时为0。
+\end{theorem}
+
+~
+
+关于二维随机变量函数更多的概念、定理和性质，见“教材\cite{book1}”。
+
+
+
+

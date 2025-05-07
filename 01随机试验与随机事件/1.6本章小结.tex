@@ -1,0 +1,60 @@
+\section{本章小结}
+
+本章介绍了概率的基本知识。
+概率的计算是概率论入门的难点。
+在计算概率时，我们要具体问题具体分析，先从试验本身入手，分析每个步骤间的逻辑关系，确定关系后运用正确的逻辑运算计算概率，期间切不能想当然地使用算术运算法则。
+
+~
+
+本章要点：
+\begin{itemize}
+    \item 事件的3种基本关系：相等$P\left( A \right) =P\left( B \right) $、互斥$P\left( AB \right) =0$、独立$P\left( AB \right) =P\left( A \right) P\left( B \right) $。
+    \item 3种基本概型：古典概型、几何概型、伯努利概型。
+    \item 3个基本公式：乘法公式、全概率公式、贝叶斯公式。
+\end{itemize}
+
+~
+
+常用运算公式：
+\begin{align*}
+&P\left( AA \right) =P\left( A \right) \\
+&P\left( \bar{A} \right) =1-P\left( A \right) \\
+&P\left( A+\bar{A} \right) =P\left( \varOmega \right) =1 \\
+&P\left( \left( A+B \right) C \right) =P\left( \left( AC \right) +\left( AB \right) \right) \\
+&P\left( \left( AB \right) +C \right) =P\left( \left( A+C \right) \left( B+C \right) \right) \\
+&P\left( A+B \right) =P\left( A \right) +P\left( B \right) -P\left( AB \right) \\
+&P\left( A-B \right) =P\left( A\bar{B} \right) =P\left( A \right) -P\left( AB \right) \\
+&P\left( \bar{A}+\bar{B} \right) =P\left( \overline{AB} \right) =1-P\left( AB \right) \\
+&P\left( \overline{A+B} \right) =P\left( \bar{A}\bar{B} \right) =1-P\left( A \right) -P\left( B \right) +P\left( AB \right)
+\end{align*}
+特别地，当$A,B$互斥时有$P\left( AB \right) =0$，此时：
+\[
+P\left( A+B \right) =P\left( A \right) +P\left( B \right)
+\]
+当事件$A,B$相互独立，有：
+\[
+P\left( AB \right) =P\left( A \right) P\left( B \right)
+\]
+
+\begin{tcolorbox}
+可以这么理解，互斥使得概率的加法运算变成算术运算，独立使得概率的乘法运算变成算术运算。
+\end{tcolorbox}
+
+条件概率的乘法公式：
+\[
+P\left( AB \right) =P\left( A \right) P\left( B \middle| A \right)
+\]
+
+全概率公式（$A_1,A_2,\cdots ,A_i,\cdots $为完备组）：
+\[
+P\left( B \right) =\sum_{i=1}^{\infty}{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]}
+\]
+
+贝叶斯公式（$A_1,A_2,\cdots ,A_i,\cdots $为完备组）：
+\[
+P\left( A_i \middle| B \right) =\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{\sum_{i=1}^{\infty}{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]}}=\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{P\left( B \right)}
+\]
+
+
+
+

@@ -1,0 +1,36 @@
+\section{独立性的几何意义}
+
+关于独立性更多意义的讨论见“教材\cite{book1}”的P116～117，本节以二维正态分布讨论独立性的几何意义，以加深认识。
+
+~
+
+二维正态分布$N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,\rho \right) $如下：
+\[
+f\left( x,y \right) =\frac{1}{2\pi \sigma _1\sigma _2\sqrt{1-\rho ^2}}e^{-\frac{1}{2\left( 1-\rho ^2 \right)}\left[ \frac{\left( x-\mu _1 \right) ^2}{{\sigma _1}^2}-2\rho \frac{\left( x-\mu _1 \right) \left( y-\mu _2 \right)}{\sigma _1\sigma _2}+\frac{\left( y-\mu _2 \right) ^2}{{\sigma _2}^2} \right]}
+\]
+为简化讨论，我们令$\mu _1=\mu _2=0,\sigma _1=\sigma _2=1$。
+
+当$X,Y$独立时，有$\rho =0$，于是：
+\[
+f\left( x,y \right) =\frac{1}{2\pi}e^{-\frac{x^2+y^2}{2}}
+\]
+考察$X$的条件分布：
+\begin{align*}
+f_{X|Y}\left( x \middle| y_0 \right) =\frac{f\left( x,y_0 \right)}{f_Y\left( y_0 \right)}=\frac{\frac{1}{2\pi}e^{-\frac{x^2+{y_0}^2}{2}}}{\int_{-\infty}^{+\infty}{\frac{1}{2\pi}e^{-\frac{x^2+{y_0}^2}{2}}\cdot dx}}=\frac{\frac{1}{2\pi}e^{-\frac{x^2+{y_0}^2}{2}}}{\frac{e^{-\frac{{y_0}^2}{2}}}{2\pi}}=\frac{1}{2\pi}e^{-\frac{x^2}{2}}
+\end{align*}
+可见$X$的条件分布与$Y$的取值无关，也即无论$Y$取何值，$f\left( x,y_0 \right) $经$f_Y\left( y_0 \right) $归一化后与$Y$无关。
+反映在图形上，将曲面$f\left( x,y \right) $沿任意垂直于{\it y}轴的平面进行切片，得到曲线$f\left( x,y_0 \right) $，该曲线是一个“类似”标准分布，只是幅值有不同程度的压缩，但经$f_Y\left( y_0 \right) $归一化后，所有的曲线都相同，如下左图。
+但如下右图，$\rho \ne 0$，沿垂直于{\it y}轴的平面切片得到的曲线经$f_Y\left( y_0 \right) $归一化后，虽然形态一样，但沿{\it x}轴有不同程度的位移，表现为不独立。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5.5cm]{3.3.png}
+\end{figure}
+
+\begin{tcolorbox}
+$X$和$Y$独立在几何上的表现，可简单归结为，切片经相应的归一化后的形状与切片位置无关。
+\end{tcolorbox}
+
+
+
+

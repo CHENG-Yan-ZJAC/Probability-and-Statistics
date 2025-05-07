@@ -1,0 +1,196 @@
+\section{方差}
+
+本节介绍随机变量的第二个重要数字特征——方差。
+
+本节要点：
+\begin{itemize}
+    \item 掌握方差的概念；
+    \item 理解方差的统计意义和物理意义。
+\end{itemize}
+
+%============================================================
+\subsection{一维随机变量方差的概念}
+
+\begin{definition}[一维随机变量的方差]
+设一维随机变量$X$，若函数$\left( X-EX \right) ^2$的数学期望存在，则称该数学期望为{\bf 一维随机变量$X$的方差}，记作$D\left( X \right) $或$DX$，即：
+\begin{align*}
+&DX:=E\left[ \left( X-EX \right) ^2 \right] =\sum_{i=1}^{+\infty}{\left( x_i-EX \right) ^2\cdot p_i} \\
+&DX:=E\left[ \left( X-EX \right) ^2 \right] =\int_{-\infty}^{+\infty}{\left( x-EX \right) ^2f\left( x \right) \cdot dx}
+\end{align*}
+同时称$\sqrt{DX}$为{\bf $X$的平方差}。
+\end{definition}
+
+\begin{tcolorbox}
+方差的英文为Variance，“教材\cite{book2}”中使用$\mathrm{Var}\left( X \right) $作为记号。
+\end{tcolorbox}
+
+方差的求解较为繁琐，由于$\left( X-EX \right) ^2=X^2-2\cdot X\cdot EX+\left( EX \right) ^2$，且$EX$是常数，利用数学期望的性质可得便捷公式：
+\begin{align*}
+DX&=E\left[ X^2-2\cdot X\cdot EX+\left( EX \right) ^2 \right] \\
+&=E\left( X^2 \right) -2\cdot EX\cdot EX+\left( EX \right) ^2 \\
+&=E\left( X^2 \right) -\left( EX \right) ^2
+\end{align*}
+
+从便捷公式可以得到$\left[ E\left( X \right) \right] ^2$和$E\left( X^2 \right) $的关系：
+\[
+E\left( X^2 \right) =DX+\left( EX \right) ^2
+\]
+由于$DX\geqslant 0$，所以$E\left( X^2 \right) \geqslant \left( EX \right) ^2$。
+
+\begin{tcolorbox}
+由于数学期望的线性性，便捷公式的推导没有任何前置条件，所以被广泛使用，定义式则更多用来理解概念。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二维随机变量函数的方差}
+
+\begin{tcolorbox}
+在二维变量中，我们更多考虑两个变量组合函数的方差。
+\end{tcolorbox}
+
+\begin{definition}[二维随机变量函数的方差]
+设二维随机变量$\left( X,Y \right) $，若有$Z=z\left( X,Y \right) $且根据定义的对应级数或积分绝对收敛，具体定义式略，则称相应的级数或积分为{\bf $Z=z\left( X,Y \right) $的方差}，可采用便利公式计算，如下：
+\[
+DZ=E\left[ z\left( X,Y \right) ^2 \right] -E\left[ z\left( X,Y \right) \right] ^2
+\]
+\end{definition}
+
+%============================================================
+\subsection{方差的数学由来和统计意义}
+
+方差定义中，$X-EX$是根本，表示了随机变量$X$和它的均值$EX$的偏离程度。
+由于$E\left( X-EX \right) =E\left( X \right) -EX=0$，总是为0，所以我们取绝对值$\left| X-EX \right|$，又由于绝对值函数在0点不可导，所以我们替换成平方$\left( X-EX \right) ^2$定义方差。
+
+方差描述了随机变量$X$偏离其数学期望的程度，$DX$越小，说明离散程度越小。
+
+%============================================================
+\subsection{方差的物理意义}
+
+考虑一维物体的转动。
+长度为$L$的细长杆质量$M$且分布不均匀，有线密度$\rho \left( x \right) ,x\in \left[ d,d+L \right] $，一端距原点$d$，绕原点转动，如下图。
+\begin{figure}[h]
+\centering
+\includegraphics[height=1.5cm]{4.6.png}
+\end{figure}
+
+其转动惯量$I$有：
+\[
+I=\int{x^2\cdot dM}=\int_d^{d+L}{x^2\cdot \rho \left( x \right) \cdot dx} \quad \left[ \mathrm{kg}\cdot \mathrm{m}^2 \right]
+\]
+若将转轴移到质心$x_0$ ，根据平行轴定理，新的转动惯量$I_{x_0}$有：
+\begin{align*}
+&\because I=I_{x_0}+{Mx_0}^2 \\
+&\therefore \int_d^{d+L}{x^2\cdot \rho \left( x \right) \cdot dx}=I_{x_0}+{Mx_0}^2 \\
+&\therefore \int_d^{d+L}{x^2\cdot \frac{\rho \left( x \right)}{M}\cdot dx}=\frac{I_{x_0}}{M}+{x_0}^2
+\end{align*}
+对比方差的便捷计算公式：
+\[
+E\left( X^2 \right) =\int_{-\infty}^{+\infty}{x^2f\left( x \right) \cdot dx}=DX+\left( EX \right) ^2
+\]
+显然，{\bf 方差的物理意义可以理解为物体以质心为原点时的单位质量的转动惯量，有量纲$\left[ \mathrm{m}^2 \right] $}。
+跟物理的转动惯量不一样，没有质量这个因子，所以描述的是一种和具体质量无关的惰性，这种惰性和分布有关，$DX$越大，说明分布越靠外，转动惯量也越大。
+
+考虑二维平面，面密度$\rho \left( x,y \right) $的平面$D$，绕{\it y}轴匀速转动，如下左图：
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{4.7.png}
+\end{figure}
+
+其转动惯量$I$有：
+\[
+I=\iint\limits_D{x^2\cdot \rho \left( x,y \right) \cdot d\sigma} \quad \left[ \mathrm{kg}\cdot \mathrm{m}^2 \right]
+\]
+对比二维变量的方差：
+\[
+DX=\iint\limits_{\mathbb{R} \times \mathbb{R}}{\left( x-EX \right) ^2f\left( x,y \right) \cdot d\sigma}
+\]
+{\bf 二维变量$\left( X,Y \right) $的方差$DX$的物理意义为在绕轴$x=x_0$竖直转动时，单位质量的转动惯量，有量纲$\left[ \mathrm{m}^2 \right] $。}
+同样方差$DY$的物理意义为在绕轴$y=y_0$水平转动时，单位质量的转动惯量，也有量纲$\left[ \mathrm{m}^2 \right] $，如上右图。
+
+%============================================================
+\subsection{方差的性质}
+
+{\bf 性质1}：常数的方差为0，即$D\left( c \right) =0$。
+
+{\bf 推论}：$D\left( X \right) \geqslant 0$，当且仅当$P\left\{ X=EX \right\} =1$时（即常数分布），等号成立。
+
+{\bf 性质2}：$D\left( kX \right) =k^2\cdot DX$
+
+{\bf 性质3}：$D\left( kX+c \right) =k^2\cdot DX$，由性质1，2可得。
+
+{\bf 性质4}：设$\left( X,Y \right) $为二维随机变量，
+
+若$X,Y$相互独立$\Rightarrow D\left( X\pm Y \right) =DX+DY$
+
+进一步地，若$X,Y$相互独立$\Rightarrow D\left( aX\pm bY \right) =a^2\cdot DX+b^2\cdot DY$
+
+~
+
+性质1，对于常数分布，质心就是$c$，显然绕质心的转动惯量为0。
+
+性质2，若$X\rightarrow kX$，相当于直线被拉长$k$倍，自然转动惯量扩大了$k^2$倍。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.5cm]{4.8.png}
+\end{figure}
+
+\begin{tcolorbox}
+上述性质可结合物理意义理解。
+\end{tcolorbox}
+
+性质4，证明如下：
+\begin{align*}
+&\because DX=E\left( X^2 \right) -\left( EX \right) ^2 \\
+&\begin{aligned}
+	\therefore D\left( X\pm Y \right) &=E\left[ \left( X\pm Y \right) ^2 \right] -E\left[ \left( X\pm Y \right) \right] \cdot E\left[ \left( X\pm Y \right) \right]\\
+	&=E\left[ X^2\pm 2XY+Y^2 \right] -\left[ EX\pm EY \right] ^2\\
+	&=\left[ E\left( X^2 \right) \pm 2E\left( XY \right) +E\left( Y^2 \right) \right] -\\
+	&\left[ \left( EX \right) ^2\pm 2\left( EX \right) \left( EY \right) +\left( EY \right) ^2 \right]\\
+\end{aligned} \\
+&\because E\left( XY \right) =\left( EX \right) \left( EY \right) \\
+&\begin{aligned}
+	\therefore D\left( X\pm Y \right) &=\left[ E\left( X^2 \right) -\left( EX \right) ^2 \right] +\left[ E\left( Y^2 \right) -\left( EY \right) ^2 \right]\\
+	&=DX+DY\\
+\end{aligned}
+\end{align*}
+
+%============================================================
+\subsection{方差的取值范围}
+
+变量的方差的取值范围根据不同的分布有不同的范围。如常数分布，中心点转动惯量必然为0。
+又如$P\left\{ X=\pm \infty \right\} =0.5$，显然转动惯量$+\infty $ 。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.5cm]{4.9.png}
+\end{figure}
+
+%============================================================
+\subsection{随机变量的标准化}
+
+\begin{definition}[随机变量的标准化]
+设随机变量$X$有数学期望$EX$和方差$DX>0$，若将$X$进行运算$\frac{X-EX}{\sqrt{DX}}$，获得的随机变量称为{\bf $X$的标准化随机变量}，记作$X^*$，即：
+\[
+X^*=\frac{X-EX}{\sqrt{DX}}
+\]
+且有：
+\begin{align*}
+&E\left( X^* \right) =E\left( \frac{X-EX}{\sqrt{DX}} \right) =\frac{1}{\sqrt{DX}}\cdot E\left( X-EX \right) =0 \\
+&D\left( X^* \right) =D\left( \frac{X-EX}{\sqrt{DX}} \right) =\frac{1}{DX}\cdot D\left( X-EX \right) =1
+\end{align*}
+\end{definition}
+
+~
+
+考察标准化过程：
+\begin{itemize}
+    \item $X-EX$:表示将坐标原点拉到期望$EX$的位置，即原点对称；
+    \item $\frac{1}{\sqrt{DX}}$：拉伸或收缩{\it x}轴，使得分布不过于稀疏或稠密。
+\end{itemize}
+排除这两个“干扰”后，很多初看起来不同的分布，实际是一类分布，有利于后续的进一步分析。
+如不同的正态分布，标准化之后就是标准正态分布。
+
+
+
+

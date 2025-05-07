@@ -1,0 +1,136 @@
+\section{古典概型和几何概型}
+
+上节介绍了概率的定义和运算法则，但没有给出概率的计算方法。
+本节介绍古典概型和几何概型及其计算方法。
+古典概型是概率论的雏形，也是最简单、最常见的类型。
+
+本节要点：
+\begin{itemize}
+    \item 掌握古典概型和几何概型的概念；
+    \item 熟练掌握两种概型的计算方法。
+\end{itemize}
+
+%============================================================
+\subsection{排列组合的概念}
+
+\begin{definition}[排列和组合]
+从$n$个元素中任取$m$个元素（$m\leqslant n$）排成一有序列，称{\bf 从$n$个元素中取出$m$个元素的一个排列}，所有排列的个数称作{\bf 排列数}，记作$P_{n}^{m}$，有：
+\[
+P_{n}^{m}:=\frac{n!}{\left( n-m \right) !}
+\]
+从$n$个元素中任取$m$个元素（$m\leqslant n$）组成一无序组，称{\bf 从$n$个元素中取出$m$个元素的一个组合}，所有组合的个数称作{\bf 组合数}，记作$C_{n}^{m}$，有：
+\[
+C_{n}^{m}:=\frac{n!}{\left( n-m \right) !\cdot m!}=\frac{P_{n}^{m}}{m!}
+\]
+特别地，$P_{n}^{1}=C_{n}^{1}=n,P_{n}^{n}=n!,C_{n}^{n}=1$。
+\end{definition}
+
+排列组合均是对“从$n$个元素中抽取$m$个元素”的计算，排列突出有序，组合突出无序。
+排列组合的关系还可以这么理解，当$m$个元素排列完成后，若不考虑其顺序，就是组合，由于每个排列有$P_{m}^{m}$种不同的顺序，所以：
+\[
+P_{n}^{m}=C_{n}^{m}\cdot P_{m}^{m}=C_{n}^{m}\cdot m!
+\]
+
+%============================================================
+\subsection{古典概型的概念}
+
+\begin{definition}[古典概型]
+若随机试验$E$满足：
+\begin{itemize}
+    \item 其样本空间$\varOmega $中只有有限个样本点；
+    \item 每个基本事件出现的概率相等，
+\end{itemize}
+则称试验$E$为{\bf 古典概型试验}，或{\bf 等可能概型试验}，上述条件称为{\bf 古典概型特征}。
+对于任意事件$A$，其概率$P\left( A \right) $为：
+\[
+P\left( A \right) :=\frac{A\text{的样本数}}{\text{总样本数}}
+\]
+\end{definition}
+
+古典概型的计算基于排列组合。
+在古典概型中，每个样本点具有等概率$\frac{1}{n}$，而事件就是样本点的集合，有几个样本点就是$\frac{1}{n}$的几倍。
+
+%============================================================
+\subsection{几何概型的概念}
+
+\begin{definition}[几何概型]
+若随机试验$E$满足：
+\begin{itemize}
+    \item 其样本空间$\varOmega $为一几何区域（一维、二维或更高任意维）；
+    \item 每个基本事件出现的概率相等，
+\end{itemize}
+则称试验$E$为{\bf 几何概型试验}，上述条件称为{\bf 几何概型特征}。
+对于任意事件$A$，其概率$P\left( A \right) $为：
+\[
+P\left( A \right) :=\frac{A\text{的几何测度}}{\varOmega \text{的几何测度}}
+\]
+\end{definition}
+
+古典概型中样本数量是有限的，几何概型中样本数量是无限的、不可数的或是稠密的，两者分别对应离散和连续的样本空间。
+通俗来讲，古典概型的计算就是“掰手指”，而几何概型就是“量尺子”。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设有4个不同的箱子，3个不同的球，每个球可以放入任意箱子，且概率相等，计算：
+\begin{enumerate}
+    \item 3个球放入不同的3个箱子的概率是多少，
+    \item 1号箱子和2号箱子都有球的概率是多少。
+\end{enumerate}
+\end{example}
+
+解：
+
+1. 首先计算所有可能的放置方法，每个球有4种放法，3个球共有$4^3$种放法。
+然后考虑3个球放入不同的3个箱子，第一个球有4个选择，第二球剩下3个箱子选择，最后一个球只剩下2个箱子选择，所以共有$4\cdot 3\cdot 2=24$种放法，于是概率：
+\[
+P=\frac{4\cdot 3\cdot 2}{4^3}=\frac{3}{8}
+\]
+
+2. 1号箱子和2号箱子都有球，可分为3种情况：
+\begin{itemize}
+    \item 1号箱子1个球，2号箱子1个球，剩下的球在3号或4号箱子，$C_{3}^{1}\cdot C_{2}^{1}\cdot 2=12$或$P_{3}^{2}\cdot 2=12$，$P\left( A_1 \right) =\frac{12}{4^3}=\frac{12}{64}$；
+    \item 1号箱子1个球，2号箱子2个球，$C_{3}^{1}\cdot C_{2}^{2}=3$，$P\left( A_2 \right) =\frac{3}{4^3}=\frac{3}{64}$；
+    \item 1号箱子2个球，2号箱子1个球，$C_{3}^{2}\cdot C_{1}^{1}=3$，$P\left( A_3 \right) =\frac{3}{4^3}=\frac{3}{64}$，
+\end{itemize}
+且这3种情况互斥，于是：
+\[
+P\left( A_1+A_2+A_3 \right) =P\left( A_1 \right) +P\left( A_2 \right) +P\left( A_3 \right) =\frac{9}{32}
+\]
+
+~
+
+\begin{example}
+将一根直棒随机分成3段，求3段能构成三角形的概率。
+\end{example}
+
+解：
+
+假设棒长$a$，3段长度分别为$x,y,\left( a-x-y \right)$，于是样本空间为：
+\[
+\varOmega =\{\left( x,y \right) |0<x<a,0<y<a,a-x-y>0\}
+\]
+在{\it xy}平面上为{\it x}轴、{\it y}轴和直线$y=a-x$构成的面积。
+能构成三角的充要条件是任意两边之和大于第三边，于是：
+\[
+\begin{cases}
+	x+y>a-x-y\\
+	x+\left( a-x-y \right) >y\\
+	y+\left( a-x-y \right) >x\\
+\end{cases}\qquad \Rightarrow \qquad \begin{cases}
+	x+y>\frac{a}{2}\\
+	y<\frac{a}{2}\\
+	x<\frac{a}{2}\\
+\end{cases}
+\]
+在\textit{xy}平面上为3条直线$x=\frac{a}{2}$、$y=\frac{a}{2}$和$y=\frac{a}{2}-x$构成的面积，可得概率为$1/4$。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{1.3.png}
+\end{figure}
+
+
+
+

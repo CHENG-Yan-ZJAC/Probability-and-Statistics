@@ -1,0 +1,220 @@
+\section{全概率公式与贝叶斯公式}
+
+本节介绍全概率公式和贝叶斯公式。
+
+本节要点：
+\begin{itemize}
+    \item 掌握全概率公式；
+    \item 掌握贝叶斯公式；
+    \item 了解先验概率和后验概率的关系。
+\end{itemize}
+
+%============================================================
+\subsection{完备事件组和全概率公式}
+
+\begin{definition}[完备事件组]
+若事件组$A_1,A_2,\cdots ,A_i,\cdots $两两互斥，且$A_1+A_2+\cdots +A_i+\cdots =\varOmega $，则$A_1,A_2,\cdots ,A_i,\cdots $构成样本空间 的一个{\bf 完备事件组}，简称{\bf 完备组}。
+\end{definition}
+
+\begin{definition}[全概率公式]
+若事件组$A_1,A_2,\cdots ,A_i,\cdots $构成样本空间$\varOmega $的一个完备组，则对于任何事件$B$有：
+\[
+P\left( B \right) =\sum_{i=1}^{\infty}{P\left( A_iB \right)}=\sum_{i=1}^{\infty}{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]}
+\]
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{1.4.png}
+\caption{全概率}
+\end{figure}
+
+完备组“瓜分”了整个样本空间，是事件对立关系的扩充，其意义在于将一个复杂的大问题分解为若干个简单的小问题。
+
+全概率可以认为是条件概率的延申，如果事件组满足完备条件，则事件$B$的发生总是伴随某个组员的发生，或者说$B$是通过某个路径发生的。
+当$P\left( B \right) $的计算较为复杂时，我们可以构造一个合适的完备组，简化$P\left( B \right) $的计算。
+其次，该公式从数学上还可以理解为$P\left( B \right) $是$P\left( B \middle| A_i \right) $的加权和，权重为$P\left( A_i \right) $。
+最后还需注意，$P\left( B \right) \leqslant 1$，但$\sum_{i=1}^{\infty}{P\left( B \middle| A_i \right)}$几乎可能大于1。
+
+%============================================================
+\subsection{贝叶斯公式}
+
+\begin{definition}[贝叶斯公式]
+若事件$A_1,A_2,\cdots ,A_i,\cdots $构成样本空间$\varOmega $的一个完备事件组，且$P\left( A_i \right) >0$，若$B$为一随机事件，且$P\left( B \right) >0$，则：
+\[
+P\left( A_i \middle| B \right) =\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{\sum_{i=1}^{\infty}{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]}}=\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{P\left( B \right)}
+\]
+又称{\bf 逆概率公式}。
+通常，我们将$P\left( A_i \right) $称为{\bf 先验概率}，将条件概率$P\left( A_i \middle| B \right) $称为{\bf 后验概率}。
+\end{definition}
+
+\begin{proof}
+由条件概率的概念可得：
+\[
+P\left( A_i \middle| B \right) =\frac{P\left( A_iB \right)}{P\left( B \right)}
+\]
+结合全概率公式，且$P\left( A_iB \right) =P\left( BA_i \right) =P\left( A_i \right) P\left( B \middle| A_i \right) $。
+\end{proof}
+
+$P\left( A_i \right) $称为先验概率的原因是$A_i$作为一种假定而不依赖于$B$。
+$B$称为{\bf 证据}，一种出现的客观事物。
+在证据出现前，$A_i$有自己的概率。
+当证据发现时，$A_i$的概率变成了$P\left( A_i \middle| B \right) $，所以我们称为后验概率。
+“先”和“后”指的是证据出现前和出现后。
+其中$P\left( B \middle| A_i \right) $描述了$A_i$和$B$的关系，机器学习中称为{\bf 似然（likehood）}。
+
+如下图，$P\left( A_1 \right) =P\left( A_2 \right) =P\left( A_3 \right) =P\left( A_4 \right) =1/4$，但如果$B$发生了，显然有利于$A_1$的发生且$P\left( A_1 \right) >1/4$，不利于$A_4$的发生且$P\left( A_4 \right) <1/4$。
+\begin{figure}[h]
+\centering
+\includegraphics[height=2cm]{1.5.png}
+\end{figure}
+
+全概率公式体现了由因求果，而贝叶斯公式反映了执果寻因的一种辩证思想，我们知道完备组员的概率$P\left( A_i \right) $和$B$在各个完备组员的条件概率$P\left( B \middle| A_i \right) $，就可以计算$B$大概会发生在哪个组员。
+很多情况下，我们知道各个原因发生的可能性，但是一旦结果出现，这些原因的可能性又会出现变化，贝叶斯公式揭示了两者之间的关系。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设10件产品中存在2件次品，现不放回地抽取2次，每次1件，求第2件是次品的概率。
+\end{example}
+
+解：
+
+由题干可知，第2件是否为次品的概率和第1件为否是次品有关，所以这是典型的条件概率。
+更进一步，第1件产品的合格和次品两个事件可以构成完备组，所以可以用全概率公式求解。
+
+设第1次抽取为次品为事件$A$，于是$A,\bar{A}$可视为完备组，且易得$P\left( A \right) =\frac{2}{10},P\left( \bar{A} \right) =\frac{8}{10}$。
+再设第2次抽到次品为事件$B$，于是$P\left( B \right) $可以用这个完备组分解：
+\[
+P\left( B \right) =P\left( A \right) P\left( B \middle| A \right) +P\left( \bar{A} \right) P\left( B \middle| \bar{A} \right)
+\]
+其中：
+\begin{itemize}
+    \item $P\left( B \middle| A \right) $：表示第1次抽到次品时第2次也抽到次品的概率，易得$\frac{1}{9}$；
+    \item $P\left( B \middle| \bar{A} \right) $：表示第1次抽到合格时第2次抽到次品的概率，易得$\frac{2}{9}$。
+\end{itemize}
+最终得到：
+\[
+P\left( B \right) =\frac{1}{5}\cdot \frac{1}{9}+\frac{4}{5}\cdot \frac{2}{9}=\frac{1}{5}
+\]
+
+解二，不用全概率的概念，直接使用古典概型的方法，抽取2件排序，共$P_{10}^{2}$种，第2件是次品有两种互不相同可能：
+\begin{itemize}
+    \item 第1次抽到次品时第2次也抽到次品，$C_{2}^{1}\cdot C_{1}^{1}$种；
+    \item 第1次抽到合格时第2次抽到次品，$C_{8}^{1}\cdot C_{2}^{1}$种。
+\end{itemize}
+于是：
+\[
+P=\frac{C_{2}^{1}\cdot C_{1}^{1}+C_{8}^{1}\cdot C_{2}^{1}}{P_{10}^{2}}=\frac{18}{90}=\frac{1}{5}
+\]
+
+~
+
+\begin{example}
+假设血清甲蛋白法测定肝癌阳性准确率为95\%、阴性准确率为90\%，若已知社会人群的患癌率为0.04\%，若某人检测阳性，分析其实际患癌的概率。
+\end{example}
+
+解：
+
+设事件$A$表示被检者实际患癌，事件$B$ 表示用该测定法判定阳性，由题干可知：
+\begin{align*}
+&P\left( A \right) =0.0004 \\
+&P\left( B \middle| A \right) =0.95 \\
+&P\left( \bar{B} \middle| \bar{A} \right) =0.90
+\end{align*}
+由于$A,\bar{A}$构成完备组，则有：
+\begin{align*}
+P\left( A \middle| B \right) &=\frac{P\left( A \right) P\left( B \middle| A \right)}{P\left( A \right) P\left( B \middle| A \right) +P\left( \bar{A} \right) P\left( B \middle| \bar{A} \right)} \\
+&=\frac{0.0004\cdot 0.95}{0.0004\cdot 0.95+0.9996\cdot \left( 1-0.9 \right)} =0.00378712
+\end{align*}
+
+一方面可见即便测定阳性，实际患癌也不到1\%，但比一般人群已经高了$0.3787/0.04=9.4675$，将近10倍。
+另一方面，通过贝叶斯公式我们了解到，血清甲蛋白测定法不是判断患癌的概率，而是判断比正常人患癌概率高了多少。
+
+\begin{tcolorbox}
+该例子很具典型性。
+首先0.04\%的患癌概率是作为一种先天的经验存在。
+测试结果则是一种证据。
+证据的出现可以让我们对这个先天经验进行修正。
+由于这个证据本身带有概率，而非100\%，所以它实际上是提高了患癌概率。
+\end{tcolorbox}
+
+~
+
+\begin{example}
+某水文站测量水流量，令$B$为测量不准的事件，并总结了几个测量不准的原因$A_i$，原因的发生概率$P\left( A_i \right) $，以及某个原因发生时测量不准的概率$P\left( B \middle| A_i \right) $，如下表，分析哪几个原因主要导致了测量不准。
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+    \toprule
+    测不准的原因$A_i$ & $P\left( A_i \right) $ & $P\left( B \middle| A_i \right) $\\
+    \midrule
+    流速计故障 & 0.01 & 0.90\\
+    绕道设备误差 & 0.05 & 0.80\\
+    水中有杂质 & 0.04 & 0.10\\
+    气象条件不佳 & 0.10 & 0.30\\
+    人员配合问题 & 0.10 & 0.80\\
+    其他 & 0.70 & 0.01\\
+    \bottomrule
+\end{tabular}
+\end{table}
+\end{example}
+
+解：
+
+“那几个原因主要导致了测量不准”也即测量不准的情况下，各个原因的发生概率$P\left( A_i \middle| B \right) $，可以用贝叶斯公式解决。
+\[
+P\left( A_i \middle| B \right) =\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{P\left( B \right)}=\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{\sum_{i=1}^{\infty}{P\left( A_i \right) P\left( B \middle| A_i \right)}}
+\]
+计算结果如下表。
+可见，单看每个已知的明确的原因，它们的发生概率都不大，但是一旦问题出现，最有可能是人员配合导致。
+所以若要提高测量准确度，首先得从提高人员配合度着手。
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        测不准的原因$A_i$ & $P\left( A_i \right) $ & $P\left( B \middle| A_i \right) $ & $P\left( A_i \middle| B \right) $\\
+        \midrule
+        流速计故障 & 0.01 & 0.90 & 0.05\\
+        绕道设备误差 & 0.05 & 0.80 & 0.24\\
+        水中有杂质 & 0.04 & 0.10 & 0.02\\
+        气象条件不佳 & 0.10 & 0.30 & 0.18\\
+        人员配合问题 & 0.10 & 0.80 & 0.47\\
+        其他 & 0.70 & 0.01 & 0.04\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+~
+
+\begin{example}
+甲箱中有2个白球4个黑球，乙箱中有6个白球2个黑球，现从这两箱中各任取一球，再从所取出的两球中任取一球，求最终该球是白球的概率。
+\end{example}
+
+解：
+
+令从甲箱中取得白球为事件$A$，从乙箱中取得白球为事件$B$，易得甲乙两个箱子中取球为独立事件，于是：
+\begin{align*}
+&P\left( A \right) =\frac{1}{3},P\left( B \right) =\frac{3}{4} \\
+&P\left( AB \right) =\frac{1}{4},P\left( A\bar{B} \right) =\frac{1}{12},P\left( \bar{A}B \right) =\frac{1}{2},P\left( \bar{A}\bar{B} \right) =\frac{1}{6}
+\end{align*}
+且$AB,\bar{A}B,A\bar{B},\bar{A}\bar{B}$构成完备组，于是可以用全概率公式得到：
+\begin{align*}
+P\left( C \right) =&P\left( AB \right) P\left( C \middle| AB \right) +P\left( A\bar{B} \right) P\left( C \middle| A\bar{B} \right) + \\
+&P\left( \bar{A}B \right) P\left( C \middle| \bar{A}B \right) +P\left( \bar{A}\bar{B} \right) P\left( C \middle| \bar{A}\bar{B} \right)
+\end{align*}
+而易得：
+\begin{align*}
+&P\left( C \middle| AB \right) =1 \\
+&P\left( C \middle| A\bar{B} \right) =P\left( C \middle| \bar{A}B \right) =\frac{1}{2} \\
+&P\left( C \middle| \bar{A}\bar{B} \right) =0
+\end{align*}
+于是：
+\[
+P\left( C \right) =\frac{1}{4}+\frac{1}{12}\cdot \frac{1}{2}+\frac{1}{2}\cdot \frac{1}{2}=\frac{13}{24}
+\]
+
+
+
+

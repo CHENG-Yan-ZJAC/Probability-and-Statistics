@@ -1,0 +1,301 @@
+\section{条件概率}
+
+\begin{tcolorbox}
+现实中，我们有时知道某个事件$A$发生了，此时，试验的部分不确定因素变成了确定性因素，在这种情况下，需要计算事件$B$的概率，这就是条件概率。
+\end{tcolorbox}
+
+本节介绍条件概率，也是后续全概率公式、贝叶斯公式、事件独立性的基础。
+
+本节要点：
+\begin{itemize}
+    \item 掌握条件概率的概念、性质和公式；
+    \item 掌握独立性的概念；
+    \item 深刻理解伯努利概型。
+\end{itemize}
+
+%============================================================
+\subsection{条件概率的概念和性质}
+
+\begin{definition}[条件概率]
+在事件$A$发生的情况下，事件$B$发生的概率称为{\bf 条件概率}，记作$P\left( B \middle| A \right) $，当$P\left( A \right) >0$时有：
+\[
+P\left( B \middle| A \right) := \frac{P\left( AB \right)}{P\left( A \right)}
+\]
+\end{definition}
+
+$P\left( B \middle| A \right) $和$P\left( B \right) $的大小关系是不定的。
+也就是说，事件$A$的发生并不一定有利于$B$，也可能没有影响。
+切不能想当然地认为$P\left( B \middle| A \right) >P\left( B \right) $！
+
+从原理上来讲，一切概率都是必然事件的条件概率，这种必然事件可以理解为试验所规定的基本条件。
+但在一般性的讨论中，条件指的是除了基本条件之外的额外的条件。
+
+~
+
+条件概率的性质：
+\begin{itemize}
+    \item {\bf 非负性}：$0\leqslant P\left( B \middle| A \right) \leqslant 0$；
+    \item {\bf 规范性}：$P\left( \varOmega \middle| A \right) =1,P\left( \oslash \middle| A \right) =0$；
+    \item {\bf 对立事件概率}：对于任何事件$B$，有$P\left( \bar{B} \middle| A \right) =1-P\left( B \middle| A \right) $；
+    \item {\bf 并事件概率}：设任意事件$A,B$，有
+    
+    $P\left[ \left( B_1+B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) +P\left( B_2 \middle| A \right) -P\left( B_1B_2 \middle| A \right) $
+    \item {\bf 差事件概率}：设任意事件$B_1,B_2$，有
+    
+    $P\left[ \left( B_1-B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) -P\left( B_1B_2 \middle| A \right) $；
+    \item {\bf 有限可加性}：若事件$B_i$两两互斥，则有$P\left( \bigcup_i{B_i} \middle| A \right) =\sum_i{P\left( B_i \middle| A \right)}$。
+\end{itemize}
+
+~
+
+对比单个概率的性质，有一样的要点：
+\begin{itemize}
+    \item 我们只要记住并事件有
+    
+    $P\left[ \left( B_1+B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) +P\left( B_2 \middle| A \right) -P\left( B_1B_2 \middle| A \right) $，
+    
+    差事件有
+    
+    $P\left[ \left( B_1-B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) -P\left( B_1B_2 \middle| A \right) $；
+    \item 特别地，若互斥$B_2\cap B_1=\oslash$，则并事件有
+    
+    $P\left[ \left( B_1+B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) +P\left( B_2 \middle| A \right) $；
+    \item 特别地，若包含$B_2\subset B_1$，则差事件有
+    
+    $P\left[ \left( B_1-B_2 \right) \middle| A \right] =P\left( B_1 \middle| A \right) -P\left( B_2 \middle| A \right) $。
+\end{itemize}
+
+
+%============================================================
+\subsection{条件概率的乘法公式}
+
+\begin{theorem}[乘法公式]
+若$P\left( A \right) >0$，则
+\[
+P\left( AB \right) =P\left( A \right) \left( B \middle| A \right)
+\]
+\end{theorem}
+
+\begin{corollary}[乘法公式]
+若$P\left( A_1A_2\cdots A_n \right) >0,n\geqslant 2$，则
+\[
+P\left( A_1A_2\cdots A_n \right) =P\left( A_1 \right) P\left( A_2 \middle| A_1 \right) P\left( A_3 \middle| A_1A_2 \right) \cdots P\left( A_n \middle| A_1A_2\cdots A_{n-1} \right)
+\]
+\end{corollary}
+
+
+%============================================================
+\subsection{独立性的概念}
+
+\begin{tcolorbox}
+本节开始就提到，事件$A$的发生并不一定有利于事件$B$，也可能没有影响。
+这种“没影响”就是下面定义的独立性。
+反映到表达式就是$P\left( B \right) =P\left( B \middle| A \right) =P\left( B \middle| \bar{A} \right) $。
+\end{tcolorbox}
+
+\begin{definition}[独立性]
+设事件$A,B$，若$P\left( AB \right) =P\left( A \right) P\left( B \right) $，则称{\bf 事件$A,B$相互独立}。
+该定义也可扩展到3个事件，若$P\left( ABC \right) =P\left( A \right) P\left( B \right) P\left( C \right) $，称{\bf 事件$A,B,C$相互独立}。
+甚至多个事件，略。
+注意，若$A,B,C$相互独立，则任意两个事件必然相互独立，常称为{\bf 两两独立}，但两两独立并不一定相互独立。
+\end{definition}
+
+\begin{theorem}
+~
+\begin{itemize}
+    \item 若事件$A,B$相互独立，则$P\left( AB \right) =P\left( A \right) P\left( B \right) $。
+    \item 若$P\left( A \right) \ne 0$，则有，事件$A,B$相互独立$\Leftrightarrow P\left( B \middle| A \right) =P\left( B \right) $。
+    \item 若$0<P\left( A \right) <1$，则有，事件$A,B$相互独立$\Leftrightarrow P\left( B \middle| A \right) =P\left( B \middle| \bar{A} \right) $。
+    \item 若$A,B$相互独立，则$\bar{A},B$相互独立、$A,\bar{B}$相互独立、$\bar{A},\bar{B}$相互独立，任意反之依然，即这4个命题相互等价。
+    \item 若$A_1,A_2,\cdots ,A_n$相互独立，则任意抽取若干个事件也相互独立。
+    \item 若$A_1,A_2,\cdots ,A_n$相互独立，则将某个事件取反$\bar{A}_i$组成的事件组也相互独立。
+    \item 若$A_1,A_2,\cdots ,A_n$相互独立，则将它们任意分成两组，这两组事件相互独立。
+\end{itemize}
+\end{theorem}
+
+我们从条件概率考察独立性，由于条件概率$P\left( B \middle| A \right) =\frac{P\left( AB \right)}{P\left( A \right)}$总是成立的，所以$P\left( AB \right) =P\left( A \right) P\left( B \right) $反映了$P\left( B \middle| A \right) =P\left( B \right) $，即事件$A$的发生与否对事件$B$没有影响。
+其次，我们一般不从定义判断两个事件是否独立，而是从事件的事实角度判断，如果两个事件独立，则采用第一条定理的公式计算。
+通常而言，如果事件$A$描述了试验$E_A$的结果，事件$B$描述了试验$E_B$的结果，试验$E$由$E_A,E_B$构成，且$E_A,E_B$不存在相互逻辑关系，则$A,B$相互独立。
+
+%============================================================
+\subsection{关于互斥和独立}
+
+互斥关注事件的样本点，表示两个事件没有公共样本点。
+独立关注事件的概率，表示两个事件有各自的试验背景，互不影响。
+
+以掷骰子为例，将1颗骰子投掷2次，分别记录第一次和第二次的点数，将$\left( i,j\right) $记作样本点。
+
+若设2个事件：
+\begin{align*}
+& A=\left\{ \left( 1,1 \right) ,\left( 2,2 \right) ,\left( 3,3 \right) \right\} \\
+& B=\left\{ \left( 4,4 \right) ,\left( 5,5 \right) ,\left( 6,6 \right) \right\}
+\end{align*}
+则$A,B$互斥，它们之间没有任何公共样本点，而且$P\left( AB \right) =0$，所以$P\left( B \middle| A \right) =0$。
+
+若：
+\begin{align*}
+& A=\left\{ \text{其中一次点数为}5 \right\} \\
+& B=\left\{ \text{两次点数之和为偶数} \right\}
+\end{align*}
+显然$A,B$不互斥，比方它们均有有样本点$\left( 5,3 \right) $，而且$A,B$通过第一颗骰子的点数有了关系，所以$A,B$不独立。
+
+再若：
+\begin{align*}
+& A=\left\{ \text{第一次点数为}5 \right\} \\
+& B=\left\{ \text{第二次点数为}4 \right\}
+\end{align*}
+虽然$A,B$有公共样本点$\left( 5,4 \right) $，但$A,B$分属于两个不搭界的小试验，所以$A,B$独立。
+
+%============================================================
+\subsection{伯努利概型}
+
+\begin{definition}[伯努利试验]
+设试验$E$是由重复$n$次的一系列子试验$E_i,i=1,2,\cdots ,n$组成，若：
+\begin{itemize}
+    \item 每次子试验$E_i$对应的样本空间相同；
+    \item 每次子试验$E_i$的结果相互独立，
+\end{itemize}
+则称该试验$E$为{\bf $n$重独立重复试验}。
+进一步，如果每次子试验$E_i$只考虑事件$A,\bar{A}$，则称试验$E$为{\bf $n$重伯努利试验}。
+\end{definition}
+
+\begin{theorem}
+在$n$重伯努利试验$E$中，事件$A$恰好发生$k$次的概率为：
+\[
+C_{n}^{k}p^k\left( 1-p \right) ^{n-k}
+\]
+其中：
+\begin{itemize}
+    \item $p=P\left( A \right) $：事件$A$在每次子试验$E_i$中发生的概率；
+    \item $C_{n}^{k}$：$n$次子试验中，事件$A$发生了$k$次，注意，这里用组合，表示我们只关心$k$次，而不关心具体是哪$k$次；
+    \item $p^k$：事件$A$发生$k$次的概率；
+    \item $\left( 1-p \right) ^{n-k}$：其余$n-k$次子试验中事件$A$不发生的概率。
+\end{itemize}
+\end{theorem}
+
+伯努利试验是一个等概率二元重复试验，有3个要点：
+\begin{itemize}
+    \item 首先，是一个重复性试验，即试验$E$由一系列子试验组成；
+    \item 其次，每个子试验只考虑事件$A$的发生和不发生；
+    \item 最后，事件$A$在每次子试验中的概率$P\left( A\right) $保持一致。
+\end{itemize}
+对于试验结果，我们只关心事件$A$发生$k$次的概率，而不考虑具体是哪$k$次发生。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设10件产品中有4件次品，从中任意抽取2件，若其中一件为次品，计算另一件也为次品的概率。
+\end{example}
+
+解：
+
+记其中一件为次品为事件$A$，再记两件均为次品为事件$AB$，题干要求的概率可以表示为条件概率$P\left( B \middle| A \right) =\frac{P\left( AB \right)}{P\left( A \right)}$，于是：
+\begin{align*}
+& \because \begin{cases}
+	P\left( A \right) =1-P\left( \bar{A} \right) =1-\frac{C_{6}^{2}}{C_{10}^{2}}=\frac{30}{45}\\
+	P\left( AB \right) =\frac{C_{4}^{2}}{C_{10}^{2}}=\frac{6}{45}\\
+\end{cases}
+\\
+& \therefore P\left( B \middle| A \right) =\frac{P\left( AB \right)}{P\left( A \right)}=\frac{1}{5}
+\end{align*}
+
+~
+
+\begin{example}
+同上产品，任取2件，若第一次抽取到为次品，计算此时第二次也为次品的概率。
+\end{example}
+
+解：
+
+从事实出发，第一次抽取到次品后情况变成9件产品，其中3件为次品，抽取到次品的概率自然为$3/9=1/3$。
+
+~
+
+\begin{example}
+设有50个晶体管中有2个次品，每次任取1个，且不放回，求：
+\begin{enumerate}
+    \item 第4次取到最后一个次品的概率，
+    \item 至少抽取几个才能使出现次品的概率超过0.6。
+\end{enumerate}
+\end{example}
+
+解：
+
+1. 记第$i$次取到次品的概率为$P\left( A_i \right) $，则第4次取到最后一个次品可分为3种情况，分别为第1次取到次品、第2次取到次品、第3次取到次品，且这3种情况互不相容，于是：
+\begin{align*}
+&P\left( A_1\bar{A}_2\bar{A}_3A_4+\bar{A}_1A_2\bar{A}_3A_4+\bar{A}_1\bar{A}_2A_3A_4 \right) \\
+&=P\left( A_1\bar{A}_2\bar{A}_3A_4 \right) +P\left( \bar{A}_1A_2\bar{A}_3A_4 \right) +P\left( \bar{A}_1\bar{A}_2A_3A_4 \right)
+\end{align*}
+直接计算较为复杂，可利用乘法公式：
+\begin{align*}
+&\begin{aligned}
+	P\left( A_1\bar{A}_2\bar{A}_3A_4 \right) &=P\left( A_1 \right) P\left( \bar{A}_2 \middle| A_1 \right) P\left( \bar{A}_3 \middle| A_1\bar{A}_2 \right) P\left( A_4 \middle| A_1\bar{A}_2\bar{A}_3 \right)\\
+	&=\frac{2}{50}\cdot \frac{48}{49}\cdot \frac{47}{48}\cdot \frac{1}{47}=\frac{1}{1225}\\
+	P\left( \bar{A}_1A_2\bar{A}_3A_4 \right) &=P\left( \bar{A}_1 \right) P\left( A_2 \middle| \bar{A}_1 \right) P\left( \bar{A}_3 \middle| \bar{A}_1A_2 \right) P\left( A_4 \middle| \bar{A}_1A_2\bar{A}_3 \right)\\
+	&=\frac{48}{50}\cdot \frac{2}{49}\cdot \frac{47}{48}\cdot \frac{1}{47}=\frac{1}{1225}\\
+	P\left( \bar{A}_1\bar{A}_2A_3A_4 \right) &=P\left( \bar{A}_1 \right) P\left( \bar{A}_2 \middle| \bar{A}_1 \right) P\left( A_3 \middle| \bar{A}_1\bar{A}_2 \right) P\left( A_4 \middle| \bar{A}_1\bar{A}_2A_3 \right)\\
+	&=\frac{48}{50}\cdot \frac{47}{49}\cdot \frac{2}{48}\cdot \frac{1}{47}=\frac{1}{1225}\\
+\end{aligned} \\
+&P=\frac{3}{1225}
+\end{align*}
+
+2. 设连续抽取$n$个均为正品，则概率可记为$P\left( \bar{A}_1\bar{A}_2\cdots \bar{A}_n \right) $，利用乘法公式：
+\begin{align*}
+&P\left( \bar{A}_1\bar{A}_2\cdots \bar{A}_n \right) =P\left( \bar{A}_1 \right) P\left( \bar{A}_2 \middle| \bar{A}_1 \right) \cdots P\left( \bar{A}_n \middle| \bar{A}_1\bar{A}_2\bar{A}_3\cdots \bar{A}_{n-1} \right) \\
+&=\frac{48}{50}\cdot \frac{47}{49}\cdot \frac{46}{48}\cdot \frac{45}{47}\cdots \frac{48-\left( n-3 \right)}{50-\left( n-3 \right)}\cdot \frac{48-\left( n-2 \right)}{50-\left( n-2 \right)}\cdot \frac{48-\left( n-1 \right)}{50-\left( n-1 \right)} \\
+&=\frac{48}{50}\cdot \frac{47}{49}\cdot \frac{46}{48}\cdot \frac{45}{47}\cdots \frac{51-n}{53-n}\cdot \frac{50-n}{52-n}\cdot \frac{49-n}{51-n} \\
+&=\frac{\left( 50-n \right) \cdot \left( 49-n \right)}{50\cdot 49}
+\end{align*}
+则在抽取的$n$个样品中，出现次品的概率为：
+\[
+1-P\left( \bar{A}_1\bar{A}_2\cdots \bar{A}_n \right) =1-\frac{\left( 50-n \right) \cdot \left( 49-n \right)}{50\cdot 49}=\frac{99n-n^2}{50\cdot 49}
+\]
+计算$\frac{99n-n^2}{50\cdot 49}>0.6$可得：
+\begin{align*}
+&\because \frac{99n-n^2}{50\cdot 49}>0.6 \Rightarrow n^2-99n+1470<0 \\
+&\therefore n^2-99n+1470=0 \Rightarrow n=\frac{99\pm \sqrt{99^2-4\cdot 1470}}{2}=80.8 \mathrm{or} 18.2 \\
+&\therefore n<80.8 \quad \mathrm{or} \quad n>18.2
+\end{align*}
+可以当抽取19个及以上时，出现次品的概率大于0.6。
+注意，这里不是说抽到第19个才出现次品，而是19个中必有次品。
+
+~
+
+\begin{example}
+将一枚硬币反复抛5次，求至少2次正面向上的概率。
+\end{example}
+
+解：
+
+这是典型的伯努利概型，可利用公式$C_{n}^{k}p^k\left( 1-p \right) ^{n-k}$计算0次正面向上和1次正面向上后“取反”，以减小计算量：
+\begin{align*}
+P&=1-\sum_{k=0}^1{C_{5}^{k}\left( \frac{1}{2} \right) ^k\left( 1-\frac{1}{2} \right) ^{5-k}} \\
+&=1-C_{5}^{0}\left( \frac{1}{2} \right) ^0\left( 1-\frac{1}{2} \right) ^{5-0}-C_{5}^{1}\left( \frac{1}{2} \right) ^1\left( 1-\frac{1}{2} \right) ^{5-1} \\
+&=\frac{13}{16}
+\end{align*}
+也可用$P=\sum_{k=2}^5{C_{5}^{k}\left( \frac{1}{2} \right) ^k\left( 1-\frac{1}{2} \right) ^{5-k}}$，但计算量较大。
+
+~
+
+\begin{example}
+假设事件$A$的发生概率小于0.5，若在4重伯努利试验中， 恰好发生2次的概率为$8/27$，求在4重伯努利试验中， 恰好发生1次的概率。
+\end{example}
+
+解：
+
+设事件$A$的发生概率为$p$，由题干可得：
+\begin{align*}
+&\because C_{4}^{2}p^2\left( 1-p \right) ^{4-2}=\frac{4!}{2!\cdot 2!}p^2\left( 1-p \right) ^2=\frac{8}{27} \\
+&\therefore p\left( 1-p \right) =\frac{2}{9} \\
+&\therefore p=\frac{1}{3}\mathrm{or} \frac{2}{3}
+\end{align*}
+由于事件$A$的发生概率小于0.5，所以取$p=1/3$。
+于是在4重伯努利试验中，$A$恰好发生1次的概率：
+\[
+C_{4}^{1}p^1\left( 1-p \right) ^{4-1}=\frac{4!}{3!\cdot 1!}\cdot \frac{1}{3}\cdot \left( \frac{2}{3} \right) ^3=\frac{32}{81}
+\]
+
+
+
+

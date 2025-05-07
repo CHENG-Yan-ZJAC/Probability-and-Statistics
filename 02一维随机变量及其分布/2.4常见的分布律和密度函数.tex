@@ -1,0 +1,517 @@
+\section{常见的分布律和密度函数}
+
+本节介绍几个常见的分布规律，大多数实际问题都可以归结到本节介绍的这些分布规律。
+
+本节要点：
+\begin{itemize}
+    \item 理解5个常见的分布律及其应用场景；
+    \item 理解3个常见的密度函数及其应用场景；
+    \item 学会用这8个分布规律考察实际问题。
+\end{itemize}
+
+%============================================================
+\subsection{0-1分布}
+
+{\bf 0-1分布}又称{\bf 两点分布}，记作$B\left( 1,p \right) $，描述最简单的分布：
+\begin{align*}
+&P\left\{ X=1 \right\} =p\\
+&P\left\{ X=0 \right\} =1-p
+\end{align*}
+更普遍地记作：
+\[
+P\left\{ X=x \right\} =p^x\left( 1-p \right) ^{1-x},\qquad \begin{array}{l}
+	x=0,1\\
+	p\in \left( 0,1 \right)\\
+\end{array}
+\]
+其中：
+\begin{itemize}
+    \item $x$：一般取0表示事件不发生，1表示事件发生；
+    \item $p$：表示事件发生的概率。
+\end{itemize}
+特别地，当$p=0\mathrm{or}1$时称为{\bf 常数分布}。
+常数分布表示了事件100\%发生，所以无实际用途，只是为了完善概念而提出。
+
+\begin{tcolorbox}
+一般如果试验中只有两个样本点，非黑即白、非正即负，我们就可以用两点分布描述。
+两点分布的使用场景非常少。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二项分布}
+
+{\bf 二项分布}又称{\bf 伯努利分布}，记作$B\left( n,p \right) $，因其分布律表达式中包含二项式系数而得名，描述$n$重伯努利试验中具有发生概率$p$的事件发生$x$次的概率的分布规律：
+\[
+P\left\{ X=x \right\} =C_{n}^{x}p^x\left( 1-p \right) ^{n-x},\qquad \begin{array}{l}
+	x=0,1,\cdots ,n\\
+	p\in \left( 0,1 \right)\\
+\end{array}
+\]
+其中：
+\begin{itemize}
+    \item $x$：表示事件发生的次数，包括一次也不发生（$x=0$）和每次都发生（$x=n$）；
+    \item $p$：表示事件发生的概率；
+    \item $C_{n}^{x}$：$n$次子试验中，事件发生了$x$次的次数，注意，这里用组合，表示我们只关心$x$次，而不关心具体是哪$x$次；
+    \item $p^x$：表示事件发生$x$次的概率；
+    \item $\left( 1-p \right) ^{n-x}$：表示其余$n-x$次子试验中事件不发生的概率。
+\end{itemize}
+伯努利试验中，小概率事件倾向于少发生，大概率事件倾向于多次发生，且发生概率最大的在$np$次。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.4.png}
+\caption{二项分布}
+\end{figure}
+
+\begin{tcolorbox}
+二项分布描述伯努利试验，我们可以知道在固定$n$次子试验中，事件$A$发生几次的概率是最大的。
+最典型的应用就是$n$次放回抽样，计算抽到$x$个次品的概率。
+\end{tcolorbox}
+
+%============================================================
+\subsection{泊松分布}
+
+{\bf 泊松分布}，记作$P\left( \lambda \right) $，因由法国数学家Siméon-Denis Poisson发表而得名，一般用于近似描述一定时间内，某个稀有事件发生次数的概率分布：
+\[
+P\left\{ X=x \right\} =\frac{\lambda ^x}{x!}e^{-\lambda},\qquad \begin{array}{l}
+	x=0,1,2,\cdots\\
+	\lambda >0\\
+\end{array}
+\]
+其中：
+\begin{itemize}
+    \item $\lambda =np$：$n$表示总次数，$p$表示事件发生的概率，一般$n$很大，$p$很小，两者乘积$\lambda $适中；
+    \item $x$：表示事件发生的次数。
+\end{itemize}
+泊松分布中，发生概率最大的在$\lambda $次。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.5.png}
+\caption{泊松分布}
+\end{figure}
+
+\begin{theorem}[泊松定理]
+在$n$重伯努利试验中，事件$A$在每次试验中发生概率为$p_n\in \left( 0,1 \right) $，且$p_n$和试验次数$n$有关，若$\underset{n\rightarrow \infty}{\lim}np_n=\lambda >0$，则对于$\forall k\geqslant 0$，必有：
+\[
+\underset{n\rightarrow \infty}{\lim}C_{n}^{x}{p_n}^x\left( 1-p_n \right) ^{n-x}=\frac{\lambda ^x}{x!}e^{-\lambda}
+\]
+\end{theorem}
+
+该定理揭示了二项分布和泊松分布的关系，当$n$充分大，$p$很小，且$\lambda $适中时，二项分布近似于泊松分布。
+证明见“教材\cite{book1}”的P44，例2.2.7，着重理解条件$\underset{n\rightarrow \infty}{\lim}np_n=\lambda $在证明过程中的使用。
+
+\begin{tcolorbox}
+泊松分布依然基于伯努利试验，和二项分布的区别在于长时间段和稀有事件，是二项分布的近似，常用于描述如某个时间段内商场人数、候车站人数、机器故障、灾害发生等。
+\end{tcolorbox}
+
+%============================================================
+\subsection{几何分布}
+
+{\bf 几何分布}，记作$G\left( p \right) $，因其分布律表达式中含有几何级数因子而得名，描述事件$A$首次发生时所进行的试验次数服从的分布：
+\[
+P\left\{ X=x \right\} =p\left( 1-p \right) ^{x-1},\qquad \begin{array}{l}
+	x=1,2,\cdots\\
+	p\in \left( 0,1 \right)\\
+\end{array}
+\]
+其中：
+\begin{itemize}
+    \item $x$：表示事件$A$在第$x$次子试验时发生；
+    \item $p$：表示事件$A$发生的概率；
+    \item $\left( 1-p \right) ^{x-1}$：表示前面$x-1$次子试验中事件$A$均不发生的概率。
+\end{itemize}
+几何分布中，$p$越大，事件越倾向于早发生。
+几何分布有性质：
+\[
+P\left\{ X>m+n \middle| X>m \right\} =P\left\{ X>n \right\}
+\]
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.6.png}
+\caption{几何分布}
+\end{figure}
+
+\begin{tcolorbox}
+几何分布依然基于伯努利试验。
+几何分布不规定具体几次试验，而是着重刻画“首次即停止”，即事件$A$在前几次子试验中均不发生，在第$n$次子试验时首次发生的概率。
+几何分布在现实中使用不多，在连续型随机变量中对应指数分布，常用来描述设备无故障运行时间的概率分布。
+\end{tcolorbox}
+
+考察二项分布和几何分布
+\begin{align*}
+&B\left( n,p \right) && P\left\{ X=x \right\} =C_{n}^{x}p^x\left( 1-p \right) ^{n-x}, x=0,1,\cdots ,n \\
+&G\left( p \right)   && P\left\{ X=x \right\} =p\left( 1-p \right) ^{x-1}, x=1,2,\cdots
+\end{align*}
+不难发现，$\left( 1-p \right) ^{n-x},\left( 1-p \right) ^{x-1}$有类似互为倒数的关系，所以几何分布又被称为{\bf 负二项分布}。
+
+%============================================================
+\subsection{超几何分布}
+
+{\bf 超几何分布}，记作$H\left( M,N,n \right) $，因其分布律与超几何函数的级数展开式的系数类似而得名，描述不放回抽取试验，从$N$个样品中抽取$n$个，出现$x$个次品的概率分布：
+\[
+P\left\{ X=x \right\} =\frac{C_{N-M}^{n-x}C_{M}^{x}}{C_{N}^{n}}, \begin{array}{l}
+	N>1,M\leqslant N\\
+	n\leqslant N,x\in \left[ \max \left\{ 0,M+n-N \right\} ,\min \left\{ M,n \right\} \right]\\
+\end{array}
+\]
+其中：
+\begin{itemize}
+    \item $N,M$：共$N$个样品，其中有$M$个次品；
+    \item $n,x$：抽取$n$个，其中$x$个为次品。
+\end{itemize}
+超几何分布中，抽到$\frac{M}{N}\cdot n$的概率最大。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.7.png}
+\caption{超几何分布，16个样品，6个次品}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.8.png}
+\caption{超几何分布，16个样品，3个次品}
+\end{figure}
+
+\begin{tcolorbox}
+超几何分布描述“不放回”抽取试验，不是基于伯努利试验，描述抽到$x$个次品的概率分布。
+\end{tcolorbox}
+
+%============================================================
+\subsection{均匀分布}
+
+{\bf 均匀分布}，记作$U\left[ a,b \right] $，描述了最简单的分布：
+\[
+f\left( x \right) =\begin{cases}
+	\frac{1}{b-a},&		x\in \left[ a,b \right]\\
+	0,&		x\notin \left[ a,b \right]\\
+\end{cases}\qquad F\left( x \right) =\begin{cases}
+	0,&		x\in \left( -\infty ,a \right)\\
+	\frac{1}{b-a}\cdot \left( x-a \right) ,&		x\in \left[ a,b \right)\\
+	1,&		x\in \left[ b,+\infty \right)\\
+\end{cases}
+\]
+
+\begin{tcolorbox}
+均匀分布对应几何概型，在自然界十分罕见，常用于人工事件，如设计的随机数发生器需尽量满足均匀分布。
+\end{tcolorbox}
+
+%============================================================
+\subsection{指数分布和威布尔分布}
+
+{\bf 指数分布}，记作$E\left( \lambda \right) $，和几何分布类似，描述事件$A$首次发生的时间：
+\[
+f\left( x \right) =\begin{cases}
+	0,&		x<0\\
+	\lambda e^{-\lambda x},&		x\geqslant 0\\
+\end{cases}\qquad F\left( x \right) =\begin{cases}
+	0,&		x<0\\
+	1-e^{-\lambda x},&		x\geqslant 0\\
+\end{cases}
+\]
+其中：
+\begin{itemize}
+    \item $\lambda $：常称作{\bf 趋近率}， 越小，趋近越慢。
+\end{itemize}
+指数分布的推导见“教材\cite{book2}”P52，详细阅读，可加深对$\lambda $的理解。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.9.png}
+\caption{均匀分布}
+\end{figure}
+
+\begin{tcolorbox}
+指数分布对应离散变量的几何分布，是几何分布的连续模型，常用于描述元器件的寿命。
+\end{tcolorbox}
+
+描述元件故障时，我们用事件$A$表示元件发生故障，随机变量$X$表示元件的工作寿命，此时$\lambda $也被称为{\bf 失效率}，$\lambda $越大，表示元器件的寿命越短，通常我们会说某元件的使用寿命数服从$\lambda $指数分布。
+元件能无故障运行$x$小时的概率，即$x$小时内事件$A$不发生的概率$P\left( \bar{A} \right) $，对应的分布函数为$1-F\left( x \right) $。
+
+~
+
+\begin{theorem}
+若$X\sim E\left( \lambda \right) $，则有：
+\[
+P\left\{ X>s+t \middle| X>s \right\} =P\left\{ X>t \right\}
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+&\because P\left\{ X>x_0 \right\} =1-F\left( x_0 \right) =1-\left( 1-e^{-\lambda x_0} \right) =e^{-\lambda x_0} \\
+&\because P\left\{ X>s+t \middle| X>s \right\} =\frac{P\left\{ X>s+t\cap X>s \right\}}{P\left\{ X>s \right\}}=\frac{P\left\{ X>s+t \right\}}{P\left\{ X>s \right\}} \\
+&\therefore P\left\{ X>s+t \middle| X>s \right\} =\frac{e^{-\lambda \left( s+t \right)}}{e^{-\lambda s}}=e^{-\lambda t}
+\end{align*}
+\end{proof}
+
+从该性质可见，指数分布的概率和“起点”无关。
+这个性质在描述元器件寿命时和实际情况不符。
+实际情况中，随着使用时间的增加，元器件寿命会“加速缩短”。
+反映到失效率$\lambda $，不会是一个常数，而是会随着使用而逐渐变大。
+考虑到这一因素，人们引入了{\bf 威布尔分布}，因瑞典工程师、数学家Waloddi Weibull（1887-1979）详细解释了这一分布而得名，其密度函数和分布函数如下：
+\[
+f\left( x \right) =\begin{cases}
+	0,&		x<0\\
+	\lambda \alpha x^{\alpha -1}e^{-\lambda x^{\alpha}},&		x\geqslant 0\\
+\end{cases}\qquad F\left( x \right) =\begin{cases}
+	0,&		x<0\\
+	1-e^{-\lambda x^{\alpha}},&		x\geqslant 0\\
+\end{cases}
+\]
+指数分布是$\alpha =1$时的特列。
+
+%============================================================
+\subsection{正态分布}
+
+{\bf 正态分布}，也称{\bf 高斯分布}，记作$N\left( \mu ,\sigma ^2 \right) $，类似泊松分布，描述一个范围内的分布情况：
+\[
+f\left( x \right) =\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left( x-\mu \right) ^2}{2\sigma ^2}},\qquad \mu \in \mathbb{R} ,\sigma >0
+\]
+其中：
+\begin{itemize}
+    \item $\mu $：数学期望，规定了中心点的横坐标，$f\left( x \right) $以$x=\mu $为对称，并在$x=\mu $取得最大值$\frac{1}{\sqrt{2\pi}\sigma}$；
+    \item $\sigma $：标准差，一方面规定了$f\left( x \right) $的两个拐点$\mu \pm \sigma $，另一方面也规定了平坦度，$\sigma $越大，曲线越平坦。
+\end{itemize}
+特别地，当$\mu =0,\sigma =1$时，称为{\bf 标准正态分布}，记作$N\left( 0,1 \right) $，此时密度函数和分布函数通常记为$\varphi \left( x \right) ,\varPhi \left( x \right) $，有：
+\[
+\varphi \left( x \right) =\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\qquad \varPhi \left( x \right) =\int_{-\infty}^x{\varphi \left( t \right) \cdot dt}
+\]
+根据密度函数的偶函数定理，有性质：
+\begin{align*}
+&\varPhi \left( x \right) +\varPhi \left( -x \right) =1 \\
+&\varPhi \left( 0 \right) =0.5
+\end{align*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=7.5cm]{2.10.png}
+\caption{正态分布}
+\end{figure}
+
+\begin{tcolorbox}
+正态分布常用于描述身高、体重、成绩、元器件指标等的离散程度。
+\end{tcolorbox}
+
+\begin{theorem}
+若$X\sim N\left( \mu ,\sigma ^2 \right) $，则有：
+\[
+P\left\{ a<X\leqslant b \right\} =\varPhi \left( \frac{b-\mu}{\sigma} \right) -\varPhi \left( \frac{a-\mu}{\sigma} \right)
+\]
+\end{theorem}
+
+可用积分变量替换进行证明，略。
+该定理使得我们可以用标准分布计算任何正态分布。
+
+\begin{theorem}
+设$X_1\sim N\left( \mu _1,{\sigma _1}^2 \right) ,X_2\sim N\left( \mu _2,{\sigma _2}^2 \right) $ ，则$Y=X_1+X_2$也服从正态分布，且有：
+\begin{align*}
+&Y\sim N\left( \mu _1+\mu _2,{\sigma _1}^2+{\sigma _2}^2 \right) \\
+&f\left( y \right) =\frac{1}{\sqrt{2\pi \left( {\sigma _1}^2+{\sigma _2}^2 \right)}}e^{-\frac{\left[ y-\left( \mu _1+\mu _2 \right) \right] ^2}{2\left( {\sigma _1}^2+{\sigma _2}^2 \right)}}
+\end{align*}
+反之，若正态分布$Y$能表示成两个变量的和$Y=X_1+X_2$，则$X_1,X_2$也必然是正态分布，这点被称为正态分布的{\bf 再生性}。
+\end{theorem}
+
+\begin{tcolorbox}
+正态分布有很多特别的表现。
+一方面，若足够多的独立分布叠加，则总体可看成正态分布；另一方面，在相同方差的情况下，正态分布具有最大的不确定性。
+所以正态分布不但非常常见，而且也是优先考虑使用的模型。
+\end{tcolorbox}
+
+%============================================================
+\subsection{常见分布的总结}
+
+\begin{table}[h]
+\centering
+\caption{常见分布总结}
+\begin{tabular}{ll}
+    \toprule
+    \multicolumn{1}{c}{分布} & \multicolumn{1}{c}{含义、用途}  \\
+    \midrule
+    0-1分布$B\left( 1,p \right) $ & 最简单的分布，非黑即白。\\
+    二项分布$B\left( n,p \right) $ & $n$重伯努利试验中发生$x$次的概率分布。\\
+    泊松分布$P\left( \lambda \right) $ & 同上，重在非常多次和小概率。\\
+    几何分布$G\left( p \right) $ & 同上，事件首次发生时次数的概率分布。\\
+    超几何分布$H\left( M,N,n \right) $ & 不放回抽取中，抽到含$x$个次品的概率分布。\\
+    均匀分布$U\left[ a,b \right] $ & 常用于人工事件，自然界极为罕见。\\
+    指数分布$E\left( \lambda \right) $ & 常用于描述元器件寿命。\\
+    正态分布$N\left( \mu ,\sigma ^2 \right) $ & 描述某指标的离散度。\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+%============================================================
+% 例
+%============================================================
+\subsection{例}
+
+\begin{example}
+设某射手独立地向目标射击4次，每次击中的概率为0.6，问射击几次的击中概率最大。
+\end{example}
+
+解：
+
+这是4重伯努利试验，且射击次数 服从二项分布，有：
+\[
+P\left\{ X=k \right\} =C_{n}^{k}p^k\left( 1-p \right) ^{n-k}=C_{4}^{k}0.6^k\left( 1-0.6 \right) ^{4-k}
+\]
+经计算可得，$X=2\mathrm{or}3$时，概率最大，可达0.3456。
+
+~
+
+\begin{example}
+某产品的次品率为0.5\%，若取1000件，计算不多于5件次品的概率。
+\end{example}
+
+解：
+
+可以认为是$n$重伯努利试验，使用二项分布，由于次数很多概率很小，所以可以用泊松分布作近似计算，取$\lambda =np=1000\cdot 0.005=5$：
+\begin{align*}
+&\because P\left\{ X=x \right\} =\frac{\lambda ^x}{x!}e^{-\lambda} \\
+&\therefore P\left\{ X\leqslant 5 \right\} =\sum_{x=0}^5{\frac{5^x}{x!}e^{-5}}=0.615961
+\end{align*}
+
+~
+
+\begin{example}
+若有均匀分布的变量$X\sim U\left[ 1,6 \right] $，则方程$x^2+Xx+1=0$有实根的概率。
+\end{example}
+
+解：
+
+方程有实根必须满足$\Delta =X^2-4\geqslant 0$，即$X\leqslant -2 \mathrm{or} X\geqslant 2$。
+由于$X\thicksim U\left[ 1,6 \right] $，所以有实根的概率即求分布$P\left\{ 2\leqslant X\leqslant 6 \right\} $的值：
+\[
+P\left\{ 2\leqslant X\leqslant 6 \right\} =F\left( 6 \right) -F\left( 2^- \right) =\frac{6-1}{6-1}-\frac{2-1}{6-1}=\frac{4}{5}
+\]
+进一步，分析有两个不同实根，$\Delta =X^2-4>0\Rightarrow X<-2\mathrm{or}X>2$：
+\[
+P\left\{ 2<X\leqslant 6 \right\} =F\left( 6 \right) -F\left( 2 \right) =\frac{6-1}{6-1}-\frac{2-1}{6-1}=\frac{4}{5}
+\]
+有实根和有不同实根的概率相同，这点也可以由$P\left\{ X=2 \right\} =0$得到。
+
+~
+
+\begin{example}
+某仪器由3个电子元件组成，元件工作寿命符合$\lambda =1/600$的指数分布，单位小时，且元件质量和运行相互独立。
+\begin{enumerate}
+    \item 若元件逻辑上“串联”，即仪器需要3个电子元件均正常才能工作；
+    \item 若元件相互热备，即只需要一个元件能工作，仪器就能正常工作，
+\end{enumerate}
+试分析仪器的寿命分布。
+\end{example}
+
+解：
+
+我们用事件$A_i$第$i$个元件出现问题的时间的概率，于是：
+\[
+P\left( A_i \right) =P\left\{ X\leqslant x \right\} =F\left( x \right) =1-e^{-\lambda x}
+\]
+
+1. 当元件逻辑上“串联”时，仪器的运行取决于3个元件都不能有故障，即$\bar{A}=\bar{A}_1\bar{A}_2\bar{A}_3$，于是：
+\begin{align*}
+P\left( \bar{A} \right) &=P\left( \bar{A}_1\bar{A}_2\bar{A}_3 \right) =P\left( \bar{A}_1 \right) P\left( \bar{A}_2 \right) P\left( \bar{A}_3 \right) \\
+&=\left[ 1-P\left( A_1 \right) \right] \left[ 1-P\left( A_2 \right) \right] \left[ 1-P\left( A_3 \right) \right] \\
+&=e^{-3\lambda x}=e^{-\frac{x}{200}}
+\end{align*}
+
+2. 当元件相互热备时，仪器的运行只需要任意一个元件能正常运行即可，即$\bar{A}=\bar{A}_1+\bar{A}_2+\bar{A}_3=\overline{A_1A_2A_3}=\varOmega -A_1A_2A_3$：
+\begin{align*}
+P\left( \bar{A} \right) &=1-P\left( A_1A_2A_3 \right) =1-P\left( A_1 \right) P\left( A_2 \right) P\left( A_3 \right) \\
+&=1-\left( 1-e^{-\lambda x} \right) ^3=1-\left( 1-e^{-\frac{x}{600}} \right) ^3
+\end{align*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.3cm]{2.11.png}
+\end{figure}
+
+左图为串联，右图为热备，横坐标表示时间，单位小时，纵坐标表示无故障运行时间的概率。
+
+~
+
+\begin{example}
+若随机变量服从正态分布$X\sim N\left( \mu ,\sigma ^2 \right) $，计算$P\left\{ \left| X-\mu \right|<k\sigma \right\} $。
+\end{example}
+
+解：
+
+\begin{align*}
+P\left\{ \left| X-\mu \right|<k\sigma \right\} &=P\left\{ -k\sigma +\mu <X<k\sigma +\mu \right\} \\
+&=P\left\{ a<X\leqslant b \right\} \\
+&=\varPhi \left( \frac{\left( k\sigma +\mu \right) -\mu}{\sigma} \right) -\varPhi \left( \frac{\left( -k\sigma +\mu \right) -\mu}{\sigma} \right) \\
+&=\varPhi \left( \frac{k\sigma}{\sigma} \right) -\varPhi \left( \frac{-k\sigma}{\sigma} \right) =\varPhi \left( k \right) -\varPhi \left( -k \right) \\
+&=2\varPhi \left( k \right) -1
+\end{align*}
+特别地：
+\begin{align*}
+&P\left\{ \left| X-\mu \right|<\sigma \right\} =0.6826 \\
+&P\left\{ \left| X-\mu \right|<2\sigma \right\} =0.9544
+\end{align*}
+也即中心点$\mu $左右$\sigma $范围内占据了一半稍微多一点，而$2\sigma $范围内占据了绝大部分。
+
+~
+
+\begin{example}
+设电压服从正态分布$V\sim N\left( 220,25^2 \right) $，若某电子元件在电压小于200V时失效的概率为0.1，在$\left[ 200,240 \right] $失效的概率为0.001，在大于240V时失效概率为0.2。
+分析：
+\begin{enumerate}
+    \item 电子元件失效的概率，
+    \item 当元件损坏时，电压不正常（不在$\left[ 200,240 \right] $范围内）的概率。
+\end{enumerate}
+\end{example}
+
+解：
+
+记$A_1,A_2,A_3$表示电压落在3个区间事件，则：
+\begin{align*}
+P\left( A_1 \right) &=P\left\{ X<200 \right\} =\varPhi \left( \frac{200-220}{25} \right) \\
+&=\varPhi \left( -0.8 \right) =1-\varPhi \left( 0.8 \right) =0.2119 \\
+P\left( A_2 \right) &=P\left\{ 200\leqslant X\leqslant 240 \right\} \\
+&=\varPhi \left( \frac{240-220}{25} \right) -\varPhi \left( \frac{200-220}{25} \right) =0.5762 \\
+P\left( A_3 \right) &=P\left\{ X>240 \right\} =1-\varPhi \left( \frac{240-220}{25} \right) =0.2119
+\end{align*}
+且构成电压分布的完备组。
+
+1. 记$B$表示元件失效，则由全概率公式易得：
+\begin{align*}
+P\left( B \right) &=\sum_{i=1}^3{P\left( A_i \right) P\left( B \middle| A_i \right)} \\
+&=0.2119\cdot 0.1+0.5762\cdot 0.001+0.2119\cdot 0.2 \\
+&=0.0641
+\end{align*}
+
+2. 使用贝叶斯公式：
+\begin{align*}
+P\left( A_1 \middle| B \right) +P\left( A_3 \middle| B \right) &=\frac{P\left( A_1 \right) P\left( B \middle| A_1 \right)}{P\left( B \right)}+\frac{P\left( A_3 \right) P\left( B \middle| A_3 \right)}{P\left( B \right)} \\
+&=\frac{0.2119\cdot 0.1}{0.0641}+\frac{0.2119\cdot 0.2}{0.0641} \\
+&=0.991732
+\end{align*}
+可见，电压不正常占据了绝大多数可能性。
+
+~
+
+\begin{example}
+用车床加工半径为$2\mathrm{mm}$的圆柱形零件，若加工刀具径向离散度在$\pm 0.1\mathrm{mm}$均匀分布，求零件截面面积的离散度分布。
+\end{example}
+
+解：
+
+由题干可知，零件半径在加工时的分布为$R\sim U\left[ 1.9,2.1 \right] $，密度函数：$f_R\left( r \right) =\frac{1}{2.1-1.9}=\frac{1}{0.2},r\in \left[ 1.9,2.1 \right] $，再由面积和半径关系$S=\pi R^2$可得$\frac{dR}{dS}=\frac{1}{2}\cdot \left( \frac{S}{\pi} \right) ^{-1/2}\cdot \frac{1}{\pi}=\frac{1}{2\sqrt{\pi S}} $，于是零件截面面积的离散度分布：
+\begin{align*}
+&\alpha =\min \left\{ g\left( a \right) ,g\left( b \right) \right\} =1.9^2\pi \\
+&\beta =\max \left\{ g\left( a \right) ,g\left( b \right) \right\} =2.1^2\pi \\
+&f_S\left( s \right) =f_X\left[ g^{-1}\left( Y \right) \right] \cdot \left| \frac{dg^{-1}\left( Y \right)}{dY} \right|=f_R\left( \sqrt{\frac{s}{\pi}} \right) \cdot \left| \frac{1}{2\sqrt{\pi s}} \right|=\frac{1}{0.4\sqrt{\pi s}} \\
+&Y\in \left[ 1.9^2\pi ,2.1^2\pi \right]
+\end{align*}
+图形如下：
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.3cm]{2.12.png}
+\end{figure}
+虽然零件半径是均匀分布，但截面积的分布会略微倾向小面积。
+
+
+
+

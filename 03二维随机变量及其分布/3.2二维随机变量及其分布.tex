@@ -1,0 +1,92 @@
+\section{二维随机变量与分布函数}
+
+本节介绍二维随机变量和分布函数，为之后讨论奠定基础。
+
+本节要点：
+\begin{itemize}
+    \item 深刻掌握二维随机变量的概念；
+    \item 掌握分布函数的概念。
+\end{itemize}
+
+%============================================================
+\subsection{二维随机变量的概念}
+
+\begin{definition}[二维随机变量]
+设随机试验$E$的样本空间$\varOmega $，若$X,Y$均为定义在$\varOmega $上的一维随机变量，则称$\left( X,Y \right) $为{\bf 定义在$\varOmega $上的二维随机变量}，简称{\bf 二维变量}。
+\end{definition}
+
+该定义除了简单将两个一维变量进行组合之外，没有任意其他含义，二维变量更多的含义体现在分布函数。
+
+%============================================================
+\subsection{分布函数的概念}
+
+\begin{definition}[分布函数]
+设二维变量$\left( X,Y \right) $，若对于任意的$X\leqslant x$且$Y\leqslant y$，均有唯一的$P\left\{ X\leqslant x,Y\leqslant y \right\} $与之对应，则称该对应关系为{\bf $\left( X,Y \right) $的分布函数}，也称为{\bf $X$和$Y$的联合分布函数}，记作$F\left( x,y \right) $，即：
+\[
+F\left( x,y \right) := P\left\{ X\leqslant x,Y\leqslant y \right\} ,\qquad x,y\in \mathbb{R}
+\]
+\end{definition}
+
+$F\left( x,y \right) $描述了$\left( X,Y \right) $落入平面$\left( -\infty ,x \right] \times \left( -\infty ,y \right] $中的概率。
+同一维变量的分布函数，定义隐含了判断一个函数能否被视为分布函数的充要条件：
+\[
+F\left( x,y \right) \text{是分布函数}\Leftrightarrow \begin{cases}
+	0\leqslant F\left( x,y \right) \leqslant 1\\
+	\underset{x,y\rightarrow -\infty}{\lim}F\left( x,y \right) =0\\
+	\underset{x\rightarrow -\infty}{\lim}F\left( x,y \right) =0\\
+	\underset{y\rightarrow -\infty}{\lim}F\left( x,y \right) =0\\
+	\underset{x,y\rightarrow +\infty}{\lim}F\left( x,y \right) =1\\
+\end{cases}
+\]
+
+分布函数的性质：
+\begin{itemize}
+    \item $F\left( x,y \right) $必单调增，即$x_1<x_2\Rightarrow F\left( x_1,y_0 \right) \leqslant F\left( x_2,y_0 \right) $。
+    \item $F\left( x,y \right) $关于点$\left( x,y \right) $右连续。
+    \item 落在$\left( x_1,x_2 \right] \times \left( y_1,y_2 \right] $的概率$P\left\{ x_1<X\leqslant x_2,y_1<Y\leqslant y_2 \right\} $为：
+
+	$F\left( x_2,y_2 \right) -F\left( x_1,y_2 \right) -F\left( x_2,y_1 \right) +F\left( x_1,y_1 \right) $
+\end{itemize}
+
+总体来讲，$F\left( x,y \right) $呈现了一个东北高、西南低的斜坡。
+
+还需注意$P\left\{ x_1<X\leqslant x_2,y_1<Y\leqslant y_2 \right\} $是事件逻辑和的运算法则，是概率遵循逻辑运算的结果。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+若二维变量$\left( X,Y \right) $有分布函数
+\[
+F\left( x,y \right) =a\left( b+\mathrm{arc}\tan x \right) \left( c+\mathrm{arc}\tan y \right)
+\]
+计算$P\left\{ X\leqslant 1,Y\leqslant 1 \right\} ,P\left\{ X>1,Y>1 \right\} $。
+\end{example}
+
+解：
+
+首先求解具体的分布函数，由分布函数充要条件可得：
+\begin{align*}
+&\because \begin{cases}
+	\underset{x,y\rightarrow +\infty}{\lim}F\left( x,y \right) =a\left( b+\frac{\pi}{2} \right) \left( c+\frac{\pi}{2} \right) =1\\
+	\underset{x\rightarrow -\infty}{\lim}F\left( x,y \right) =a\left( b-\frac{\pi}{2} \right) \left( c+\mathrm{arc}\tan y \right) =0\\
+	\underset{y\rightarrow -\infty}{\lim}F\left( x,y \right) =a\left( b+\mathrm{arc}\tan x \right) \left( c-\frac{\pi}{2} \right) =0\\
+\end{cases}\Rightarrow \begin{cases}
+	a=\frac{1}{\pi ^2}\\
+	b=\frac{\pi}{2}\\
+	c=\frac{\pi}{2}\\
+\end{cases} \\
+&\therefore F\left( x,y \right) =\frac{1}{\pi ^2}\left( \frac{\pi}{2}+\mathrm{arc}\tan x \right) \left( \frac{\pi}{2}+\mathrm{arc}\tan y \right)
+\end{align*}
+于是：
+\begin{align*}
+&P\left\{ X\leqslant 1,Y\leqslant 1 \right\} =F\left( 1,1 \right) =\frac{1}{\pi ^2}\left( \frac{\pi}{2}+\frac{\pi}{4} \right) \left( \frac{\pi}{2}+\frac{\pi}{4} \right) =\frac{9}{16} \\
+&P\left\{ X>1,Y>1 \right\} \\
+&=P\left\{ 1<X<+\infty ,1<Y<+\infty \right\} \\
+&=F\left( +\infty ,+\infty \right) -F\left( 1,+\infty \right) -F\left( +\infty ,1 \right) +F\left( 1,1 \right) \\
+&=1-\frac{3}{4}-\frac{3}{4}+\frac{9}{16}=\frac{1}{16}
+\end{align*}
+
+
+
+

@@ -1,0 +1,37 @@
+\section{密度函数的物理意义}
+
+若有二维无限大平面，总质量$M$但分布不均匀，已知面密度$\rho \left( x,y \right) $，$x,y$为距原点的坐标距离，则任意区域$D$的质量占比：
+\begin{figure}[h]
+    \begin{minipage}{0.48\linewidth}
+    \centerline{\includegraphics[width=3.5cm]{3.4.png}}
+    \end{minipage}
+\hfill
+    \begin{minipage}{0.48\linewidth}
+    \begin{align*}
+    &\frac{m}{M}=\iint\limits_D{\frac{\rho \left( x,y \right)}{M}\cdot d\sigma} \\
+    &d\sigma =dxdy
+    \end{align*}
+    \end{minipage}
+\end{figure}
+
+对比概率计算公式：
+\[
+P\left\{ \left( X,Y \right) \in D \right\} =\iint\limits_D{f\left( x,y \right) \cdot d\sigma}
+\]
+
+~
+
+{\bf 二维变量的密度函数的物理意义是反映了某个物理量在一个二维的范围$D$内的占比，若以质量为例，则可认为具有量纲$\left[ \mathrm{m}^{-2} \right] $。}
+二维平面上的点$\left( x,y \right) $对应到概率论就是二维变量$\left( X,Y \right) $，关联到具体事件就是表示两个事件同时发生，通过密度函数我们就可以知道哪些“合并事件”容易发生。
+
+~
+
+特别注意，如果平面$D$退化成线$L$，则：
+\[
+P\left\{ \left( X,Y \right) \in L \right\} =\iint\limits_L{f\left( x,y \right) \cdot d\sigma}=0
+\]
+可认为平面上任何“线质量”都是0。
+
+
+
+

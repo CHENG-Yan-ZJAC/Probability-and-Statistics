@@ -1,0 +1,320 @@
+\section{一维随机变量及其分布规律}
+
+本节承上，深入讨论一维随机变量及其分布规律。
+一维随机变量分为离散变量和连续变量，总体来讲它们是一样的，但在具体表达上又有不同的地方，其次，概率又是它们的函数。
+
+本节要点：
+\begin{itemize}
+    \item 掌握一维离散型随机变量及其分布律的概念；
+    \item 掌握一维连续型随机变量及其密度函数的概念；
+    \item 了解一维随机变量函数的概念；
+    \item 掌握离散变量函数的分布律的计算方法；
+    \item 了解连续变量函数的密度函数的计算方法。
+\end{itemize}
+
+
+%============================================================
+% 一维离散型随机变量及其分布律的概念
+%============================================================
+\subsection{一维离散型随机变量及其分布律的概念}
+
+\begin{definition}[一维离散型随机变量]
+若一维随机变量$X$的取值为有限个或可列无穷多个，则称$X$为{\bf 一维离散型随机变量}，简称{\bf 离散变量}。
+设可能的取值为$x_1,x_2,\cdots ,x_i,\cdots $，且对应的概率记作：
+\[
+P\left\{ X=x_i \right\} =p_i
+\]
+称序列$p_i$为$X$的{\bf 分布律}或{\bf 概率分布}，可用表格展现，或记作：
+\[
+X\sim \left( \begin{matrix}
+	x_1&		x_2&		\cdots&		x_i&		\cdots\\
+	p_1&		p_2&		\cdots&		p_i&		\cdots\\
+\end{matrix} \right)
+\]
+其中：
+\begin{itemize}
+    \item $x_i$：纯数学记号，对应基本事件$A_i$，通常为简化讨论，$x_i$取值为非负整数，分布律的计算通常基于上一章的讨论；
+    \item $p_i=P\left\{ X=x_i \right\} =P\left( A_i \right) $：表示基本事件$A_i$的发生概率。
+\end{itemize}
+\end{definition}
+
+若离散变量$X$有分布律$p_i$，则其分布函数为：
+\[
+F\left( x \right) =P\left\{ X\leqslant x \right\} =\sum_{x_i\leqslant x}{p_i}
+\]
+由分布函数的充要条件可得$p_i$成为分布律的充要条件：
+\[
+p_i\text{为分布律}\Leftrightarrow \begin{cases}
+	p_i\geqslant 0\\
+	\sum_i{p_i}=1\\
+\end{cases}
+\]
+
+
+%============================================================
+\subsection{一维连续型随机变量及其密度函数的概念}
+
+\begin{definition}[一维连续型随机变量]
+设一维随机变量$X$及其分布函数$F\left( x \right) $，若存在可积函数$f\left( x \right) \geqslant 0$，对于$\forall x$，有：
+\[
+F\left( x \right) =\int_{-\infty}^x{f\left( t \right) \cdot dt}
+\]
+则称$X$为{\bf 一维连续型随机变量}，简称{\bf 连续变量}，并称$f\left( x \right) $为$X$的{\bf 密度函数}或{\bf 概率密度}。
+\end{definition}
+
+\begin{tcolorbox}
+注意，密度函数的定义不能采用$f\left( x \right) =F'\left( x \right) $，因为$F\left( x \right) $可以存在有限个不可导点，这并不违反分布函数的充要条件。
+\end{tcolorbox}
+
+由分布函数的充要条件易得$f\left( x \right) $成为密度函数的充要条件：
+\[
+f\left( x \right) \text{为密度函数}\Leftrightarrow \begin{cases}
+	f\left( x \right) \geqslant 0\\
+	\int_{-\infty}^{+\infty}{f\left( x \right) \cdot dx}=1\\
+\end{cases}
+\]
+我们可以通过密度函数计算任意区间$\left( a,b \right] $的概率：
+\[
+P\left\{ a<X\leqslant b \right\} =\int_a^b{f\left( x \right) \cdot dx}
+\]
+其几何意义是其密度函数在$\left[ a,b \right] $区间和\textit{x}轴围成的曲边梯形的面积。
+
+\begin{theorem}
+若有连续变量$X$，则根据定义可知分布函数$F\left( x \right) $必连续，于是对于$F\left( x \right) $的可导点$x_0$，有：
+\[
+f\left( x_0 \right) =F'\left( x_0 \right)
+\]
+对于不可导点$x_0$，则可取$f\left( x_0 \right) $为任意非负实数。
+反之也成立，即若$F\left( x \right) $不连续，则$X$不是连续型随机变量。
+\end{theorem}
+
+该定理隐含了两个含义。
+首先对于存在不可导点的$F\left( x \right) $，$f\left( x \right) $表达并不唯一，其实将第一个定理结合微积分知识可知，若$f\left( x \right) $有有限个一类间断点，并不影响其积分。
+其次，一维变量不是简单地分类为离散型和连续型，有些变量不是离散，但也找不到符合定义要求的密度函数。
+
+\begin{theorem}
+设连续变量$X$，则对于$\forall x_0\in \mathbb{R} $，有$P\left\{ X=x_0 \right\} =0$，即连续变量没有“单点概率”。
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+&\because P\left\{ X=x_0 \right\} =\int_{x_{0^-}}^{x_0}{f\left( x \right) \cdot dx} \\
+&\because x_0=x_{0^-} \\
+&\therefore P\left\{ X=x_0 \right\} =0
+\end{align*}
+其中第一个条件由分布函数定义$F\left( x \right) =P\left\{ X\leqslant x \right\} $保证，第二个条件由$X$的连续性保证。
+\end{proof}
+
+该定理更多的是描述一个常识，表达了$P\left\{ X=x_0 \right\} $和$f\left( x_0 \right) $是两个不同的概念。
+几何上，$P\left\{ X=x_0 \right\} $是$f\left( x \right) $和点$x_0$围城的面积，自然是0，但这并不表示该点的概率密度为0。
+
+\begin{theorem}
+若连续变量$X$的密度函数$f\left( x \right) $为偶函数，则有：
+\begin{itemize}
+    \item $F\left( x \right) +F\left( -x \right) =1$
+    \item $F\left( 0 \right) =\frac{1}{2}$
+    \item $P\left\{ \left| X \right|\leqslant x \right\} =2F\left( x \right) -1$
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+
+~
+
+式一：
+\begin{align*}
+&\because \begin{cases}
+	F\left( x \right) =\int_{-\infty}^x{f\left( t \right) dt}\\
+	F\left( -x \right) =\int_{-\infty}^{-x}{f\left( t \right) dt}\overset{u=-t}{=}\int_{+\infty}^x{f\left( -u \right) d\left( -u \right)}=\int_x^{+\infty}{f\left( u \right) du}\\
+\end{cases} \\
+&\therefore F\left( x \right) +F\left( -x \right) =\int_{-\infty}^x{f\left( t \right) dt}+\int_x^{+\infty}{f\left( t \right) dt}=\int_{-\infty}^{+\infty}{f\left( t \right) dt}=1
+\end{align*}
+
+式二，令$x=0$，略。
+
+式三：
+\begin{align*}
+P\left\{ \left| X \right|\leqslant x \right\} &=\int_{-x}^x{f\left( t \right) dt}=2\int_0^x{f\left( t \right) dt}\\
+&=2\left[ F\left( x \right) -F\left( 0 \right) \right] =2F\left( x \right) -1	
+\end{align*}
+\end{proof}
+
+
+%============================================================
+\subsection{分布律和密度函数的对比}
+
+从函数的角度，分布律和密度函数都是函数，将随机变量空间映射到概率空间，或者说将事件映射到概率。
+
+从变量定义的角度看，离散变量的定义从自身出发，而连续变量需要存在一个对应的可积函数，所以存在随机变量既不是离散的也不是连续的。
+
+\begin{figure}[ht]
+\centering
+\includegraphics[height=2.5cm]{2.3.png}
+\end{figure}
+
+从概率角度看，事件的概率都是加权和，只是表达式不同，含义是相同的。
+但离散变量有单点概率$P\left\{ X=x_i \right\} =p_i$，连续变量不存在单点概率$P\left\{ X=x_i \right\} =0$。
+有些教材中，将分布律称为{\bf 概率质量函数}，将密度函数称为{\bf 概率密度函数}。
+\begin{align*}
+&P\left\{ a<X\leqslant b \right\} =\sum_{a<x\leqslant b}{p_i} \\
+&P\left\{ a<X\leqslant b \right\} =\int_a^b{f\left( x \right) \cdot dx}
+\end{align*}
+
+从分布规律的角度看，无论是分布律还是密度函数，它们的充要条件都是概率公理化定义的必然要求。
+\begin{align*}
+&p_i\geqslant 0 &&\sum_i{p_i}=1 \\
+&f\left( x \right) \geqslant 0 &&\int_{-\infty}^{+\infty}{f\left( x \right) \cdot dx}=1
+\end{align*}
+
+从应用角度出发，离散变量对应古典概型，如典型的抽样问题，连续变量对应几何概型，如碰面问题、人口分布问题。
+
+%============================================================
+\subsection{一维随机变量的函数的概念}
+
+\begin{definition}[随机变量的函数]
+设随机变量$X$及其取值范围$D$，$g\left( x \right) $定义在$D$上，若$Y=g\left( X \right) $依然为随机变量，则称$Y=g\left( X \right) $为{\bf 随机变量$X$的函数}。
+\end{definition}
+
+随机变量的函数这一概念可以对应复合函数。
+一般来讲，随机变量的函数也可以是随机变量，但具体为离散变量还是连续变量就得视情况而定。
+
+当$X$为离散变量时情况较为简单，$Y=g\left( X \right) $也为离散变量，$Y$的取值为$y_i=g\left( x_i \right) $，$Y$的分布律$P\left\{ Y=y_i \right\} $可由列表的方式计算，若$g\left( x_1 \right) =g\left( x_2 \right) $，则需要将相应概率相加$p_1+p_2$。
+
+当$X$为连续变量时情况较为复杂，$Y$的密度函数由下列两个定理给出。
+
+\begin{theorem}
+设连续变量$X$有密度函数$f_X\left( x \right) ,X\in \mathbb{R} $，若$y=g\left( x \right) $在$\mathbb{R} $上严格单调，且反函数$x=g^{-1}\left( y \right) $具有连续的一阶导数，则$Y=g\left( X \right) $也是连续变量，且有密度函数：
+\begin{align*}
+&f_Y\left( y \right) =\begin{cases}
+	f_X\left[ g^{-1}\left( y \right) \right] \cdot \left| \frac{dg^{-1}\left( y \right)}{dy} \right|,&		y\in \left( \alpha ,\beta \right)\\
+	0,&		y\notin \left( \alpha ,\beta \right)\\
+\end{cases} \\
+&\alpha =\min \left\{ g\left( -\infty \right) ,g\left( +\infty \right) \right\} \\
+&\beta =\max \left\{ g\left( -\infty \right) ,g\left( +\infty \right) \right\}
+\end{align*}
+\end{theorem}
+
+\begin{theorem}
+设连续变量$X$有密度函数$f_X\left( x \right) ,x\in \left[ a,b \right] $，当$x\notin \left[ a,b \right] $时$f_X\left( x \right) =0$，若$y=g\left( x \right) $在$\left[ a,b \right] $上严格单调，且反函数$x=g^{-1}\left( y \right) $具有连续的一阶导数，则$Y=g\left( X \right) $也是连续变量，且有密度函数：
+\begin{align*}
+&f_Y\left( y \right) =\begin{cases}
+	f_X\left[ g^{-1}\left( y \right) \right] \cdot \left| \frac{dg^{-1}\left( y \right)}{dy} \right|,&		y\in \left[ \alpha ,\beta \right]\\
+	0,&		y\notin \left[ \alpha ,\beta \right]\\
+\end{cases} \\
+&\alpha =\min \left\{ g\left( a \right) ,g\left( b \right) \right\} \\
+&\beta =\max \left\{ g\left( a \right) ,g\left( b \right) \right\}
+\end{align*}
+\end{theorem}
+
+严格单调保证了连续$X$能映射出一个连续的、单值的$Y$。
+如分段函数，随单调但不严格，映射出的是离散的$Y$，又如绝对值函数，映射出连续的非单值$Y$。
+若$y=g\left( x \right) $在定义域非单调，则$Y=g\left( X \right) $可能是离散型、连续型、不定型。
+
+上述定理中，$\left| \frac{dg^{-1}\left( y \right)}{dy} \right|$是为了弥补空间变形带来的差异。
+假设$X\sim U\left[ 0,1 \right] ,Y=\frac{1}{2}X$，则$f\left( x \right) =1,x\in \left[ 0,1 \right] $。
+若我们简单地认为$f_Y\left( y \right) =f_X\left[ g^{-1}\left( y \right) \right] $，则有：
+\begin{align*}
+&f_Y\left( y \right) =f_X\left[ g^{-1}\left( y \right) \right] =1 \\
+&\int_0^{1/2}{f_Y\left( y \right) dy}=\int_0^{1/2}{dy}=\frac{1}{2}
+\end{align*}
+显然违背了密度函数的充要条件，其原因在于$Y=\frac{1}{2}X$时，$dy\ne dx$，正确的做法是需要保证：
+\[
+f_Y\left( y \right) \left| dy \right|=f_X\left( x \right) \left| dx \right|
+\]
+此处，由于$y=g\left( x \right) $可能单调减，所以$dy,dx$都带上绝对值。
+于是：
+\[
+f_Y\left( y \right) =f_X\left( x \right) \left| \frac{dx}{dy} \right|=f_X\left( x \right) \left| \frac{dg^{-1}\left( y \right)}{dy} \right|
+\]
+
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设有8个正品，2个次品，若不放回地依次取出若干个，分析首次取到正品时所取产品个数的分布规律。
+\end{example}
+
+解：
+
+该问题是抽样问题，由题干可知，首次取到正品只可能是抽了1、2、3个，抽取到$n\geqslant 4$个样品时，第$n$次不可能是首次抽到正品。
+于是：
+\begin{align*}
+&P\left\{ X=1 \right\} =\frac{8}{10}=\frac{4}{5} \\
+&P\left\{ X=2 \right\} =\frac{2}{10}\cdot \frac{8}{9}=\frac{8}{45} \\
+&P\left\{ X=3 \right\} =\frac{2}{10}\cdot \frac{1}{9}\cdot \frac{8}{8}=\frac{1}{45}
+\end{align*}
+分布律：
+\[
+X\sim \left( \begin{matrix}
+	1&		2&		3\\
+	\frac{4}{5}&		\frac{8}{45}&		\frac{1}{45}\\
+\end{matrix} \right)
+\]
+分布函数：
+\[
+F\left( x \right) =\begin{cases}
+	0,&		x<1\\
+	\frac{4}{5},&		1\leqslant x<2\\
+	\frac{4}{5}+\frac{8}{45}=\frac{44}{45},&		2\leqslant x<3\\
+	\frac{4}{5}+\frac{8}{45}+\frac{1}{45}=1,&		x\geqslant 3\\
+\end{cases}
+\]
+
+~
+
+\begin{example}
+若离散变量$X$有分布律：
+\[
+X\sim \left( \begin{matrix}
+	-1&		0&		1&		2\\
+	\frac{1}{4}&		\frac{1}{6}&		\frac{1}{4}&		\frac{1}{3}\\
+\end{matrix} \right)
+\]
+分析$Y=X^2$的分布律。
+\end{example}
+
+解：
+
+\[
+Y=\begin{cases}
+	0,&		X=0\\
+	1,&		X=\pm 1\\
+	4,&		X=2\\
+\end{cases}
+\]
+
+由于$P\left\{ Y=1 \right\} =P\left\{ X=-1 \right\} +P\left\{ X=1 \right\} =\frac{1}{4}+\frac{1}{4}$，得：
+\[
+Y\sim \left( \begin{matrix}
+	0&		1&		4\\
+	\frac{1}{6}&		\frac{1}{4}+\frac{1}{4}&		\frac{1}{3}\\
+\end{matrix} \right)
+\]
+
+~
+
+\begin{example}
+若离散变量$X$有分布律$p_i=\frac{1}{2^i},i=1,2,\cdots $，试分析$Y=\sin \left( \frac{\pi}{2}X \right) $的分布律。
+\end{example}
+
+解：
+
+由题干可得，$X$的取值为$1,2,\cdots $，可得$Y$的取值：
+\begin{itemize}
+    \item 当$X$取$1,5,\cdots $时，$Y=1$；
+    \item 当$X$取$2,4,6,\cdots $时，$Y=0$；
+    \item 当$X$取$3,7,\cdots $时，$Y=-1$。
+\end{itemize}
+\begin{align*}
+P\left\{ Y=1 \right\} &=P\left\{ X=1 \right\} +P\left\{ X=5 \right\} +P\left\{ X=9 \right\} +\cdots \\
+&=\frac{1}{2^1}+\frac{1}{2^5}+\frac{1}{2^9}+\cdots =\frac{\frac{1}{2}}{1-\frac{1}{2^4}}=\frac{8}{15} \\
+P\left\{ Y=0 \right\} &=P\left\{ X=2 \right\} +P\left\{ X=4 \right\} +P\left\{ X=6 \right\} +\cdots \\
+&=\frac{1}{2^2}+\frac{1}{2^4}+\frac{1}{2^6}+\cdots =\frac{\frac{1}{4}}{1-\frac{1}{2^2}}=\frac{1}{3} \\
+P\left\{ Y=-1 \right\} &=P\left\{ X=3 \right\} +P\left\{ X=7 \right\} +P\left\{ X=11 \right\} +\cdots \\
+&=\frac{1}{2^3}+\frac{1}{2^7}+\frac{1}{2^{11}}+\cdots =\frac{\frac{1}{2^3}}{1-\frac{1}{2^4}}=\frac{2}{15}
+\end{align*}
+
+
+
+

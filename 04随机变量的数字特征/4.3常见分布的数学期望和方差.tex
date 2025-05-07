@@ -1,0 +1,135 @@
+\section{常见分布的数学期望和方差}
+
+本节讨论几个常见分布的数学期望和方差。
+
+%============================================================
+\subsection{0-1分布}
+
+0-1分布$B\left( 1,p \right) $，$P\left\{ X=x \right\} =p^x\left( 1-p \right) ^{1-x},\quad x=0,1$：
+\begin{align*}
+&EX=p \\
+&DX=p-p^2
+\end{align*}
+
+%============================================================
+\subsection{二项分布}
+
+二项分布$B\left( n,p \right) $，$P\left\{ X=x \right\} =C_{n}^{x}p^x\left( 1-p \right) ^{n-x},\quad x=0,1,\cdots ,n$：
+\begin{align*}
+&EX=np \\
+&DX=np\left( 1-p \right)
+\end{align*}
+
+%============================================================
+\subsection{泊松分布}
+
+泊松分布$P\left( \lambda \right) $，$P\left\{ X=x \right\} =\frac{\lambda ^x}{x!}e^{-\lambda},\quad x=0,1,2,\cdots $：
+\begin{align*}
+&EX=\lambda \\
+&DX=\lambda
+\end{align*}
+配合例图，$\lambda =np$越大，质心越远，转动惯量也越大。
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.5.png}
+\end{figure}
+
+%============================================================
+\subsection{几何分布}
+
+几何分布$G\left( p \right) $，$P\left\{ X=x \right\} =p\left( 1-p \right) ^{x-1},\quad x=1,2,\cdots $：
+\begin{align*}
+&EX=\frac{1}{p} \\
+&DX=\frac{1-p}{p^2}
+\end{align*}
+配合例图，$p$越大，质心越近，转动惯量也越小。
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.6.png}
+\end{figure}
+
+%============================================================
+\subsection{超几何分布}
+
+超几何分布$H\left( M,N,n \right) $，$P\left\{ X=x \right\} =\frac{C_{N-M}^{n-x}C_{M}^{x}}{C_{N}^{n}}$：
+\begin{align*}
+&EX=\frac{nM}{N} \\
+&DX=\frac{nM\left( N-n \right) \left( N-M \right)}{N^2\left( N-1 \right)}
+\end{align*}
+
+%============================================================
+\subsection{均匀分布}
+均匀分布$U\left[ a,b \right] $，$f\left( x \right) =\begin{cases}
+	\frac{1}{b-a},&		x\in \left[ a,b \right]\\
+	0,&		x\notin \left[ a,b \right]\\
+\end{cases}$：
+\begin{align*}
+&EX=\frac{a+b}{2} \\
+&DX=\frac{1}{12}\left( b-a \right) ^2
+\end{align*}
+
+%============================================================
+\subsection{指数分布}
+
+指数分布$E\left( \lambda \right) $，$f\left( x \right) =\begin{cases}
+	0,&		x<0\\
+	\lambda e^{-\lambda x},&		x\geqslant 0\\
+\end{cases}$：
+\begin{align*}
+&EX=\frac{1}{\lambda} \\
+&DX=\frac{1}{\lambda ^2}
+\end{align*}
+配合例图，$\lambda $越大，质心越近，转动惯量也越小。
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{2.9.png}
+\end{figure}
+
+考察标准化指数分布：
+\begin{align*}
+&\because \begin{cases}
+	X^*=\frac{X-EX}{\sqrt{DX}}\\
+	X=\sqrt{DX}\cdot X^*+EX\\
+\end{cases} \\
+&\therefore \begin{cases}
+	g^{-1}\left( X^* \right) =\sqrt{DX}\cdot X^*+EX\\
+	\left| \frac{dg^{-1}\left( Y \right)}{dY} \right|=\sqrt{DX}\\
+\end{cases} \\
+&\begin{aligned}
+	\therefore f\left( x^* \right) &=f_X\left[ g^{-1}\left( X^* \right) \right] \cdot \left| \frac{dg^{-1}\left( X^* \right)}{dX^*} \right|\\
+	&=\lambda e^{-\lambda \left( \sqrt{DX}\cdot x^*+EX \right)}\cdot \sqrt{DX}=\lambda e^{-\lambda \left( \frac{1}{\lambda}\cdot x^*+\frac{1}{\lambda} \right)}\cdot \frac{1}{\lambda}\\
+	&=e^{-\left( x^*+1 \right)}\\
+\end{aligned}
+\end{align*}
+其中，$x^*\geqslant -1$，所以标准化的分布函数：
+\[
+F\left( x^* \right) =\int_{-1}^{+\infty}{f\left( t \right) \cdot dt}=\int_{-1}^{x^*}{e^{-\left( t+1 \right)}\cdot dt}=1-e^{-\left( x^*+1 \right)}
+\]
+\begin{figure}[ht]
+\centering
+\includegraphics[height=2.5cm]{4.10.png}
+\end{figure}
+
+%============================================================
+\subsection{正态分布}
+
+正态分布$N\left( \mu ,\sigma ^2 \right) $，$f\left( x \right) =\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left( x-\mu \right) ^2}{2\sigma ^2}} \quad \mu \in \mathbb{R} ,\sigma >0$：
+\begin{align*}
+&EX=\mu \\
+&DX=\sigma ^2
+\end{align*}
+标准正态分布$N\left( 0,1 \right) $，$\varphi \left( x \right) =\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$：
+\begin{align*}
+&EX=0 \\
+&DX=1
+\end{align*}
+配合例图，$\mu $决定了质心的位置，$\sigma ^2$决定了转动惯量。
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=7.5cm]{2.10.png}
+\end{figure}
+
+
+
+

@@ -1,0 +1,45 @@
+\section{密度函数的物理意义}
+
+\begin{tcolorbox}
+离散变量的分布律的意义是清晰的，每个点代表基本事件的发生概率。
+但连续变量的密度函数的意义并不十分清晰，本节讨论密度函数的物理意义，以求能直观地把握这个概念。
+\end{tcolorbox}
+
+若有一维无限长细线，总质量为$M$但分布不均匀，已知线密度$\rho \left( l \right) $，$l$为距原点的距离，任取一段$\left[ l_1,l_2 \right] $，该段质量占比为：
+\begin{figure}[h]
+\centering
+\includegraphics[height=1.2cm]{2.13.png}
+\end{figure}
+\[
+\frac{m}{M}=\int_{l_1}^{l_2}{\frac{\rho \left( l \right)}{M}\cdot dl}
+\]
+
+若考虑一维无限长带电细线，总电荷量为$Q$但分布不均匀，已知电密度$\rho \left( l \right) $，任取一段$\left[ l_1,l_2 \right] $，该段电荷占比为：
+\[
+\frac{q}{Q}=\int_{l_1}^{l_2}{\frac{\rho \left( l \right)}{Q}\cdot dl}
+\]
+
+再考虑变速运动，若速度随时间变化且有规律$v=v\left( t \right) $，则在某时段走过的路程占总路程$S$：
+\[
+\frac{s}{S}=\int_{t_1}^{t_2}{\frac{v\left( t \right)}{S} \cdot dt}
+\]
+
+对比概率计算公式：
+\[
+P\left\{ a<X\leqslant b \right\} =\int_a^b{f\left( x \right) \cdot dx}
+\]
+容易发现，概率$P\left\{ a<X\leqslant b \right\} $表示了一段范围内某个物理量的占比，密度函数$f\left( x \right) $刻画了该物理量的分布情况。
+根据$\rho \left( l \right) $我们可以知道哪里重，根据$v \left( t \right) $我们可以知道哪个时段走得多。
+同样道理，根据密度函数，我们可以知道$X$在哪里出现的概率大。
+关联到具体事件，我们就可以知道哪些事件容易发生。
+所以，我们通常用“占比大”、“出现多”来指代概率大。
+
+~
+
+{\bf 密度函数的物理意义是反映了一个物理量在某个范围内的占比。}
+这个“占比”就是概率，而“范围”可以是空间上的一个段，也可以是时间上的一个段。
+以质量为例，可以认为密度函数具有量纲$\left[ \mathrm{m}^{-1} \right] $。
+
+
+
+

@@ -1,0 +1,346 @@
+\section{点估计}
+
+本节介绍点估计，点估计是用样本推断总体的一大类方法，本节介绍两种点估计方法——矩估计法和极大似然估计法。
+
+本节要点：
+\begin{itemize}
+    \item 了解点估计的应用意义；
+    \item 深刻理解矩估计法，并熟练掌握；
+    \item 深刻理解极大似然估计法，并熟练掌握。
+\end{itemize}
+
+%============================================================
+\subsection{点估计的基础概念}
+
+在实际应用中，可能知道某个总体的分布类型，但不知道具体形式。
+如知道元件寿命服从指数分布，但不知道失效率$\lambda $的具体值。
+对此，我们可以抽取一个样本并测试得到观察值$\left( x_1,x_2,\cdots x_n \right) $，用该观察值估计$\lambda $。
+
+一般地讲，若总体$X$的分布含有$k$个未知参数，这些未知参数可一并记作一个向量$\boldsymbol{\theta }=\left( \theta _1,\theta _2,\cdots ,\theta _k \right) $，此时，总体的密度函数可以记作：
+\[
+f\left( x;\boldsymbol{\theta } \right)
+\]
+设有样本$\left( X_1,X_2,\cdots ,X_n \right) $，则可以根据样本的若干个统计量去估计$\boldsymbol{\theta }$，该这些统计量称为{\bf 估计量}，记作$\hat{\theta}$，一般$k$个未知参数需要$k$个估计量，即：
+\begin{align*}
+&\hat{\theta}_1\left( X_1,X_2,\cdots ,X_n \right) \\
+&\hat{\theta}_2\left( X_1,X_2,\cdots ,X_n \right) \\
+&\cdots \\
+&\hat{\theta}_k\left( X_1,X_2,\cdots ,X_n \right)
+\end{align*}
+当样本的观察值为$\left( x_1,x_2,\cdots ,x_n \right) $时，称$\hat{\theta}\left( x_1,x_2,\cdots ,x_n \right) $为{\bf 估计值}。
+
+点估计的本质就是用样本观察值推断总体的分布，最简单的估计值是样本的均值，只要样本容量够大，我们就可以将样本均值当作总体的期望。
+
+%============================================================
+\subsection{矩估计法的概念}
+
+矩估计法由英国统计学家K.皮尔逊在19世纪末到20世纪初的一系列文章中提出，其核心思想是{\bf 用样本的矩替代总体的矩}。
+如，若总体含有2个未知参数，则总体期望对应样本均值，总体方差对应样本2阶中心距：
+\begin{align*}
+&EX\leftrightarrow A_1=\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i} \\
+&DX\leftrightarrow B_2=\frac{n-1}{n}S^2=A_2-{A_1}^2
+\end{align*}
+实际使用中，我们通常用样本方差代替总体方差。
+由大数定理可知，当样本容量足够大时，上述对应关系可视作相等：
+\begin{align*}
+&EX\leftrightarrow A_1=\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i} \\
+&DX\leftrightarrow S^2=\frac{n}{n-1}B_2=\frac{1}{n-1}\left( \sum_{i=1}^n{{X_i}^2}-n\bar{X}^2 \right)
+\end{align*}
+若总体含有3个及以上个未知参数，则使用高阶矩。
+
+\begin{tcolorbox}
+$DX$的估计量的表达式不唯一，所以估计值也并不唯一。
+\end{tcolorbox}
+
+\begin{definition}[矩估计法]
+设有总体$X$及其一个样本$\left( X_1,X_2,\cdots ,X_n \right) $，将以样本的$k$阶原点矩$A_k=\frac{1}{n}\sum_{i=1}^n{{X_i}^k}$作为总体的$k$阶原点矩所计算得到的总体的参数的方法称为{\bf 矩估计法}，由该方法得到的估计量称为{\bf 矩估计量}，将样本观察值带入后得到的数值称为{\bf 矩估计值}。
+\end{definition}
+
+%============================================================
+\subsection{矩估计法的用法}
+
+矩估计法按照低矩优先的原则进行计算。
+一般地，若总体$X$只涉及一个未知参数，如指数分布$X\sim E\left( \lambda \right) $，则根据指数分布的期望，只需要使用1阶原点矩即可得到：
+\begin{align*}
+&\because \begin{cases}
+	EX=\frac{1}{\lambda}\\
+	EX\leftrightarrow A_1=\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i}\\
+\end{cases} \\
+&\therefore \lambda \leftrightarrow \hat{\lambda}=\frac{1}{\bar{X}}
+\end{align*}
+若总体$X$涉及两个未知参数，如正态分布$X\sim N\left( \mu ,\sigma ^2 \right) $，则需要计算2阶矩：
+\begin{align*}
+&\because \begin{cases}
+	EX=\mu\\
+	DX=\sigma ^2\\
+	EX\leftrightarrow A_1=\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i}\\
+	DX\leftrightarrow S^2=\frac{1}{n-1}\left( \sum_{i=1}^n{{X_i}^2}-n\bar{X}^2 \right)\\
+\end{cases} \\
+&\therefore \begin{cases}
+	\mu \leftrightarrow \hat{\mu}=\bar{X}\\
+	\sigma ^2\leftrightarrow \hat{\sigma}^2=S^2\\
+\end{cases}
+\end{align*}
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设总体$X$的密度函数
+\[
+f\left( x;\theta \right) =\begin{cases}
+	e^{-\left( x-\theta \right)}&		x\geqslant \theta\\
+	0&		x<\theta\\
+\end{cases}
+\]
+其中$\theta $未知，分析如何大致确定该密度函数。
+\end{example}
+
+解：
+
+只有1个未知参数，按照低矩优先原则，使用1阶原点矩。首先分析总体的期望：
+\[
+EX=\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}=\int_0^{+\infty}{xe^{-\left( x-\theta \right)}\cdot dx}=1+\theta
+\]
+若要确定密度函数，即确定$\theta $对应的估计量$\hat{\theta}$，可获取一个样本，记作$\left( X_1,X_2,\cdots ,X_n \right) $，并计算均值$\bar{X}$，根据矩估计法：
+\begin{align*}
+&\because EX=1+\theta \leftrightarrow \bar{X} \\
+&\therefore 1+\hat{\theta}=\bar{X} \\
+&\therefore \hat{\theta}=\bar{X}-1
+\end{align*}
+
+~
+
+\begin{example}
+设总体$X$有分布律
+\[
+X\sim \left( \begin{matrix}
+	0&		1&		2&		3\\
+	\theta ^2&		2\theta \left( 1-\theta \right)&		\theta ^2&		1-2\theta\\
+\end{matrix} \right)
+\]
+$\theta $未知，若获取一个样本为$\left( 3,1,3,0,3,1,2,3 \right) $，试估计$X$的分布律。
+\end{example}
+
+解：
+
+只有1个未知参数，按照低矩优先原则，使用1阶原点矩。首先分析总体的期望：
+\[
+EX=0\cdot \theta ^2+1\cdot 2\theta \left( 1-\theta \right) +2\cdot \theta ^2+3\cdot \left( 1-2\theta \right) =2\theta +3-4\theta
+\]
+再分析样本的均值：
+\[
+\bar{X}=\frac{3+1+3+0+3+1+2+3}{8}=2
+\]
+可得：
+\[
+3-4\hat{\theta}=2\qquad \Rightarrow \qquad \hat{\theta}=\frac{1}{4}
+\]
+最终得到总体$X$的分布率大致为：
+\[
+X\sim \left( \begin{matrix}
+	0&		1&		2&		3\\
+	\frac{1}{8}&		\frac{3}{8}&		\frac{1}{8}&		\frac{4}{8}\\
+\end{matrix} \right)
+\]
+
+\begin{tcolorbox}
+此例说明，根据样本计算的估计值并不是总体的参数，$\theta \ne \hat{\theta}$，按照$\hat{\theta}$得到的总体分布会有误差。
+\end{tcolorbox}
+
+~
+
+\begin{example}
+设总体$X$有分布律
+\[
+X\sim \left( \begin{matrix}
+	0&		1&		2&		3\\
+	{\theta _1}^2&		2\left( \theta _2-{\theta _1}^2 \right)&		{\theta _1}^2&		1-2\theta _2\\
+\end{matrix} \right)
+\]
+$\theta _1,\theta _2$未知，若获取一个样本为$\left( 3,1,3,0,3,1,2,3 \right) $，试估计$X$的分布律。
+\end{example}
+
+解：
+
+只有2个未知参数，按照低矩优先原则，使用1阶原点矩和2阶原点矩。
+首先分析总体的期望和2阶原点矩：
+\begin{align*}
+EX&=0\cdot {\theta _1}^2+1\cdot 2\left( \theta _2-{\theta _1}^2 \right) +2\cdot {\theta _1}^2+3\cdot \left( 1-2\theta _2 \right) \\
+&=3-4\theta _2 \\
+E\left( X^2 \right) &=0\cdot {\theta _1}^2+1^2\cdot 2\left( \theta _2-{\theta _1}^2 \right) +2^2\cdot {\theta _1}^2+3^2\cdot \left( 1-2\theta _2 \right) \\
+&=2{\theta _1}^2+9-16\theta _2
+\end{align*}
+再分析样本的均值和2阶原点矩：
+\begin{align*}
+&\bar{X}=\frac{3+1+3+0+3+1+2+3}{8}=2 \\
+&A_2=\frac{3^2+1^2+3^2+0^2+3^2+1^2+2^2+3^2}{8}=\frac{42}{8}
+\end{align*}
+可得：
+\[
+\begin{cases}
+	3-4\hat{\theta}_2=\bar{X}=2\\
+	2{\hat{\theta}_1}^2+9-16\hat{\theta}_2=\frac{42}{8}\\
+\end{cases}\quad \Rightarrow \quad \begin{cases}
+	\hat{\theta}_2=\frac{1}{4}\\
+	\hat{\theta}_1=\sqrt{\frac{1}{8}}=\frac{1}{2\sqrt{2}}\\
+\end{cases}
+\]
+最终得到总体$X$的分布率大致为：
+\[
+X\sim \left( \begin{matrix}
+    0&		1&		2&		3\\
+    \frac{1}{8}&		\frac{2}{8}&		\frac{1}{8}&		\frac{4}{8}\\
+\end{matrix} \right)
+\]
+
+%============================================================
+\subsection{极大似然估计法的概念}
+
+极大似然估计法由英国统计学家R.A.费希尔于1912年提出，并在1921年完善。
+其核心思想是{\bf 当一个样本的观察值已经发生，总体的未知参数总是倾向于该观察值的概率最大，因为观察值已经发生了}。
+
+具体说明。
+设总体$X$的未知参数构成向量$\boldsymbol{\theta }\left( \theta _1,\theta _2,\cdots ,\theta _k \right) $，设抽样得到一样本$\left( X_1,X_2,\cdots ,X_n \right) $的观察值$\left( x_1,x_2,\cdots ,x_n \right) $，由于样本的定义中规定了抽取必须相互独立，所以观察值$\left( x_1,x_2,\cdots ,x_n \right) $发生的概率为各个值的概率的乘积：
+\[
+P=P_1P_2\cdots P_n=f\left( x_1;\boldsymbol{\theta } \right) \cdot f\left( x_2;\boldsymbol{\theta } \right) \cdot \cdots \cdot f\left( x_n;\boldsymbol{\theta } \right)
+\]
+$P$应该是最大的。
+该方法就是确定$\boldsymbol{\theta }\left( \theta _1,\theta _2,\cdots ,\theta _k \right) $取什么值时，$P$最大。
+
+\begin{definition}[似然函数]
+设总体$X$的未知参数构成向量$\boldsymbol{\theta }\left( \theta _1,\theta _2,\cdots ,\theta _k \right) $，设抽取得到一样本$\left( X_1,X_2,\cdots ,X_n \right) $的观察值为$\left( x_1,x_2,\cdots ,x_n \right) $，若将$\boldsymbol{\theta }$视作变量，于是可以构造函数：
+\begin{align*}
+&L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\prod_{i=1}^n{p\left( x_i;\boldsymbol{\theta } \right)} \\
+&L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\prod_{i=1}^n{f\left( x_i;\boldsymbol{\theta } \right)}
+\end{align*}
+其中：
+\begin{itemize}
+    \item $p\left( x_i;\boldsymbol{\theta } \right) $：总体为离散随机变量时的分布律；
+    \item $f\left( x_i;\boldsymbol{\theta } \right) $：总体为连续随机变量时的密度函数。
+\end{itemize}
+则称上述函数为{\bf 似然函数}，可简记作$L\left( \boldsymbol{\theta } \right) $。
+若当$\boldsymbol{\theta }=\boldsymbol{\hat{\theta}}$时$L$取得最大值，则称$\boldsymbol{\hat{\theta}}$为{\bf 极大似然估计值}。
+\end{definition}
+
+\begin{tcolorbox}
+所谓的似然函数就是观察值发生的概率。
+\end{tcolorbox}
+
+\begin{definition}[极大似然估计法]
+设有总体$X$，取一个样本并得到对应的一个样本的观察值$\left( x_1,x_2,\cdots ,x_n \right) $，构造对应的似然函数$L\left( \boldsymbol{\theta } \right) $，将似然函数的极大值点作为总体未知参数的方法，称为{\bf 极大似然估计法}。
+\end{definition}
+
+%============================================================
+\subsection{极大似然估计法的用法}
+
+可见，极大似然估计法在于求解似然函数的极大值。
+求解方法可以使用微积分中的极值求解方法（判断驻点+边界点），由于似然函数是累积函数，求导较为复杂，所以可求解其对数形式的导数，令：
+\begin{align*}
+&\ln L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\sum_{i=1}^n{p\left( x_i;\boldsymbol{\theta } \right)} \\
+&\ln L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\sum_{i=1}^n{f\left( x_i;\boldsymbol{\theta } \right)}
+\end{align*}
+于是求解方程组：
+\begin{align*}
+&\frac{\partial}{\partial \boldsymbol{\theta }}\ln L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\sum_{i=1}^n{\frac{\partial p\left( x_i;\boldsymbol{\theta } \right)}{\partial \boldsymbol{\theta }}}=\mathbf{0} \\
+&\frac{\partial}{\partial \boldsymbol{\theta }}\ln L\left( x_1,x_2,\cdots ,x_n;\boldsymbol{\theta } \right) =\sum_{i=1}^n{\frac{\partial f\left( x_i;\boldsymbol{\theta } \right)}{\partial \boldsymbol{\theta }}}=\mathbf{0}
+\end{align*}
+最终得到极大似然估计值$\boldsymbol{\hat{\theta}}$。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设总体$X$的密度函数
+\[
+f\left( x;\theta \right) =\begin{cases}
+    e^{-\left( x-\theta \right)}&		x\geqslant \theta\\
+    0&		x<\theta\\
+\end{cases}
+\]
+其中$\theta $未知，用极大似然估计法分析该密度函数。
+\end{example}
+
+解：
+
+设取一个样本的样本值为$\left( x_1,x_2,\cdots ,x_n \right) $，构造似然函数：
+\begin{align*}
+&L\left( x_1,x_2,\cdots ,x_n;\theta \right) =\prod_{i=1}^n{f\left( x_i;\theta \right)}=e^{n\theta -\sum_{i=1}^n{x_i}} \\
+&\ln L\left( x_1,x_2,\cdots ,x_n;\theta \right) =n\theta -\sum_{i=1}^n{x_i} \\
+&\frac{\partial}{\partial \theta}\ln L\left( x_1,x_2,\cdots ,x_n;\theta \right) =n>0
+\end{align*}
+为严格单调递增函数，所以$\theta $在取值范围内$\theta \leqslant x_i$取到最大值时为估计值，即$\hat{\theta}=\min \left\{ x_1,x_2,\cdots ,x_n \right\} $。
+
+~
+
+\begin{example}
+设总体$X$的分布律
+\[
+X\sim \left( \begin{matrix}
+    0&		1&		2&		3\\
+    \theta ^2&		2\theta \left( 1-\theta \right)&		\theta ^2&		1-2\theta\\
+\end{matrix} \right)
+\]
+其中$\theta $未知，若获取一个样本为$\left( 3,1,3,0,3,1,2,3 \right) $，试用极大似然估计法估计$X$的分布律。
+\end{example}
+
+解：
+
+构造似然函数：
+\begin{align*}
+&L\left( x_1,x_2,\cdots ,x_n;\theta \right) =\prod_{i=1}^n{p\left( x_i;\theta \right)} \\
+&=\left( 1-2\theta \right) \cdot 2\theta \left( 1-\theta \right) \cdot \left( 1-2\theta \right) \cdot \theta ^2\cdot \left( 1-2\theta \right) \cdot 2\theta \left( 1-\theta \right) \cdot \theta ^2\cdot \left( 1-2\theta \right) \\
+&=\left( 1-2\theta \right) ^4\cdot 4\cdot \theta ^6\cdot \left( 1-\theta \right) ^2
+\end{align*}
+两边取对数求导得估计值$\hat{\theta}$：
+\begin{align*}
+&\ln L\left( \theta \right) =4\ln \left( 1-2\theta \right) +6\ln \theta +2\ln \left( 1-\theta \right) +\ln 4 \\
+&\frac{d}{d\theta}\ln L\left( \theta \right) =-\frac{8}{1-2\theta}+\frac{6}{\theta}-\frac{2}{1-\theta}=0 \\
+&\hat{\theta}=\frac{7\pm \sqrt{13}}{12}
+\end{align*}
+但需注意，作为分布律必须不能小于0，当$\hat{\theta}=\frac{7+\sqrt{13}}{12}$时，$1-2\cdot \hat{\theta}=-0.77$，舍弃，得估计值：
+\[
+\hat{\theta}=\frac{7-\sqrt{13}}{12}=0.283
+\]
+最终得到总体$X$的分布率大致为：
+\[
+X\sim \left( \begin{matrix}
+	0&		1&		2&		3\\
+	0.08&		0.41&		0.08&		0.43\\
+\end{matrix} \right)
+\]
+
+\begin{tcolorbox}
+对比矩估计法的结果，两个方法在一般情况下得到的估计值不会相同，事实上，不同的估计方法各有优劣。
+\end{tcolorbox}
+
+~
+
+\begin{example}
+设箱子内白球和黑球4共有个，若采用放回抽样，抽取3次，得到2次白球和1次黑球，分析箱子内有几个白球。
+\end{example}
+
+解：
+
+由于是放回抽样，抽到白球服从二项分布：
+\[
+P\left\{ X=x \right\} =C_{n}^{x}p^x\left( 1-p \right) ^{n-x},\qquad \begin{array}{l}
+	x=0,1,\cdots ,n\\
+	p\in \left( 0,1 \right)\\
+\end{array}
+\]
+设白球有$\theta $个，由题意可知$n=3,x=2,p=\frac{\theta}{4}$，于是：
+\[
+P\left\{ X=2 \right\} =C_{3}^{2}\left( \frac{\theta}{4} \right) ^2\left( 1-\frac{\theta}{4} \right) ^1
+\]
+构造似然函数求极值：
+\begin{align*}
+&L\left( x;\theta \right) =P\left\{ X=2 \right\} =C_{3}^{2}\left( \frac{\theta}{4} \right) ^2\left( 1-\frac{\theta}{4} \right) ^1=\frac{3}{16}\theta ^2-\frac{3}{64}\theta ^3 \\
+&\frac{d}{d\theta}L\left( x;\theta \right) =\frac{3}{8}\theta -\frac{9}{64}\theta ^2=0 \\
+&\theta =0\mathrm{or}2.67
+\end{align*}
+白球应该有3个。
+
+
+
+

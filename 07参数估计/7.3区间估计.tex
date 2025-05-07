@@ -1,0 +1,56 @@
+\section{区间估计}
+
+前面介绍的点估计方法直观简单，但无法给出估计量的可信度和精度。
+区间估计解决了这个问题，它用一个区间给出总体未知参数$\theta $的范围。
+区间估计较为复杂，本笔记只是简单介绍相关概念，具体参见教材。
+
+本节要点：
+\begin{itemize}
+    \item 了解区间估计的概念。
+\end{itemize}
+
+~
+
+区间估计由英国统计学家J.奈曼于20世纪30年代提出。
+其核心思想是{\bf 对于一个总体未知参数$\theta $，通过对样本的分析给出两个估计值$\hat{\theta}_1,\hat{\theta}_2$，并用概率$P\left\{ \theta \in \left( \hat{\theta}_1,\hat{\theta}_2 \right) \right\} $表示可信度，$\hat{\theta}_2-\hat{\theta}_1$表示区间长度}。
+不难发现，区间的可信度和长度是一对矛盾，区间越窄精度越高，但可信度越低，反之亦然。
+
+\begin{definition}[区间估计]
+设总体$X$和抽取的一个样本$\left( X_1,X_2,\cdots ,X_n \right) $，并设下列符号：
+\begin{itemize}
+    \item $\theta $：总体的一个未知参数；
+    \item $\varTheta $：$\theta $的取值范围；
+    \item $\hat{\theta}_1=\hat{\theta}_1\left( X_1,X_2,\cdots ,X_n \right) ,\hat{\theta}_2=\hat{\theta}_2\left( X_1,X_2,\cdots ,X_n \right) $：关于$\theta $的两个统计量，
+\end{itemize}
+若对于给定的$\alpha \in \left( 0,1 \right) $，有：
+\[
+P\left\{ \theta \in \left( \hat{\theta}_1,\hat{\theta}_2 \right) \right\} =1-\alpha
+\]
+则称$\left( \hat{\theta}_1,\hat{\theta}_2 \right) $为{\bf $\theta $的置信区间}，$\hat{\theta}_1,\hat{\theta}_2$分别称为{\bf 置信下限}和{\bf 置信上限}，同时称$1-\alpha$为该区间的{\bf 置信度}或{\bf 置信系数}或{\bf 置信水平}。
+\end{definition}
+
+区间估计的方法就是在给定置信度$1-\alpha$的要求下，常取0.95，计算最精的区间，也即长度$\hat{\theta}_2-\hat{\theta}_1$最小的区间。
+由于$\hat{\theta}_1,\hat{\theta}_2$是随机变量，所以一般用区间长度的数学期望作为评价精度的指标，即：
+\[
+l_{\theta}=E\left( \hat{\theta}_2-\hat{\theta}_1 \right)
+\]
+$l_{\theta}$越小表示区间精度越高，当$l_{\theta}$最小时的区间称为{\bf 最优置信区间}。
+
+~
+
+区间估计较为复杂，本节以正态分布讨论置信区间的结果。
+设总体$X\sim N\left( \mu ,\sigma ^2 \right) $及其一个样本$\left( X_1,X_2,\cdots ,X_n \right) $，若$\sigma $已知，我们可以通过该样本计算得到$\mu $的最优置信区间为：
+\[
+\left( \bar{X}-u_{\alpha /2}\cdot \frac{\sigma}{\sqrt{n}},\bar{X}+u_{\alpha /2}\cdot \frac{\sigma}{\sqrt{n}} \right)
+\]
+\begin{itemize}
+    \item $\bar{X}$：样本均值，很显然是决定了$\mu $的分布的中心位置，这点和之前的点估计一致；
+    \item $u_{\alpha /2}$：分别是该置信区间的分布的$1-\alpha /2$和$\alpha /2$两个上侧分位点，该两点中间的面积所对应的概率为置信度$1-\alpha$，显然置信度越大，两个上侧分位点分地越开，区间长度也就越大；
+    \item $\frac{\sigma}{\sqrt{n}}$：置信区间的长度同时也取决于总体的$\sigma $和样本容量$n$，不难发现，样本容量越大，置信区间越小。
+\end{itemize}
+
+对比点估计，区间估计不但告诉我们$\mu $的中心值，而且还告诉我们，对于给定置信度的要求下，样本取的越多越好。
+
+
+
+

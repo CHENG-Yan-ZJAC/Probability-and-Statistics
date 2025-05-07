@@ -1,0 +1,104 @@
+\section{n维随机变量}
+
+本节简单介绍$n$维随机变量。
+本节的概念是上一节的推广，了解即可。
+
+本节要点：
+\begin{itemize}
+    \item 了解$n$维随机变量的概念；
+    \item 熟悉分布函数、边缘分布函数、分布律、边缘分布律的记号。
+\end{itemize}
+
+%============================================================
+\subsection{n维随机变量及其分布函数的概念}
+
+\begin{definition}
+设随机试验$E$及其样本空间为$\varOmega $，若$X_1,X_2,\cdots ,X_n$为定义在$\varOmega $上的$n$个随机变量，则称它们组成的一个有序数组$\left( X_1,X_2,\cdots ,X_n \right) $为{\bf $n$维随机变量}。
+
+对于任意实数$x_1,x_2,\cdots ,x_n$，称$n$元函数
+\[
+F\left( x_1,x_2,\cdots ,x_n \right) :=P\left\{ X_1\leqslant x_1,X_2\leqslant x_2,\cdots ,X_n\leqslant x_n \right\}
+\]
+为该{\bf $n$维随机变量$\left( X_1,X_2,\cdots ,X_n \right) $的分布函数}。
+
+同样地，称
+\[
+F_{X_i}\left( x_i \right) :=P\left\{ X_i\leqslant x_i \right\} =F\left( +\infty ,\cdots ,X_i\leqslant x_i,\cdots ,+\infty \right)
+\]
+为{\bf $\left( X_1,X_2,\cdots ,X_n \right) $关于$X_i$的边缘分布函数}。
+
+若对于任意实数$x_1,x_2,\cdots ,x_n$，均有
+\[
+F\left( x_1,x_2,\cdots ,x_n \right) =\prod_{i=1}^n{F\left( x_i \right)}
+\]
+则称{\bf $X_1,X_2,\cdots ,X_n$相互独立}。
+\end{definition}
+
+%============================================================
+\subsection{n维离散型随机变量及其分布}
+
+\begin{definition}
+若$n$维随机变量$\left( X_1,X_2,\cdots ,X_n \right) $的取值为有限个或可列无限多个，则称$\left( X_1,X_2,\cdots ,X_n \right) $为{\bf $n$维离散型随机变量}。
+记一组取值$\left( x_{i_1},x_{i_2},\cdots ,x_{i_n} \right) $，则{\bf 分布律}可表示为：
+\[
+P\left\{ X_1=x_{i_1},X_2=x_{i_2},\cdots ,X_n=x_{i_n} \right\} =p_{i_1i_2\cdots i_n}
+\]
+同样地，{\bf 边缘分布律}可表示为：
+\[
+P\left\{ X_1=x_{i_i} \right\} =p_{\cdots \cdot i_i\cdot \cdots}
+\]
+若{\bf $X_1,X_2,\cdots ,X_n$相互独立}，则有：
+\[
+p_{i_1i_2\cdots i_n}=\prod_{k=1}^n{p_{\cdots \cdot i_k\cdot \cdots}}
+\]
+\end{definition}
+
+\begin{theorem}
+设$n$维离散型随机变量$\left( X_1,X_2,\cdots ,X_n \right) $，若$X_1,X_2,\cdots ,X_n$相互独立，则有：
+\begin{itemize}
+    \item 若每个随机变量均服从泊松分布，则它们的简单和也服从泊松分布；
+    \item 若每个随机变量均服从二项分布，则它们的简单和也服从二项分布；
+    \item 特别地，若每个随机变量均服从0-1分布，则它们的简单和服从二项分布。
+\end{itemize}
+\begin{align*}
+&X_i\sim P\left( \lambda _i \right) \Rightarrow \sum_{i=1}^n{X_i}\sim P\left( \sum_{i=1}^n{\lambda _i} \right) \\
+&X_i\sim B\left( n_i,p \right) \Rightarrow \sum_{i=1}^n{X_i}\sim P\left( \sum_{i=1}^n{n_i},p \right) \\
+&X_i\sim B\left( 1,p \right) \Rightarrow \sum_{i=1}^n{X_i}\sim P\left( n,p \right)
+\end{align*}
+\end{theorem}
+
+%============================================================
+\subsection{n维连续性随机变量及其分布}
+
+\begin{definition}
+设一$n$维连续型随机变量$\left( X_1,X_2,\cdots ,X_n \right) $的分布函数为$F\left( x_1,x_2,\cdots ,x_n \right) $，若存在$n$元可积函数$f\left( x_1,x_2,\cdots ,x_n \right) $，使得对于任意$\left( x_1,x_2,\cdots ,x_n \right) $，均有：
+\[
+F\left( x_1,x_2,\cdots ,x_n \right) =\int\dotsi\int\limits_{-\infty}^{x_1,x_2,\cdots ,x_n}{f\left( u_1,u_2,\cdots ,u_n \right) du_1du_2\cdots du_n}
+\]
+就称$\left( X_1,X_2,\cdots ,X_n \right) $为{\bf $n$维连续型随机变量}，并称$f\left( x_1,x_2,\cdots ,x_n \right) $为{\bf 密度函数}。
+同样地，{\bf 边缘密度函数}可表示为：
+\begin{align*}
+&f_{Xi}\left( x_i \right) =\\
+&\int_{-\infty}^{x_1}{\int_{-\infty}^{x_{i-1}}{\cdots \int_{-\infty}^{x_{i+1}}{\int_{-\infty}^{x_n}{f\left( x_1,\cdots x_{i-1},x_{i+1}\cdots x_n \right) dx_1\cdots dx_{i-1}dx_{i+1}dx_n}}}}
+\end{align*}
+若$\left( X_1,X_2,\cdots ,X_n \right) $相互独立，则有：
+\[
+f\left( x_1,x_2,\cdots ,x_n \right) =\prod_{k=1}^n{f_{X_k}\left( x_k \right)}
+\]
+\end{definition}
+
+\begin{theorem}
+设$n$维连续型随机变量$\left( X_1,X_2,\cdots ,X_n \right) $，若$X_1,X_2,\cdots ,X_n$相互独立，则有：
+\begin{itemize}
+    \item 若每个随机变量均服从正态分布，则它们的线性组合也服从正态分布；
+    \item 若每个随机变量均服从正态分布，则它们的均值也服从正态分布。
+\end{itemize}
+\begin{align*}
+&X_i\sim N\left( \mu _i,{\sigma _i}^2 \right) \Rightarrow \sum_{i=1}^n{a_iX_i}\sim N\left( \sum_{i=1}^n{a_i\mu _i},\sum_{i=1}^n{{a_i}^2{\sigma _i}^2} \right) \\
+&X_i\sim N\left( \mu ,\sigma ^2 \right) \Rightarrow \frac{1}{n}\sum_{i=1}^n{X_i}\sim N\left( \mu ,\frac{\sigma ^2}{n} \right)
+\end{align*}
+\end{theorem}
+
+
+
+

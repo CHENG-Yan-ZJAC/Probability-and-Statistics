@@ -1,0 +1,214 @@
+\section{数理统计的基本概念}
+
+本节介绍数理统计的基本概念。
+
+本节要点：
+\begin{itemize}
+    \item 掌握总体和个体的概念；
+    \item 掌握样本和样本值的概念；
+    \item 掌握统计量的概念，并熟悉常用的样本的矩；
+    \item 掌握上侧分位点的概念。
+\end{itemize}
+
+%============================================================
+\subsection{总体和样本的概念}
+
+\begin{definition}[总体和个体]
+我们将研究问题中的所有被考察对象的全体称为{\bf 总体}，其中的每个成员称为{\bf 个体}。
+如果总体包含的个体数量是有限的，则该总体称为{\bf 有限总体}，有限总体的分布总是离散型的，如考试分数。
+反之如果个体数量是无限的，则该总体称为{\bf 无限总体}，无限总体的分布可能是离散的、连续的或不定的，如身高。
+通常我们考察的是对象的某个量化指标（暂记作$X$），而$X$往往是一个随机变量，所以$X$的分布代表了总体的分布。
+因此，我们一般将总体和$X$的分布视作等同，并称为{\bf 总体$X$}。
+\end{definition}
+
+例，当我们研究初一学生的身高时，某个学校的所有初一学生可视作总体，每个初一学生即为个体。
+我们可以假设身高服从正态分布，于是这个总体的概率分布是正态分布。
+
+例，当我们研究一个批次灯泡的使用寿命时，该批次所有灯泡为总体，每个灯泡为个体。
+我们假定使用寿命服从指数分布，于是这个总体的概率分布是指数分布。
+
+很多情况下，总体数量非常大，不可能一一研究，或者像灯泡寿命的例子中，即便灯泡数量不多，我们也不可能测量每个灯泡的使用寿命。
+这时，我们需要从总体中选取一些个体进行研究。
+
+\begin{definition}[样本和样本值]
+从总体$X$中按一定规则（每个个体抽取机会相等）任意抽取$n$个个体组成的集合$\left( X_1,X_2,\cdots ,X_n \right) $，称为来自总体$X$的一个样本，其中$n$称为样本容量。
+若这个规则还满足：
+\begin{itemize}
+    \item 代表性：即每个个体的指标$X_i$和总体的指标$X$同分布；
+    \item 独立性：抽取的个体之间相互独立，
+\end{itemize}
+这样的样本称为{\bf 简单随机样本}。
+抽取后，样本$\left( X_1,X_2,\cdots ,X_n \right) $可视作一个$n$维随机变量，试验后可得到一组确定的数值，称为{\bf 样本值}或{\bf 观察值}，一般记作$\left( x_1,x_2,\cdots x_n \right) $。
+\end{definition}
+
+当总体的数量无限多，或者比样本容量大很多的情况下，抽取过程可视为独立。
+当总体数量不太多时，抽取过程会对总体的分布有影响，这样的抽取就不能视作独立。
+
+\begin{tcolorbox}
+本笔记将样本定义为集合，所以是“一个样本”，有些教材将样本视作集合中的元素，称为“一组样本”，本笔记有时也做类似处理，需结合上下文确定。
+\end{tcolorbox}
+
+%============================================================
+\subsection{统计量的概念和样本的矩}
+
+\begin{definition}[统计量]
+设总体$X$的一个样本$\left( X_1,X_2,\cdots ,X_n \right) $及其样本值$\left( x_1,x_2,\cdots ,x_n \right) $，若有一个$n$元函数
+\[
+G=g\left( X_1,X_2,\cdots ,X_n \right)
+\]
+其值不依赖于总体$X$的任何未知参数，就称该$n$元函数为{\bf 该样本的一个统计量}，同时称$g=g\left( x_1,x_2,\cdots ,x_n \right) $为{\bf 统计量的观察值}。
+\end{definition}
+
+统计量本质上是一个函数，统计量不能包含总体的任何未知信息，其观察值只取决于样本。
+于是我们可以通过选取合适的统计量，计算分析总体的未知信息，如用样本的均值代替总体的数学期望，这就是参数估计。
+
+同时，因为自变量是随机变量，所以统计量也是一个随机变量，有它自己的概率分布。
+我们通过样本值计算统计量的观察值，并根据统计量的概率分布判断这次抽样结果是大概率事件还是小概率事件，如果是小概率事件，则说明总体和我们的预期有不同的地方，这就是假设检验。
+
+~
+
+对样本的矩计算是常见统计量，设总体$X$的一个样本$\left( X_1,X_2,\cdots ,X_n \right) $：
+\begin{itemize}
+    \item {\bf 样本均值}：$\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i}$
+    \item {\bf 样本方差}：$S^2=\frac{1}{n-1}\sum_{i=1}^n{\left( X_i-\bar{X} \right) ^2}=\frac{1}{n-1}\left( \sum_{i=1}^n{{X_i}^2}-n\bar{X}^2 \right) $
+    \item {\bf 样本标准差}：$S=\sqrt{S^2}$
+    \item {\bf 样本$k$阶原点矩}：$A_k=\frac{1}{n}\sum_{i=1}^n{{X_i}^k}$
+    \item {\bf 样本$k$阶中心距}：$B_k=\frac{1}{n}\sum_{i=1}^n{\left( X_i-\bar{X} \right) ^k}$
+\end{itemize}
+
+1阶矩有如下关系：
+\begin{itemize}
+    \item $A_1=\bar{X}$
+    \item $A_2={A_1}^2+\frac{n-1}{n}S^2={A_1}^2+B_2$
+    \item $B_1=0$
+    \item $B_2=\frac{n-1}{n}S^2=A_2-{A_1}^2$
+\end{itemize}
+
+~
+
+总体$X$的方差$DX:=E\left[ \left( X-EX \right) ^2 \right] $对应2阶中心距，但样本的方差不对应样本的2阶中心距，两者有一个修正：
+\[
+B_2=\frac{n-1}{n}S^2
+\]
+这个修正是为了样本方差能无偏地估计总体方差而设定，所以上述的样本方差也称为{\bf 修正的样本方差}，样本的2阶中心距也称为{\bf 未修正的样本方差}。
+
+由于矩的概念将在后续矩估计法中广泛使用，下面特别将总体的矩和样本的矩做表格对比。
+
+\begin{table}[h]
+\centering
+\caption{总体和样本的矩}
+\begin{tabular}{ccc}
+    \toprule
+    & 总体 & 样本\\
+    \midrule
+    $k$阶原点矩 & $E\left[ X^k \right] $ & $A_k=\frac{1}{n}\sum_{i=1}^n{{X_i}^k}$\\
+    1阶原点矩 & 总体数学期望$EX$ & 样本均值$A_1=\bar{X}$\\
+    2阶原点矩 & & $A_2={A_1}^2+\frac{n-1}{n}S^2$\\
+    $k$阶中心矩 & $E\left[ X^k \right] $ & $B_k=\frac{1}{n}\sum_{i=1}^n{\left( X_i-\bar{X} \right) ^k}$\\
+    1阶中心矩 & $E\left( X-EX \right) =0$ & $B_1=0$\\
+    2阶中心矩 & 总体方差$DX$ & $B_2=\frac{n-1}{n}S^2=A_2-{A_1}^2$\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+%============================================================
+\subsection{上侧分位点的概念}
+
+\begin{definition}[上侧分位点]
+设一维随机变量$X$，实数$\alpha \in \left( 0,1 \right) $表示概率，若存在$x_{\alpha}$满足：
+\begin{align*}
+&P\left\{ X\geqslant x_{\alpha} \right\} \geqslant \alpha \\
+&P\left\{ X\leqslant x_{\alpha} \right\} \geqslant 1-\alpha
+\end{align*}
+则称$x_{\alpha}$为$X$的{\bf 上侧$\alpha $分位点}，或{\bf 右侧$\alpha $分位点}。
+\end{definition}
+
+显然，正态分布必有上侧分位点，且唯一，即$\forall \alpha \in \left( 0,1 \right) $，均有唯一的$x_{\alpha}$满足：
+\begin{align*}
+&P\left\{ X\geqslant x_{\alpha} \right\} =\alpha \\
+&P\left\{ X\leqslant x_{\alpha} \right\} =1-\alpha
+\end{align*}
+而且根据正态分布的对称性有：
+\[
+x_{1-\alpha}=-x_{\alpha}
+\]
+
+\begin{tcolorbox}
+上侧$\alpha $分位点常用于区间估计和假设检验。
+\end{tcolorbox}
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设无限总体有如下分布律
+\[
+X\sim \left( \begin{matrix}
+	0&		1&		2\\
+	\frac{1}{6}&		\frac{1}{2}&		\frac{1}{3}\\
+\end{matrix} \right)
+\]
+若抽取4个作为样本，计算至少一个样本值小于等于1的概率。
+\end{example}
+
+解：
+
+由于总体无限，所以在抽取过程不会影响总体分布，也即每个样本均服从总体的分布。我们计算所有样本值均为2的概率：
+\[
+P=P\left\{ X_1=2,X_2=2,X_3=2,X_4=2 \right\}
+\]
+由于抽取的独立性要求，有：
+\begin{align*}
+P&=P\left\{ X_1=2 \right\} \cdot P\left\{ X_2=2 \right\} \cdot P\left\{ X_3=2 \right\} \cdot P\left\{ X_4=2 \right\} \\
+&=\frac{1}{3}\cdot \frac{1}{3}\cdot \frac{1}{3}\cdot \frac{1}{3}=\frac{1}{81}
+\end{align*}
+可得，至少一个样本值小于等于1的概率$1-1/18=80/81$。
+
+~
+
+\begin{example}
+设总体服从正态分布$X\sim N\left( \mu ,\sigma ^2 \right) $，从总体中抽取一个样本$\left( X_1,X_2,\cdots ,X_n \right) $，若$\mu $已知但$\sigma $未知，分析下列函数能否称为统计量。
+\begin{enumerate}
+    \item $\bar{X}$
+    \item $g\left( X_1,X_2,\cdots ,X_n \right) =\sum_{i=1}^n{\left( X_i-\mu \right)}$
+    \item $g\left( X_1,X_2,\cdots ,X_n \right) =\frac{1}{\sigma ^2}\sum_{i=1}^n{\left( X_i-\mu \right)}$
+\end{enumerate}
+\end{example}
+
+解：
+
+1. $\bar{X}=\frac{\sum{X_i}}{n}$，可见$\bar{X}$不依赖总体的任何参数，是统计量。
+
+2. 函数依赖总体的$\mu $，且$\mu $已知，是统计量。
+
+3. 函数依赖总体的$\mu ,\sigma $，但$\sigma $未知，不是统计量。
+
+~
+
+\begin{example}
+设总体服从正态分布$X\sim N\left( \mu ,\sigma ^2 \right) $，从总体抽取一个样本为$\left( X_1,X_2,\cdots ,X_n \right) ,n\geqslant 2$，计算$E\bar{X},D\bar{X},E\left( S^2 \right) $。
+\end{example}
+
+解：
+
+抽取具备独立性，所以每个样本有$X_i\sim N\left( \mu ,\sigma ^2 \right) $，于是：
+\[
+\sum_{i=1}^n{X_i}\sim N\left( n\mu ,n\sigma ^2 \right)
+\]
+得：
+\begin{align*}
+&E\bar{X}=E\left( \frac{1}{n}\sum_{i=1}^n{X_i} \right) =\frac{1}{n}\cdot E\left( \sum_{i=1}^n{X_i} \right) =\frac{1}{n}\cdot n\mu \\
+&D\bar{X}=D\left( \frac{1}{n}\sum_{i=1}^n{X_i} \right) =\frac{1}{n^2}\cdot D\left( \sum_{i=1}^n{X_i} \right) =\frac{1}{n^2}\cdot n\sigma ^2=\frac{1}{n}\sigma ^2 \\
+&\because \begin{cases}
+	E\left( \sum{{X_i}^2} \right) =\sum{E\left( {X_i}^2 \right)}=\sum{\left[ DX_i+E\left( X_i \right) ^2 \right]}=n\sigma ^2+n\mu ^2\\
+	E\left( n\bar{X}^2 \right) =nE\left( \bar{X}^2 \right) =n\left[ D\bar{X}+E\left( \bar{X} \right) ^2 \right] =\sigma ^2+n\mu ^2\\
+\end{cases} \\
+&\begin{aligned}
+	\therefore E\left( S^2 \right) &=E\left( \frac{\sum{{X_i}^2}-n\bar{X}^2}{n-1} \right) =\frac{1}{n-1}E\left( \sum{{X_i}^2} \right) -\frac{1}{n-1}E\left( n\bar{X}^2 \right)\\
+	&=\frac{n\sigma ^2+n\mu ^2-\sigma ^2-n\mu ^2}{n-1}=\sigma ^2\\
+\end{aligned}
+\end{align*}
+
+
+
+

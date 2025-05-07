@@ -1,0 +1,45 @@
+\section{边缘分布和条件分布的物理意义}
+
+本节讨论边缘分布和条件分布的物理意义，以加深对这两个概念的认识。
+
+%============================================================
+\subsection{边缘分布的物理意义}
+
+从边缘分布的定义公式考虑，取值$X=x_0$时，$X$的边缘分布：
+\[
+f_X\left( x_0 \right) =\int_{-\infty}^{+\infty}{f\left( x_0,y \right) \cdot dy}
+\]
+$f_X\left( x_0 \right) $的值是将面分布$f\left( x,y \right) $的值沿直线$x=x_0$加起来，最终形成线分布$f_X\left( x \right) $。
+$f_X\left( x \right) $具有量纲$\left[ \mathrm{m}^{-1} \right] $，如下图。
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{3.8.png}
+\end{figure}
+
+%============================================================
+\subsection{条件分布的物理意义}
+
+设条件$Y=y_0$，从条件分布的定义公式
+\[
+f_{X|Y}\left( x \middle| y_0 \right) =\frac{f\left( x,y_0 \right)}{f_Y\left( y_0 \right)}
+\]
+考虑$f_{X|Y}\left( x \middle| y_0 \right) $的值的计算过程：
+
+\begin{enumerate}
+    \item 将面分布$f\left( x,y \right) $的值沿直线$y=y_0$抽取出来形成线分布$f\left( x,y_0 \right) $，但此时还是具备同样量纲$\left[ \mathrm{m}^{-2} \right] $，而且$f\left( x,y_0 \right) $并不归一化，即$\int{f\left( x,y_0 \right) dx}\ne 1$，并不能反映线分布的真实状态；
+    \item 将该线分布$f\left( x,y_0 \right) $对边缘分布$f_Y\left( y_0 \right) $归一化，得到$f_{X|Y}\left( x_0 \middle| y_0 \right) $，此时具有量纲$\left[ \mathrm{m}^{-1} \right] $，而且反映了线分布的真实状态。
+\end{enumerate}
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.5cm]{3.9.png}
+\end{figure}
+由于$f_Y\left( y_0 \right) <1$，所以：
+\[
+f_{X|Y}\left( x \middle| y_0 \right) >f\left( x,y_0 \right)
+\]
+边缘分布是将一个维度上累计，在另一个维度上体现的分布。
+条件分布则侧重于抽取“一条”，看这条上的分布。
+
+
+
+

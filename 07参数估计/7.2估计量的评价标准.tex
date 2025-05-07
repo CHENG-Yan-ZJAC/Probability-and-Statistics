@@ -1,0 +1,87 @@
+\section{估计量的评价标准}
+
+\begin{tcolorbox}
+从前一小节可以看出，不同的点估计方法得到的结果不同，所以有必要建立一套评价体系评价每个方法的优劣。
+值得注意的是，同一个点估计方法在不同的指标下有不同的优劣，可能在某个指标有优势，但在另一个指标有劣势，而且样本的选取及其不同的观察值对评价结果也有影响，所以在实际应用中，需要根据实际情况判断估计方法的优劣性。
+\end{tcolorbox}
+
+本节简单介绍评价点估计方法的指标。
+
+本节要点：
+\begin{itemize}
+    \item 了解常用的三大评价指标。
+\end{itemize}
+
+%============================================================
+\subsection{均方误差的概念}
+
+\begin{definition}[均方误差]
+设$\hat{\theta}$为$\theta $的估计量，$\hat{\theta}$由样本$\left( X_1,X_2,\cdots ,X_n \right) $确定，也是随机变量，若$E\left[ \left( \hat{\theta}-\theta \right) ^2 \right] $存在，则称之为{\bf 用$\hat{\theta}$估计$\theta $时产生的均方误差}，记作$MSE\left( \hat{\theta} \right) $，即：
+\[
+MSE\left( \hat{\theta} \right) :=E\left[ \left( \hat{\theta}-\theta \right) ^2 \right]
+\]
+且有：
+\[
+MSE\left( \hat{\theta} \right) =D\hat{\theta}+\left( E\hat{\theta}-\theta \right) ^2
+\]
+\end{definition}
+
+证明略，可见“教材\cite{book1}”。
+均方误差的意义在于，$MSE\left( \hat{\theta} \right) $越小，则$\hat{\theta}$受样本不确定性越小。
+
+%============================================================
+\subsection{无偏性的概念}
+
+\begin{definition}[无偏性]
+设$\hat{\theta}$为$\theta $的估计量，若对于$\theta \in \varTheta $，均有$E\hat{\theta}=\theta $，其中$\varTheta $为$\theta $的取值范围，则称$\hat{\theta}$为$\theta $的{\bf 无偏估计}，反之称为{\bf 有偏估计}。
+当$\hat{\theta}$为有偏估计时，若$\underset{n\rightarrow \infty}{\lim}E\hat{\theta}=\theta $，则称$\hat{\theta}$为 的{\bf 渐进无偏估计}。
+\end{definition}
+
+无偏性描述了“这个估计量是瞄着总本参数去的”。
+如果一个估计量是无偏的，说明该估计量没有系统性偏差，其本身来讲是没有问题的，它的随机性是由样本抽取时的不确定带来的。
+如果有偏，则表示无论怎么抽样，估计量总与总体参数存在一定距离。
+
+\begin{theorem}
+设总体$X$有期望$EX$和方差$DX$，$\left( X_1,X_2,\cdots ,X_n \right) $为其一样本，则：
+\begin{itemize}
+    \item $\bar{X}$为$EX$的无偏估计，即$E\bar{X}=EX$；
+    \item $S^2$为$DX$的无偏估计，即$E\left( S^2 \right) =DX$。
+\end{itemize}
+\end{theorem}
+
+证明略，可见“教材\cite{book1}”。
+该定理也说明，一般我们使用样本方差$S^2$作为总体方差的估计量，而非样本的2阶中心距。
+
+%============================================================
+\subsection{有效性的概念}
+
+\begin{definition}[有效性]
+设$\hat{\theta}_1,\hat{\theta}_2,\cdots ,\hat{\theta}_n$均为$\theta $的无偏估计，则$MSE\left( \hat{\theta} \right) =D\hat{\theta}$，若有$D\hat{\theta}_1<D\hat{\theta}_2$，则称{\bf $\hat{\theta}_1$比$\hat{\theta}_2$更有效}。
+若存在$\hat{\theta}_k$，它的方差小于任何其他估计量，即$D\hat{\theta}_k\leqslant D\hat{\theta}_i$，则称$\hat{\theta}_k$为$\theta $的{\bf 一致最小方差的无偏估计}。
+无偏估计的最小方差不可能无限小，有一个下限，称为{\bf 方差下界}，若某个无偏估计的方差达到该下界，则称之为{\bf 有效估计}。
+\end{definition}
+
+有效性描述了由于样本抽取的不确定造成的估计量的误差的离散型。
+若一个估计量更有效，说明在同样的抽取规则下，它的随机性越小。
+
+\begin{tcolorbox}
+关于方差下界，可阅读“教材\cite{book1}”P216～217和“教材\cite{book2}”P167～170。
+\end{tcolorbox}
+
+%============================================================
+\subsection{相合性的概念}
+
+\begin{definition}[相合性]
+设$\hat{\theta}$为$\theta $的估计量，若对于$\forall \varepsilon $，均有
+\[
+\underset{n\rightarrow \infty}{\lim}P\left\{ \left| \hat{\theta}-\theta \right|<\varepsilon \right\} =1
+\]
+则称$\hat{\theta}$为$\theta $的{\bf 相合估计}或{\bf 一致估计}。
+\end{definition}
+
+相合性表示当样本容量足够大时，估计量依概率收敛于被估计量。
+只有当估计量具备相合性时，更多抽取样本这个工作才有价值。
+
+
+
+

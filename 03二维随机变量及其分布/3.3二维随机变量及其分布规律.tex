@@ -1,0 +1,161 @@
+\section{二维随机变量及其分布规律}
+
+本节介绍二维随机变量及其的分布律。
+
+本节要点：
+\begin{itemize}
+    \item 掌握二维离散型随机变量的及其分布律的概念；
+    \item 掌握二维连续型随机变量的及其密度函数的概念。
+\end{itemize}
+
+%============================================================
+\subsection{二维离散型随机变量及其分布律的概念}
+
+\begin{definition}[二维离散型随机变量及其分布律]
+若二维随机变量$\left( X,Y \right) $的取值为有限个或可列无穷多个，则称$\left( X,Y \right) $为{\bf 二维离散型随机变量}，简称{\bf 二维离散变量}。
+设所有可能的取值设为$\left( x_i,y_j \right) ,i=1,2,\cdots ,j=1,2,\cdots $，则对应的概率记作：
+\[
+P\left\{ X=x_i,Y=y_j \right\} =p_{ij}
+\]
+称为{\bf 二维离散型随机变量$\left( X,Y \right) $的分布律}，一般可用二维表格罗列。
+其中：
+\begin{itemize}
+    \item $x_i$：纯数学记号，对应事件$A_i$；
+    \item $y_i$：纯数学记号，对应事件$B_i$；
+    \item $p_{ij}=P\left\{ X=x_i,Y=y_j \right\} =P\left( A_iB_j \right) $：$A_i,B_j$同时发生的概率。
+\end{itemize}
+\end{definition}
+
+若二维离散变量$\left( X,Y \right) $有分布律$p_{ij}$，则其分布函数为：
+\[
+F\left( x,y \right) =P\left\{ X\leqslant x,Y\leqslant y \right\} =\sum_{x_i\leqslant x,y_j\leqslant y}{p_{ij}}
+\]
+由分布函数的充要条件可得$p_{ij}$成为分布律的充要条件：
+\[
+p_{ij}\text{为分布律}\Leftrightarrow \begin{cases}
+	p_{ij}\geqslant 0\\
+	\sum_j{\sum_i{p_{ij}}}=1\\
+\end{cases}
+\]
+其中：
+\begin{itemize}
+    \item $\sum_j{\sum_i{p_{ij}}}$：表示将所有的$p_{ij}$累加起来。
+\end{itemize}
+
+\begin{tcolorbox}
+再次注意，分布律$p_{i,j}$表示两个事件都发生。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二维连续型随机变量及其密度函数的概念}
+
+\begin{definition}[二维连续型随机变量及其密度函数]
+设二维随机变量$\left( X,Y \right) $及其分布函数$F\left( x,y \right) $，若存在二元可积函数$f\left( x,y \right) \geqslant 0$，对于$\forall x,y$，有：
+\[
+F\left( x,y \right) =\iint\limits_D{f\left( u,v \right) \cdot d\sigma},\qquad \begin{array}{l}
+	d\sigma =dudv\\
+	D=\left\{ \left( u,v \right) \middle| u\leqslant x,v\leqslant y \right\}\\
+\end{array}
+\]
+则称$\left( X,Y \right) $为{\bf 二维连续型随机变量}，简称{\bf 二维连续变量}，并称$f\left( x,y \right) $为{\bf 二维连续型随机变量$\left( X,Y \right) $的密度函数}。
+\end{definition}
+
+由分布函数的充要条件易得$f\left( x,y \right) $为密度函数的充要条件：
+\[
+f\left( x,y \right) \text{为密度函数}\Leftrightarrow \begin{cases}
+	f\left( x,y \right) \geqslant 0\\
+	\iint\limits_{\mathbb{R} \times \mathbb{R}}{f\left( x,y \right) \cdot d\sigma}=1,\quad d\sigma =dxdy\\
+\end{cases}
+\]
+对于任意平面$D$的概率有：
+\[
+P\left\{ \left( X,Y \right) \in D \right\} =\iint\limits_D{f\left( x,y \right) \cdot d\sigma},\qquad d\sigma =dxdy
+\]
+
+\begin{tcolorbox}
+同样，密度函数$f\left( x,y \right) $表示两个事件都发生的概率密度。
+其次，一个二维变量是否为连续型，看它有没有密度函数，至于变量本身是整个连续还是分段连续并不要紧。
+\end{tcolorbox}
+
+
+\begin{theorem}
+设二维连续随机变量$\left( X,Y \right) $有分布函数$F\left( x,y \right) $和密度函数$f\left( x,y \right) $，若$f\left( x,y \right) $在点$\left( x_0,y_0 \right) $处连续，则：
+\[
+f\left( x_0,y_0 \right) =\frac{\partial ^2F\left( x_0,y_0 \right)}{\partial x\partial y}=\frac{\partial ^2F\left( x_0,y_0 \right)}{\partial y\partial x}
+\]
+\end{theorem}
+
+可用微积分的二阶混偏相等定理证明，略。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+若5个产品中有2个次品，每次抽取一个，取两次，记$X$表示第一次取到次品的个数，$Y$表示第二次取到次品的个数，试求：
+\begin{enumerate}
+    \item 不放回抽取的情况下，$\left( X,Y \right) $的分布律，
+    \item 放回抽取的情况下，$\left( X,Y \right) $的分布律。
+\end{enumerate}
+\end{example}
+
+解：
+
+由题干可得，$X,Y$取值只可能是0或1，0表示抽到合格品，1表示抽到次品。
+
+1. 不放回抽取的情况下：
+\begin{align*}
+&P\left\{ X=0,Y=0 \right\} =\frac{3}{5}\cdot \frac{2}{4}=\frac{3}{10} \\
+&P\left\{ X=1,Y=0 \right\} =\frac{2}{5}\cdot \frac{3}{4}=\frac{3}{10} \\
+&P\left\{ X=0,Y=1 \right\} =\frac{3}{5}\cdot \frac{2}{4}=\frac{3}{10} \\
+&P\left\{ X=1,Y=1 \right\} =\frac{2}{5}\cdot \frac{1}{4}=\frac{1}{10}
+\end{align*}
+
+2. 放回抽取的情况下：
+\begin{align*}
+&P\left\{ X=0,Y=0 \right\} =\frac{3}{5}\cdot \frac{3}{5}=\frac{9}{25} \\
+&P\left\{ X=1,Y=0 \right\} =\frac{2}{5}\cdot \frac{3}{5}=\frac{6}{25} \\
+&P\left\{ X=0,Y=1 \right\} =\frac{3}{5}\cdot \frac{2}{5}=\frac{6}{25} \\
+&P\left\{ X=1,Y=1 \right\} =\frac{2}{5}\cdot \frac{2}{5}=\frac{4}{25}
+\end{align*}
+
+~
+
+\begin{example}
+若二维连续随机变量$\left( X,Y \right) $有密度函数
+\[
+f\left( x,y \right) =\begin{cases}
+	ke^{-x},&		y\in \left( 0,x \right)\\
+	0,&		y\notin \left( 0,x \right)\\
+\end{cases}
+\]
+计算分布函数和$P\left\{ X+Y<2 \right\} $。
+\end{example}
+
+解：
+
+首先得计算具体的密度函数，由密度函数的充要条件得：
+\begin{align*}
+&\because \iint\limits_D{f\left( x,y \right) \cdot d\sigma}=1,\quad D=\left\{ \left( x,y \right) \middle| x>0,0<y<x \right\} \\
+&\because \iint\limits_D{ke^{-x}\cdot d\sigma}=\int_0^{+\infty}{dx}\int_0^x{ke^{-x}\cdot dy}=\int_0^{+\infty}{kxe^{-x}\cdot dx}=k \\
+&\therefore k=1 \\
+&\therefore f\left( x,y \right) =\begin{cases}
+	e^{-x},&		y\in \left( 0,x \right)\\
+	0&		y\notin \left( 0,x \right)\\
+\end{cases}
+\end{align*}
+使用了部分积分法$\int{xe^xdx}=\int{xd\left( e^x \right)}=xe^x-\int{e^xdx}$。
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=2.5cm]{3.2.png}
+	\end{figure}
+
+$P\left\{ X+Y<2 \right\} $的区域为$\left\{ \left( x,y \right) \middle| x\in \left[ 0,2 \right] ,y\in \left[ 0,\min \left\{ x,-x+2 \right\} \right] \right\} $
+。由于积分区域是凸区域，所以积分结果和次序无关：
+\[
+P\left\{ \left( X,Y \right) \in D \right\} =\iint\limits_D{e^{-x}\cdot d\sigma}=\int_0^1{dy}\int_y^{2-y}{e^{-x}\cdot dx}=1-2e^{-1}+e^{-2}
+\]
+
+
+
+

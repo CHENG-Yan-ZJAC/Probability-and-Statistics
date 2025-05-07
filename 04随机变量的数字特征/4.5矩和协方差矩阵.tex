@@ -1,0 +1,65 @@
+\section{矩和协方差矩阵}
+
+本节简单介绍矩和协方差矩阵的概念。
+
+本节要点：
+\begin{itemize}
+    \item 了解矩的概念；
+    \item 了解协方差矩阵的概念。
+\end{itemize}
+
+%============================================================
+\subsection{矩的概念}
+
+\begin{definition}[矩]
+设一维随机变量$X$，若对于$k\in \mathbb{Z} ^+$，$E\left[ \left( X-c \right) ^k \right] $存在，则称其为{\bf $X$关于$c$点的$k$阶矩}。
+特别地，当$c=0$时，称$E\left( X^k \right) $为{\bf $X$的$k$阶原点矩}，当$c=EX$时，称$E\left[ \left( X-EX \right) ^k \right] $为{\bf $X$的$k$阶中心矩}。
+\end{definition}
+
+显然：
+\begin{itemize}
+    \item $X$的1阶原点矩即为数学期望，$EX$；
+    \item $X$的1阶中心矩总是为0，$E\left( X-EX \right) =0$；
+    \item $X$的2阶中心矩即为方差，$DX$。
+\end{itemize}
+
+\begin{definition}[混合矩]
+设二维随机变量$\left( X,Y \right) $，若对于$k,l\in \mathbb{Z} ^+$，$E\left( X^kY^l \right) $存在，则称其为{\bf $X,Y$的$k+l$阶混合原点矩}；
+若对于$k,l\in \mathbb{Z} ^+$，数学期望$E\left[ \left( X-EX \right) ^k\left( Y-EY \right) ^l \right] $存在，则称其为{\bf $X,Y$的$k+l$阶混合中心矩}。
+\end{definition}
+
+显然：
+\begin{itemize}
+    \item $X,Y$的1+1阶混合中心矩即为它们的协方差，$\mathrm{Cov}\left( X,Y \right) $。
+\end{itemize}
+
+\begin{tcolorbox}
+1阶矩和2阶矩用得较多，3、4阶用的较少。
+3、4阶能引出“偏度系数”和“峰度系数”，详见“教材\cite{book2}”P122～123。
+广义上来讲，矩也是数字特征，但在实际使用中，数字特征往往特指期望、方差、协方差。
+\end{tcolorbox}
+
+%============================================================
+\subsection{协方差矩阵的概念}
+
+\begin{definition}[协方差矩阵]
+设$n$维随机变量$\left( X_1,X_2,\cdots ,X_n \right) $，记它们随意两两组合的协方差为$c_{ij}$，即：
+\[
+c_{ij}:=\mathrm{Cov}\left( X_i,X_j \right)
+\]
+若$c_{ij}$总是存在，则称它们组成的矩阵为{\bf $\left( X_1,X_2,\cdots ,X_n \right) $的协方差矩阵}，记作$\mathbf{C}$，即：
+\[
+\mathbf{C}:=\left[ \begin{matrix}
+	c_{11}&		c_{12}&		\cdots&		c_{1n}\\
+   	c_{21}&		c_{22}&		\cdots&		c_{2n}\\
+   	\vdots&		\vdots&		&		\vdots\\
+   	c_{n1}&		c_{n2}&		\cdots&		c_{nn}\\
+\end{matrix} \right]
+\]
+\end{definition}
+
+显然$\mathbf{C}$是一个实对称方阵，其对角线为每个变量的方差。
+
+
+
+

@@ -1,0 +1,41 @@
+\section{本章小结}
+
+本章讨论了一维随机变量，将事件和概率进行数学上的抽象，上升为函数，用函数刻画概率，描绘生活中常见的概率的分布规律。
+
+一个变量是否为随机变量主要看它有没有对应的分布函数，而分布函数就看充要条件：
+\[
+\begin{cases}
+	0\leqslant F\left( x \right) \leqslant 1\\
+	\underset{x\rightarrow -\infty}{\lim}F\left( x \right) =P\left( \oslash \right) =0\\
+	\underset{x\rightarrow +\infty}{\lim}F\left( x \right) =P\left( \varOmega \right) =1\\
+\end{cases}
+\]
+该充要条件是后续一切概念的基础。
+根据该条件，我们才定义（或者说推导）了离散变量的分布律和连续变量的密度函数这两个概念。
+
+\begin{table}[h]
+\centering
+\caption{离散变量和连续变量的对比}
+\begin{tabular}{cccc}
+    \toprule
+     & 符号 & 描述 & 概率、分布函数\\
+    \midrule
+    离散型 & $X$ & 分布律$p_i$ & $P\left\{ X\leqslant x \right\} =F\left( x \right) =\sum_{x_i\leqslant x}{p_i}$\\
+    连续型 & $X$ & 密度函数$f\left( x \right) $ & $P\left\{ X\leqslant x \right\} =F\left( x \right) =\int_{-\infty}^x{f\left( t \right) \cdot dt}$\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+离散变量有单点概率$P\left\{ X=x_i \right\} =p_i$，也即基本事件的概率。
+连续变量没有“单点概率”，$P\left\{ X=x_i \right\} $始终为0，单纯理论上的单点概率为0在现实中并不表示“不可能”，同样，若密度函数在某点为0在现实中也并不表示该点“不可能”，参考一维无限深势阱。
+离散变量的分布律也可以看成“密度”，只是我们可以认为
+\[
+P\left\{ X\leqslant x \right\} =F\left( x \right) =\sum_{x_i\leqslant x}{p_i\cdot \Delta x},   \Delta x=1
+\]
+于是在计算单点概率时有$P\left\{ X=x_i \right\} =p_i\cdot \Delta x=p_i\cdot 1=p_i$。
+
+本章还讨论了随机变量的函数，特别注意，连续变量的函数是否依然是连续型，取决于$Y=g\left( X \right) $是否为单调。
+
+
+
+

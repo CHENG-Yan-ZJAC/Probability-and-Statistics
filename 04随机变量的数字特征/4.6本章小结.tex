@@ -1,0 +1,97 @@
+\section{本章小结}
+
+本章介绍了随机变量的数字特征：
+\begin{itemize}
+    \item 对于一个变量，有：数学期望、方差，描述了变量的分布情况；
+    \item 对于两个变量，有：协方差、相关系数，描述了样本点$\left\{ X=x_i,Y=y_j \right\} $的分布是否趋于直线。
+\end{itemize}
+
+~
+
+数学期望定义公式
+\begin{align*}
+&EX:=\sum_i{x_i\cdot p_i} \\
+&EX:=\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}
+\end{align*}
+
+方差定义公式和便捷公式
+\begin{align*}
+&DX:=E\left[ \left( X-EX \right) ^2 \right] \\
+&DX=E\left( X^2 \right) -\left( EX \right) ^2
+\end{align*}
+
+协方差定义公式和便捷公式
+\begin{align*}
+&\mathrm{Cov}\left( X,Y \right) :=E\left[ \left( X-EX \right) \left( Y-EY \right) \right] \\
+&\mathrm{Cov}\left( X,Y \right) =E\left( XY \right) -EX\cdot EY
+\end{align*}
+
+相关系数定义公式和便捷公式
+\begin{align*}
+&\rho _{XY}:=\frac{\mathrm{Cov}\left( X,Y \right)}{\sqrt{DX}\cdot \sqrt{DY}} \\
+&\rho _{XY}=\frac{E\left( XY \right) -EX\cdot EY}{\sqrt{E\left( X^2 \right) -\left( EX \right) ^2}\cdot \sqrt{E\left( Y^2 \right) -\left( EY \right) ^2}}
+\end{align*}
+
+数学期望的性质
+\begin{align*}
+&E\left( c \right) =c \\
+&X\geqslant a\Rightarrow EX\geqslant a,X\leqslant a\Rightarrow EX\leqslant a \\
+&E\left( kX \right) =k\cdot E\left( X \right) \\
+&E\left( kX+c \right) =k\cdot E\left( X \right) +c \\
+&E\left( X\pm Y \right) =E\left( X \right) \pm E\left( Y \right) \\
+&\text{若}X,Y\text{相互独立}\Rightarrow E\left( XY \right) =E\left( X \right) \cdot E\left( Y \right) \\
+&\left[ E\left( XY \right) \right] ^2\leqslant E\left( X^2 \right) \cdot E\left( Y^2 \right)
+\end{align*}
+
+方差的性质
+\begin{align*}
+&D\left( c \right) =0 \\
+&D\left( X \right) \geqslant 0, \text{当且仅当}P\left\{ X=EX \right\} =1\text{时等号成立} \\
+&D\left( kX \right) =k^2\cdot D\left( X \right) \\
+&D\left( kX+c \right) =k^2\cdot D\left( X \right) \\
+&\text{若}X,Y\text{相互独立}\Rightarrow D\left( X\pm Y \right) =D\left( X \right) +D\left( Y \right)
+\end{align*}
+
+协方差的性质
+\begin{align*}
+&\mathrm{Cov}\left( X,X \right) =DX \\
+&D\left( X\pm Y \right) =DX+DY\pm 2\mathrm{Cov}\left( X,Y \right) \\
+&\mathrm{Cov}\left( X,c \right) =0 \\
+&\mathrm{Cov}\left( X,Y \right) =\mathrm{Cov}\left( Y,X \right) \\
+&\mathrm{Cov}\left( aX,bY \right) =ab\mathrm{Cov}\left( X,Y \right) \\
+&\mathrm{Cov}\left( X_1\pm X_2,Y \right) =\mathrm{Cov}\left( X_1,Y \right) \pm \mathrm{Cov}\left( X_2,Y \right) \\
+&\left[ \mathrm{Cov}\left( X,Y \right) \right] ^2\leqslant DX\cdot DY
+\end{align*}
+
+相关系数的性质
+\begin{align*}
+&\rho _{XY}\in \left[ -1,1 \right] \\
+&X\text{和}Y\text{成线性关系}\Leftrightarrow \rho _{XY}=\pm 1 \\
+&\rho _{\left( aX \right) \left( bY \right)}=\begin{cases}
+	\rho _{XY},&		ab>0\\
+	-\rho _{XY},&		ab<0\\
+\end{cases}
+\end{align*}
+
+~
+
+数字特征的物理意义和线性代数意义：
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+    \toprule
+    数字特征 & 物理意义/线性代数意义 & 量纲\\
+    \midrule
+    数学期望 & 质心位置 & $\left[ \mathrm{m} \right] $\\
+    方差 & 单位质量的转动惯量，范数 & $\left[ \mathrm{m}^2 \right] $\\
+    协方差 & 两个向量的内积 & $\left[ \mathrm{m}^2 \right] $\\
+    相关系数 & 两个向量的夹角的余弦 & 无量纲\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+学习概率论中的数字特征，要特别注意它们的物理意义和几何意义，用其他学科的知识点相互印证，加深对这些概念的理解。
+
+
+
+

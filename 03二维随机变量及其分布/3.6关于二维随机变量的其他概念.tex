@@ -1,0 +1,295 @@
+\section{关于二维随机变量的其他概念}
+
+本节在函数的框架下考察二维变量的相互关系，包括边缘、条件、独立。
+其中，边缘是后两个概念的基础。
+
+本节要点：
+\begin{itemize}
+    \item 掌握边缘分布的概念；
+    \item 掌握条件分布的概念；
+    \item 深刻掌握独立性的概念。
+\end{itemize}
+
+%============================================================
+\subsection{二维随机变量的边缘分布}
+
+\begin{definition}[边缘分布函数]
+设有二维变量$\left( X,Y \right) $，则称$X$和$Y$的分布函数为{\bf $\left( X,Y \right) $关于$X$和$Y$的边缘分布函数}，记作$F_X\left( x \right) $和$F_Y\left( y \right) $，且有：
+\begin{align*}
+&F_X\left( x \right) :=\underset{y\rightarrow +\infty}{\lim}F\left( x,y \right) \\
+&F_Y\left( y \right) :=\underset{x\rightarrow +\infty}{\lim}F\left( x,y \right)
+\end{align*}
+\end{definition}
+
+\begin{definition}[边缘分布率]
+设有二维离散变量$\left( X,Y \right) $，则称$X$和$Y$的分布律为{\bf $\left( X,Y \right) $关于$X$和$Y$的边缘分布律}，分别记作$P\left\{ X=x_i \right\} $和$P\left\{ Y=y_i \right\} $，也可记作$p_{i\cdot}$和$p_{\cdot j}$，即：
+\begin{align*}
+&P\left\{ X=x_i \right\} =p_{i\cdot}:=\sum_j{p_{ij}} \\
+&P\left\{ Y=y_j \right\} =p_{\cdot j}:=\sum_i{p_{ij}}
+\end{align*}
+其中：
+\begin{itemize}
+    \item $p_{i\cdot}:=\sum_j{p_{ij}}$：表示固定$i$时，将所有$j$累加，即$X$的边缘分布是对表格进行纵向求和得到；
+    \item $p_{\cdot j}:=\sum_i{p_{ij}}$：表示固定$j$时，将所有$i$累加，即$Y$的边缘分布是对表格进行横向求和得到。
+\end{itemize}
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\centerline{\includegraphics[width=5cm]{3.5.png}}
+\end{figure}
+
+\begin{definition}[边缘密度函数]
+设有二维连续变量$\left( X,Y \right) $，则称$X$和$Y$的密度函数为{\bf $\left( X,Y \right) $关于$X$和$Y$的边缘密度函数}，分别记作$f_X\left( x \right) $和$f_Y\left( y \right) $，即：
+\begin{align*}
+&f_X\left( x \right) :=\int_{-\infty}^{+\infty}{f\left( x,y \right) \cdot dy} \\
+&f_Y\left( y \right) :=\int_{-\infty}^{+\infty}{f\left( x,y \right) \cdot dx}
+\end{align*}
+\end{definition}
+
+边缘分布强调的是只考虑一个因素，当考虑$X$方面的概率时，我们需要排除$Y$的不确定性，一种本能的、直观的做法就是将所有$Y$的概率累加。
+在二维离散变量的分布律表格中，边缘分布一般作为按行求和和按列求和书写在表格左边和下边，故称“边缘分布”。
+由于在计算过程中损失了$Y$的分布细节，所以知道边缘分布并不能还原出$X$和$Y$的联合分布。
+从原理上来讲，一切变量$X$的分布都是某个“不知名变量”的边缘分布，对于不同的$Y$可能有不同的边缘分布，当然也有可能是相同的。
+最后，边缘密度函数就是计算二重积分时的“第一个切片”。
+
+%============================================================
+% 二维随机变量的条件分布
+%============================================================
+\subsection{二维随机变量的条件分布}
+
+\begin{tcolorbox}
+上面我们讨论了“不考虑$Y$”时$X$的概率。
+现在，我们考虑$Y$维度上发生某个事件的时候$X$的概率。
+\end{tcolorbox}
+
+\begin{definition}[条件分布函数]
+设二维变量$\left( X,Y \right) $，当$Y=y_0$时，对于$\forall \varepsilon >0$，若存在极限
+\[
+\underset{\varepsilon \rightarrow 0^+}{\lim}\frac{P\left\{ X\leqslant x,y_0-\varepsilon <Y\leqslant y_0+\varepsilon \right\}}{P\left\{ y_0-\varepsilon <Y\leqslant y_0+\varepsilon \right\}}
+\]
+则称此极限为在$\left\{ Y=y_0 \right\} $发生时的{\bf $X$的条件分布函数}，记作$F_{X|Y}\left( x \middle| y_0 \right) $，同样可定义在$\left\{ X=x_0 \right\} $发生时的{\bf $Y$的条件分布函数}，记作$F_{Y|X}\left( y \middle| x_0 \right) $，即：
+\begin{align*}
+    &F_{X|Y}\left( x \middle| y_0 \right) :=\underset{\varepsilon \rightarrow 0^+}{\lim}\frac{P\left\{ X\leqslant x,y_0-\varepsilon <Y\leqslant y_0+\varepsilon \right\}}{P\left\{ y_0-\varepsilon <Y\leqslant y_0+\varepsilon \right\}} \\
+    &F_{Y|X}\left( y \middle| x_0 \right) :=\underset{\varepsilon \rightarrow 0^+}{\lim}\frac{P\left\{ Y\leqslant y,x_0-\varepsilon <X\leqslant x_0+\varepsilon \right\}}{P\left\{ x_0-\varepsilon <X\leqslant x_0+\varepsilon \right\}}
+\end{align*}
+\end{definition}
+
+\begin{definition}[条件分布律]
+设二维离散变量$\left( X,Y \right) $有分布律$p_{ij}$，若已知$Y$的边缘分布有$p_{\cdot j}$，当取值$Y=y_{j_0}$时，称$\frac{p_{ij_0}}{p_{\cdot j_0}}$为在条件$\left\{ Y=y_{j_0} \right\} $下的{\bf $X$的条件分布律}，记作$P\left\{ X=x_i \middle| Y=y_{j_0} \right\} $，同样可定义在条件$\left\{ X=x_{i_0} \right\} $下的{\bf $Y$的条件分布律}：
+\begin{align*}
+&P\left\{ X=x_i \middle| Y=y_{j_0} \right\} :=\frac{P\left\{ X=x_i,Y=y_{j_0} \right\}}{P\left\{ Y=y_{j_0} \right\}}=\frac{p_{ij_0}}{p_{\cdot j_0}} \\
+&P\left\{ Y=y_j \middle| X=x_{i_0} \right\} :=\frac{P\left\{ Y=y_j,X=x_{i_0} \right\}}{P\left\{ X=x_{i_0} \right\}}=\frac{p_{i_0j}}{p_{i_0\cdot}}
+\end{align*}
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=4.5cm]{3.6.png}
+\end{figure}
+
+\begin{definition}[{条件密度函数}]
+设二维连续变量$\left( X,Y \right) $有密度函数$f\left( x,y \right) $，若已知$\left( X,Y \right) $关于$X$和$Y$的边缘密度函数$f_X\left( x \right) $和$f_Y\left( y \right) $，则可定义在条件$Y=y_0$下的{\bf $X$的条件密度函数}和在条件$X=x_0$下的{\bf $Y$的条件密度函数}：
+\begin{align*}
+&f_{X|Y}\left( x \middle| y_0 \right) :=\frac{f\left( x,y_0 \right)}{f_Y\left( y_0 \right)}=\frac{f\left( x,y_0 \right)}{\int_{-\infty}^{+\infty}{f\left( x,y_0 \right) \cdot dx}} \\
+&f_{Y|X}\left( y \middle| x_0 \right) :=\frac{f\left( x_0,y \right)}{f_X\left( x_0 \right)}=\frac{f\left( x_0,y \right)}{\int_{-\infty}^{+\infty}{f\left( x_0,y \right) \cdot dy}}
+\end{align*}
+\end{definition}
+
+二维变量条件分布中的“条件”一词是指“另一个变量边缘分布概率”。
+通过条件分布，我们可以了解一个变量如何影响另一个变量。
+
+条件分布律和条件密度函数跟条件概率定义相仿：
+\begin{align*}
+&P\left\{ X=x_i \middle| Y=y_j \right\} :=\frac{p_{ij}}{p_{\cdot j}} \\
+&f_{X|Y}\left( x \middle| y \right) :=\frac{f\left( x,y \right)}{f_Y\left( y \right)} \\
+&P\left( B \middle| A \right) :=\frac{P\left( AB \right)}{P\left( A \right)}
+\end{align*}
+
+\begin{tcolorbox}
+由于基本事件 和 分别构成完备组，所以条件分布还能引申出相应的全概率公式和贝叶斯公式，本笔记略。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二维随机变量的独立性}
+
+\begin{definition}[相互独立]
+设二维随机变量$\left( X,Y \right) $有分布函数$F\left( x,y \right) $，若已知$X$和$Y$的边缘分布函数为$F_X\left( x \right) $和$F_Y\left( y \right) $，若$\forall x,y\in \mathbb{R} $，有
+\[
+F\left( x,y \right) =F_X\left( x \right) \cdot F_Y\left( y \right)
+\]
+则称{\bf $X$和$Y$相互独立}。
+\end{definition}
+
+独立性也是建立在边缘分布的基础上。
+
+\begin{theorem}
+设二维离散变量$\left( X,Y \right) $有分布律$p_{ij}$，若已知$X$和$Y$的边缘分布有$p_{i\cdot},p_{\cdot j}$，则$X$和$Y$相互独立的充要条件是$\forall i,j$有：
+\[
+p_{ij}=p_{i\cdot}\cdot p_{\cdot j}
+\]
+\end{theorem}
+
+\begin{figure}[h]
+\centering
+\centerline{\includegraphics[width=7cm]{3.7.png}}
+\end{figure}
+
+\begin{tcolorbox}
+$\left( X,Y \right) $的独立性可以和事件独立性概念中的$P\left( AB \right) =P\left( A \right) P\left( B \right) $相互印证学习。
+\end{tcolorbox}
+
+\begin{theorem}
+设二维连续变量$\left( X,Y \right) $有密度函数$f\left( x,y \right) $，若已知$X$和$Y$的边缘密度函数$f_X\left( x \right) $和$f_Y\left( y \right) $，则$X$和$Y$相互独立的充要条件是对几乎所有点$\left( x,y \right) $有：
+\[
+f\left( x,y \right) =f_X\left( x \right) \cdot f_Y\left( y \right)
+\]
+\end{theorem}
+
+由于$f\left( x,y \right) $允许出现有限个不连续点，所以定理中没有要求所有点，而是去除了这些有限个不连续点。
+
+\begin{theorem}
+若$X$和$Y$相互独立，则它们在各自任意事件上也相互独立，即：
+\[
+P\left\{ X\in L_1,Y\in L_2 \right\} =P\left\{ X\in L_1 \right\} \cdot P\left\{ Y\in L_2 \right\}
+\]
+\end{theorem}
+
+\begin{theorem}
+若$X$和$Y$相互独立，且$g\left( x \right) ,h\left( x \right) $是连续函数，则随机变量$g\left( x \right) $和$h\left( x \right) $也相互独立。
+\end{theorem}
+
+结合第一章中的独立性讨论，通常我们也不会用定义判断两个变量是否独立，而是从事实角度出发讨论二维分布规律。
+通常我们可以较容易地得知各自的边缘分布和较容易地判断出它们是独立的，于是通过独立性的公式，我们就可以计算它们的联合分布规律。
+若已知分布函数，则可以用定义判定：
+\[
+F\left( x,y \right) =F_X\left( x \right) \cdot F_Y\left( y \right)
+\]
+若已知分布律或密度函数，则可以用定理判断：
+\begin{align*}
+&p_{ij}=p_{i\cdot}\cdot p_{\cdot j} \\
+&f\left( x,y \right) =f_X\left( x \right) \cdot f_Y\left( y \right)
+\end{align*}
+直观来讲，独立表示$X$的条件分布与$Y$的具体取值无关。
+
+\begin{tcolorbox}
+独立性是一个很强的约束，逻辑上要求两者没有任何关系，后面会提到一个叫相关性的概念，表示两者的线性关系，较独立性没有那么强的约束性。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二维正态分布的讨论}
+
+正态分布有很多特别的性质，这里特别概括二维情况下的正态分布的一些性质。
+
+~
+
+{\bf 关于边缘分布}
+
+\begin{theorem}
+若有二维正态分布$\left( X,Y \right) \sim N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,\rho \right) $，则必有边缘分布$X\sim N\left( \mu _1,{\sigma _1}^2 \right) ,Y\sim N\left( \mu _2,{\sigma _2}^2 \right) $。
+\end{theorem}
+
+该定理说明：
+\begin{itemize}
+    \item 二维正态分布的边缘分布依然为正态分布；
+    \item 各自的分布只与各自参数有关，与$\rho $无关；
+    \item 反过来，任意两个边缘正态分布可以根据不同的$\rho $组合出无穷多个二维正态分布。
+\end{itemize}
+
+~
+
+{\bf 关于条件分布}
+
+\begin{theorem}
+若有二维正态分布$\left( X,Y \right) \sim N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,\rho \right) $，则各自的条件分布依然为正态分布，即：
+\begin{align*}
+&X\sim N\left( \mu _1+\rho \frac{\sigma _1}{\sigma _2}\left( y-\mu _2 \right) ,{\sigma _1}^2\left( 1-\rho \right) \right) \\
+&Y\sim N\left( \mu _2+\rho \frac{\sigma _2}{\sigma _1}\left( x-\mu _1 \right) ,{\sigma _2}^2\left( 1-\rho \right) \right)
+\end{align*}
+\end{theorem}
+
+该定理说明：
+\begin{itemize}
+    \item 二维正态分布的条件分布依然为正态分布；
+    \item 各自的分布不但与各自参数有关，而且与对方参数和$\rho $（$X,Y$之间的相关程度）有关。
+\end{itemize}
+
+~
+
+{\bf 关于独立性}
+
+\begin{theorem}
+若二维变量服从正态分布$\left( X,Y \right) \sim N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,\rho \right) $，则有$X$和$Y$相互独立$\Leftrightarrow \rho =0$。
+\end{theorem}
+
+\begin{theorem}
+若两个一维变量各自服从正态分布$X\sim N\left( \mu _1,{\sigma _1}^2 \right) ,Y\sim N\left( \mu _2,{\sigma _2}^2 \right) $，且相互独立，则它们构成的二维变量也服从正态分布，且有$\left( X,Y \right) \sim N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,0 \right) $。
+\end{theorem}
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+若二维变量$\left( X,Y \right) $的分布函数为
+\[
+F\left( x,y \right) =\frac{1}{\pi ^2}\left( \frac{\pi}{2}+\mathrm{arc}\tan x \right) \left( \frac{\pi}{2}+\mathrm{arc}\tan y \right)
+\]
+试讨论$X,Y$的独立性。
+\end{example}
+
+答：
+
+由边缘分布的定义易得：
+\begin{align*}
+F_X\left( x \right) &=\underset{y\rightarrow +\infty}{\lim}F\left( x,y \right) =\underset{y\rightarrow +\infty}{\lim}\frac{1}{\pi ^2}\left( \frac{\pi}{2}+\mathrm{arc}\tan x \right) \left( \frac{\pi}{2}+\mathrm{arc}\tan y \right) \\
+&=\frac{1}{\pi}\left( \frac{\pi}{2}+\mathrm{arc}\tan x \right) \\
+F_Y\left( y \right) &=\underset{x\rightarrow +\infty}{\lim}F\left( x,y \right) =\underset{x\rightarrow +\infty}{\lim}\frac{1}{\pi ^2}\left( \frac{\pi}{2}+\mathrm{arc}\tan x \right) \left( \frac{\pi}{2}+\mathrm{arc}\tan y \right) \\
+&=\frac{1}{\pi}\left( \frac{\pi}{2}+\mathrm{arc}\tan y \right)
+\end{align*}
+可见$X,Y$相互独立。
+
+~
+
+\begin{example}
+甲、乙两人约定在1:00～2:00之间在某处碰头，若有一个先到，等10分钟后如无人则离去，设两人会在1:00～2:00之间任意时刻抵达约定地点，计算两人碰面的概率。
+\end{example}
+
+答：
+
+该题是本章引子中的题目，当时用几何分布进行直观分析，这里使用本章的知识重新分析。首先可以确定，甲、乙两人各自出现在约定地点的概率在1:00～2:00间均匀分布，即：
+\begin{align*}
+&X\sim U\left[ 0,60 \right] ,Y\sim U\left[ 0,60 \right] \\
+&f\left( x \right) =\begin{cases}
+	\frac{1}{60},&		x\in \left[ 0,60 \right]\\
+	0,&		x\notin \left[ 0,60 \right]\\
+\end{cases}
+\end{align*}
+由于两人事先并无沟通，抵达时间也是各凭喜好，所以他们是独立的，于是：
+\[
+f\left( x,y \right) =f\left( x \right) \cdot f\left( y \right) =\begin{cases}
+	\frac{1}{3600},&		x,y\in \left[ 0,60 \right]\\
+	0,&		x,y\notin \left[ 0,60 \right]\\
+\end{cases}
+\]
+两人能碰面的概率可表示为$P\left\{ \left| X-Y \right|\leqslant 10 \right\} $，图形表示如下。
+阴影部分积分区域较为复杂，但白色区域较为简单，积分区域$D$变成：
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.4cm]{3.1.png}
+\end{figure}
+\begin{align*}
+&D_1=\left\{ \left( x,y \right) \middle| 10\leqslant x\leqslant 60,0\leqslant y\leqslant x-10 \right\} \\
+&D_2=\left\{ \left( x,y \right) \middle| 10\leqslant y\leqslant 60,0\leqslant x\leqslant y-10 \right\} \\
+&D=D_1+D_2=2D_1
+\end{align*}
+计算：
+\begin{align*}
+P\left\{ \left| X-Y \right|\leqslant 10 \right\} &=1-\iint\limits_D{f\left( x,y \right) \cdot d\sigma}=1-2\int_{10}^{60}{dx}\int_0^{x-10}{\frac{1}{3600}\cdot dy} \\
+&=1-\frac{2}{3600}\cdot \left( \left. \frac{1}{2}x^2-10x \right|_{10}^{60} \right) \\
+&=\frac{11}{36}
+\end{align*}
+最终可得他们相遇的概率为$11/36$。
+
+
+
+

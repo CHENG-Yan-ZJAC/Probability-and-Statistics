@@ -1,0 +1,171 @@
+\section{抽样分布}
+
+本节介绍统计量的概率分布——抽样分布。
+总体是决定统计量的因素之一，而总体的分布千千万万，所以这里只讨论基于标准正态分布的总体$X\sim N\left( 0,1 \right) $的样本的统计量。
+
+本节要点：
+\begin{itemize}
+    \item 掌握抽样分布的概念；
+    \item 了解3中常见的分布，卡方分布、t分布、F分布。
+\end{itemize}
+
+%============================================================
+\subsection{抽样分布的概念}
+
+\begin{definition}[抽样分布]
+由于样本具有随机性，所以统计量也具备随机性，我们将统计量的分布称为{\bf 抽样分布}。
+\end{definition}
+
+抽样分布在假设检验中发挥重要作用。
+统计量本质上是一个函数，其值的分布带有随机特征，所以通过统计量的观察值就可以判断该次抽取样本的试验是小概率事件还是大概率事件，如果是小概率事件，则可能表示总体发生了些变化。
+
+%============================================================
+\subsection{卡方分布}
+
+\begin{definition}[卡方分布]
+设总体$X\sim N\left( 0,1 \right) $的一个样本$\left( X_1,X_2,\cdots ,X_n \right) $，记它们的平方和的统计量为$\chi ^2$，称$\chi ^2$的分布为{\bf 服从自由度为$n$的$\chi ^2$分布}，记作$\chi ^2\sim \chi ^2\left( n \right) $，即：
+\[
+\chi ^2:=\sum_{i=1}^n{{X_i}^2}
+\]
+\end{definition}
+
+\begin{tcolorbox}
+注意，记号$\chi ^2\sim \chi ^2\left( n \right) $中，第一个$\chi ^2$表示统计量，第二个$\chi ^2$表示分布。
+\end{tcolorbox}
+
+$\chi ^2$的密度函数为：
+\[
+f\left( x,n \right) =\begin{cases}
+	0&		x\leqslant 0\\
+	\frac{1}{2^{\frac{n}{2}}\varGamma \left( \frac{n}{2} \right)}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}&		x>0\\
+\end{cases}
+\]
+其中：
+\begin{itemize}
+    \item $x=\sum_{i=1}^n{{x_i}^2}$：统计量的观察值，即样本值的平方和；
+    \item $n$：自由度，决定了函数的形状；
+    \item $\varGamma \left( p \right) =\int_0^{+\infty}{x^{p-1}e^{-x}dx},p>0$：称为{\bf $\varGamma $函数}。
+\end{itemize}
+以自由度为1，3，5，10为例，密度函数的图形如下：
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{6.1.png}
+\end{figure}
+
+卡方分布$\chi ^2\sim \chi ^2\left( n \right) $的性质：
+\begin{itemize}
+    \item 有期望和方差$E\left( \chi ^2 \right) =n,D\left( \chi ^2 \right) =2n$；
+    \item 当自由度$n\rightarrow +\infty $时，卡方分布近似为正态分布$\chi ^2\sim N\left( n,2n \right) $；
+    \item 总体$X\sim N\left( 0,1 \right) $自己的平方和服从自由度为1的卡方分布$X\sim \chi ^2\left( 1 \right) $；
+    \item 设$k$个服从卡方分布的随机变量$\chi _{i}^{2}\sim \chi ^2\left( n_i \right) ,i=1,2,\cdots ,k$，且各个$\chi _{i}^{2}$相互独立，则它们的和依然服从卡方分布，且自由度为各自自由度的和，称为{\bf 卡方分布的可加性}，即：
+	\[
+	\sum_{i=1}^k{\chi _{i}^{2}}\sim \chi ^2\left( \sum_{i=1}^k{n_i} \right)
+	\]
+    \item 卡方分布有唯一的上侧$\alpha $分位点，一般记作$\chi _{\alpha}^{2}\left( n \right) $，当自由度$n\rightarrow +\infty $时，$\chi _{\alpha}^{2}\left( n \right) \rightarrow n+\sqrt{2n}u_{\alpha},\chi _{1-\alpha}^{2}\left( n \right) \rightarrow n-\sqrt{2n}u_{\alpha}$，其中$u_{\alpha}$为标准正态分布的上侧$\alpha $分位点。
+\end{itemize}
+
+\begin{tcolorbox}
+卡方分布由Karl Pearson于1900年提出，用于衡量观测值与理论值之间的差异。
+从表达式看，卡方分布的物理意义是物体的转动惯量，但和方差不同，卡方分布没有减取均值，所以它带有质量分布和质量中心位置两个信息。
+当我们假设总体分布为标准正态分布时，抽样得到的卡方值大概率会集中于一个范围，若卡方值出现在小概率地方，则说明我们的假设很可能不对。
+\end{tcolorbox}
+
+%============================================================
+\subsection{t分布}
+
+\begin{definition}[t分布]
+设两个相互独立的随机变量$X\sim N\left( 0,1 \right) ,Y\sim \chi ^2\left( n \right) $，记如下的统计量为$T$，称$T$的分布为{\bf 服从自由度为$n$的$t$分布}，记作$T\sim t\left( n \right) $：
+\[
+T:=\frac{X}{\sqrt{Y/n}}
+\]
+\end{definition}
+
+$T$的密度函数为：
+\[
+f\left( x,n \right) =\frac{\varGamma \left( \frac{n+1}{2} \right)}{\sqrt{n\pi}\varGamma \left( \frac{n}{2} \right)}\left( 1+\frac{x^2}{n} \right) ^{-\frac{n+1}{2}}, \qquad x\in \mathbb{R}
+\]
+
+以自由度为1，3，5，1000为例，密度函数图形如下：
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{6.2.png}
+\end{figure}
+
+$T\sim t\left( n \right) $分布的性质：
+\begin{itemize}
+    \item 有期望和方差$ET=0\quad n>1,\quad DT=\frac{n}{n-2}\quad n>2$；
+    \item 当自由度$n\rightarrow +\infty $时，$T$分布近似为标准正态分布$T\sim N\left( 0,1 \right) $；
+    \item $T$分布有唯一的上侧$\alpha $分位点，一般记作$t_{\alpha}\left( n \right) $，且根据对称性有$t_{1-\alpha}\left( n \right) =-t_{\alpha}\left( n \right) $，当自由度$n\rightarrow +\infty $时，$t_{\alpha}\left( n \right) \rightarrow u_{\alpha}$，其中$u_{\alpha}$为标准正态分布的上侧$\alpha $分位点。
+\end{itemize}
+
+\begin{tcolorbox}
+t分布由William Sealy Gosset在1908年提出。
+从表达式看，t分布是用样本对标准正态分布的一种修正，在没有充足样本时，给出一个“更保守的正态分布”，常用于区间估计。
+\end{tcolorbox}
+
+%============================================================
+\subsection{F分布}
+
+\begin{definition}[F分布]
+设两个相互独立的随机变量$X\sim \chi ^2\left( n_1 \right) ,Y\sim \chi ^2\left( n_2 \right) $，记如下的统计量为$F$，称$F$的分布为{\bf 服从第一自由度为$n_1$第二自由度为$n_2$的$F$分布}，记作$F\sim F\left( n_1,n_2 \right) $：
+\[
+F:=\frac{X/n_1}{Y/n_2}
+\]
+\end{definition}
+
+\begin{tcolorbox}
+记号$F\sim F\left( n_1,n_2 \right) $中，第一个$F$表示统计量，是一个随机变量，第二个$F$表示分布。
+\end{tcolorbox}
+
+$F$的密度函数为：
+\[
+f\left( x,n_1,n_2 \right) =\begin{cases}
+	0&		x\leqslant 0\\
+	\frac{\varGamma \left( \frac{n_1+n_2}{2} \right)}{\varGamma \left( \frac{n_1}{2} \right) \varGamma \left( \frac{n_2}{2} \right)}{n_1}^{\frac{n_1}{2}}{n_2}^{\frac{n_2}{2}}x^{\frac{n_1}{2}-1}\left( n_1x+n_2 \right) ^{-\frac{n_1+n_2}{2}}&		x>0\\
+\end{cases}
+\]
+
+以自由度为3，5，10，20为例，密度函数图形如下：
+\begin{figure}[h]
+\centering
+\includegraphics[height=5cm]{6.3.png}
+\end{figure}
+
+$F\sim F\left( n_1,n_2 \right) $分布的性质：
+\begin{itemize}
+    \item 有期望和方差$EF=\frac{n_2}{n_2-2}\quad n_2>1,\quad DF=\frac{2{n_2}^2\left( n_1+n_2-2 \right)}{n_1\left( n_2-2 \right) ^2\left( n_2-4 \right)}\quad n_2>4$；
+    \item 若有随机变量$T\sim t\left( n \right) $，则$T^2\sim F\left( 1,n \right) $；
+    \item 若有随机变量$F\sim F\left( n_1,n_2 \right) $，则$\frac{1}{F}\sim F\left( n_2,n_1 \right) $；
+    \item $F$分布有唯一的上侧$\alpha $分位点，一般记作$F_{\alpha}\left( n_1,n_2 \right) $，且有
+	
+	$F_{1-\alpha}\left( n_1,n_2 \right) =\frac{1}{F_{\alpha}\left( n_1,n_2 \right)}$。
+\end{itemize}
+
+\begin{tcolorbox}
+F分布由英国统计学家Ronald.A.Fisher在20世纪20年代提出。
+从表达式看，F分布比较两个样本的方差，以判断整体均值是否存在显著差异。
+\end{tcolorbox}
+
+%============================================================
+\subsection{正态总体的样本的抽样分布}
+
+以上讨论的是总体$X\sim N\left( 0,1 \right) $的样本的抽样分布，下面扩展到正态分布的总体。
+
+\begin{theorem}
+设有服从正态分布的总体$X\sim N\left( \mu ,\sigma ^2 \right) $，$\left( X_1,X_2,\cdots ,X_n \right) $为其一样本，则：
+\begin{itemize}
+    \item 样本均值$\bar{X}$服从正态分布，$\bar{X}\sim N\left( \mu ,\frac{\sigma ^2}{n} \right) $或$\frac{\bar{X}-\mu}{\sqrt{\sigma ^2/n}}\sim N\left( 0,1 \right) $；
+    \item $\frac{\sum_{i=1}^n{\left( X_i-\mu \right) ^2}}{\sigma ^2}\sim \chi ^2\left( n \right) $，用于$\mu ,\sigma $已知的情况；
+    \item $\frac{\sum_{i=1}^n{\left( X_i-\bar{X} \right) ^2}}{\sigma ^2}\sim \chi ^2\left( n-1 \right) $，且$\bar{X},S^2$相互独立，用于$\sigma $已知$\mu $未知的情况，用$\bar{X}$代替$\mu $；
+    \item $\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t\left( n-1 \right) $，用于$\mu $已知$\sigma $未知的情况，用$S$代替$\sigma $。
+\end{itemize}
+\end{theorem}
+
+\begin{tcolorbox}
+对于两个正态分布的总体的讨论，见“教材\cite{book1}”，P193。
+\end{tcolorbox}
+
+
+
+

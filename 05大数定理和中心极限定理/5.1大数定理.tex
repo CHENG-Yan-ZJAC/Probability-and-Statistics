@@ -1,0 +1,207 @@
+\section{大数定理}
+
+本节介绍大数定理。
+大数定理描述了随着试验次数的增加，发生频率稳定趋于概率这一现象。
+
+本节要点：
+\begin{itemize}
+    \item 掌握均值的概念；
+    \item 掌握依概率收敛的概念；
+    \item 深刻理解3个大数定理的意义；
+    \item 深刻理解辛钦大数定理的证明过程。
+\end{itemize}
+
+%============================================================
+\subsection{均值的概念}
+
+\begin{definition}[均值]
+设随机试验$E$对应有一维随机变量$X$，若进行一轮$n$次重复试验，得到一组随机变量的值的序列，暂记作$X_1,X_2,\cdots ,X_n$，其中$X_i$表示该轮第$i$次试验得到的值，则称它们的算术平均为{\bf 该组序列的均值}，记作$\bar{X}$，即：
+\[
+\bar{X}:=\frac{1}{n}\sum_{i=1}^n{X_i}
+\]
+\end{definition}
+
+由于每轮试验都会得到一组不同的序列，加之每轮的$n$的取值又可以不同，所以$\bar{X}$的取值在每轮试验后都会不同，$\bar{X}$符合随机变量的定义要求，它也是一个随机变量。
+本节的大数定理就是在不知道$\bar{X}$的分布的情况下，考察当$n\rightarrow \infty $时$\bar{X}$的趋近值。
+
+%============================================================
+\subsection{依概率收敛的概念}
+
+\begin{definition}[依概率收敛]
+设一组随机变量组成的序列$Z_1,Z_2,\cdots ,Z_n,\cdots $，若存在常数$a$，使得$\forall \varepsilon >0$，有：
+\[
+\underset{n\rightarrow \infty}{\lim}P\left\{ \left| Z_n-a \right|<\varepsilon \right\} =1
+\]
+则称{\bf 该序列依概率收敛于$a$}，记作：
+\[
+\underset{n\rightarrow \infty}{\lim}Z_n\overset{P}{=}a
+\]
+\end{definition}
+
+注意，依概率收敛不同于微积分中的极限：
+\begin{itemize}
+    \item 首先，依概率收敛的意思是随着$n$的增大，$Z_n$的分布越来越向$a$集中，最后$Z_n$只出现在$a$；
+    \item 其次，收敛要求按照概率$P$，而非形如微积分中的$\underset{n\rightarrow \infty}{\lim}Z_n=a$，所以写作$\underset{n\rightarrow \infty}{\lim}Z_n\overset{P}{=}a$。
+\end{itemize}
+
+~
+
+以掷硬币为例，设进行一轮只投掷1次的试验，得到的均值记作$\bar{X}_1$，再进行一轮投掷2次的试验，得到的均值记作$\bar{X}_2$，以此类推，将投掷$n$次的那一轮试验得到的均值记作$\bar{X}_n$。
+则随着投掷次数的增多，$\bar{X}_n$将会趋向0.5，用上述的数学表达式可写为：
+\[
+\underset{n\rightarrow \infty}{\lim}\bar{X}_n\overset{P}{=}\frac{1}{2}
+\]
+
+%============================================================
+\subsection{引理}
+
+\begin{lemma}[马尔可夫不等式]
+设有一维随机变量$X$，若取值非负，则$\forall \varepsilon >0$，必有：
+\[
+P\left\{ X\geqslant \varepsilon \right\} \leqslant \frac{EX}{\varepsilon}
+\]
+\end{lemma}
+
+\begin{proof}
+以连续变量为例，由于$X$取值非负，则$\left. f\left( x \right) \right|_{x<0}=0$，于是：
+\begin{align*}
+P\left\{ X\geqslant \varepsilon \right\} &=\int_{\varepsilon}^{+\infty}{f\left( x \right) \cdot dx}\leqslant \int_{\varepsilon}^{+\infty}{\frac{x}{\varepsilon}\cdot f\left( x \right) \cdot dx} \\
+&=\frac{1}{\varepsilon}\cdot \int_{\varepsilon}^{+\infty}{xf\left( x \right) \cdot dx}\leqslant \frac{1}{\varepsilon}\cdot \int_0^{+\infty}{xf\left( x \right) \cdot dx} \\
+&=\frac{1}{\varepsilon}\cdot EX
+\end{align*}
+\end{proof}
+
+\begin{lemma}[切比雪夫不等式]
+设有一维随机变量$X$有期望$EX$和方差$DX$，则$\forall \varepsilon >0$，必有：
+\[
+P\left\{ \left| X-EX \right|\geqslant \varepsilon \right\} \leqslant \frac{DX}{\varepsilon ^2}
+\]
+或
+\[
+P\left\{ \left| X-EX \right|<\varepsilon \right\} \geqslant 1-\frac{DX}{\varepsilon ^2}
+\]
+\end{lemma}
+
+\begin{proof}
+以连续变量为例，注意到$P\left\{ \left| X-EX \right|\geqslant \varepsilon \right\} =P\left\{ \left( X-EX \right) ^2\geqslant \varepsilon ^2 \right\} $，且无论$X$如何取值，$\left( X-EX \right) ^2$取值必然非负，利用马尔可夫不等式，有：
+\[
+P\left\{ \left| X-EX \right|\geqslant \varepsilon \right\} =P\left\{ \left( X-EX \right) ^2\geqslant \varepsilon ^2 \right\} \leqslant \frac{E\left[ \left( X-EX \right) ^2 \right]}{\varepsilon ^2}=\frac{DX}{\varepsilon ^2}
+\]
+\end{proof}
+
+这两个不等式反映了所有分布所遵循的特征。
+切比雪夫不等式的第二个表达式更容易反映出其意义。无论$X$是什么分布，以中心$EX$的范围$\varepsilon $，范围越小，概率越小。同样的范围$\varepsilon $，若概率分布越分散，即$DX$越大，则该范围内的概率越小。
+
+%============================================================
+\subsection{大数定理}
+
+\begin{theorem}[伯努利大数定理]
+设有$n$重伯努利试验，事件$A$的发生概率为$p$，令$X_i=1$表示在第$i$次试验中事件$A$发生，$X_i=0$表示在第$i$次试验中事件$A$不发生，$\bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i}$表示在一共$n$次试验中事件$A$的发生均值，则当$n\rightarrow +\infty $时，$\bar{X}$依概率收敛于事件$A$的发生概率，即：
+\[
+\underset{n\rightarrow \infty}{\lim}\bar{X}\overset{P}{=}p
+\]
+\end{theorem}
+
+\begin{proof}
+这里我们已知每次子试验为一个二项试验，虽然我们不知道$\bar{X}$的分布规律，但我们可以通过考察$\bar{X}$的表达式，用切比雪夫不等式判断它落入$p$附近的概率。由$n$次试验相互独立可得：
+\begin{align*}
+&\because \bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i} \\
+&\therefore \begin{cases}
+	E\bar{X}=\frac{1}{n}\sum_{i=1}^n{EX_i}=p\\
+	D\bar{X}=\frac{1}{n^2}\sum_{i=1}^n{DX_i}=\frac{p\left( 1-p \right)}{n}\\
+\end{cases}
+\end{align*}
+带入切比雪夫不等式，并两边取极限：
+\begin{align*}
+&\because P\left\{ \left| \bar{X}-p \right|<\varepsilon \right\} \geqslant 1-\frac{p\left( 1-p \right)}{\varepsilon ^2n} \\
+&\therefore \underset{n\rightarrow +\infty}{\lim}P\left\{ \left| \bar{X}-p \right|<\varepsilon \right\} \geqslant \underset{n\rightarrow +\infty}{\lim}\left[ 1-\frac{p\left( 1-p \right)}{\varepsilon ^2n} \right] =1
+\end{align*}
+作为概率$P\left\{  \right\} \leqslant 1$，由夹逼定理得：
+\[
+\underset{n\rightarrow \infty}{\lim}P\left\{ \left| \bar{X}-p \right|<\varepsilon \right\} =1
+\]
+\end{proof}
+
+伯努利大数定理表示随着试验次数的增加，事件$A$的发生频率趋于概率，为概率的统计定义给出了理论保障。
+
+从证明过程看，关键因素是$D\bar{X}=\frac{1}{n^2}\sum_{i=1}^n{DX_i}$，该等式成立的前提是$X_i$相互独立，这点由伯努利试验的特点保证。
+
+\begin{theorem}[辛钦大数定理]
+设$X_1,X_2,\cdots ,X_n,\cdots $为独立同分布的随机变量，若它们都有相同的数学期望和方差，暂记数学期望为$\mu $，则有：
+\[
+\underset{n\rightarrow \infty}{\lim}\bar{X}\overset{P}{=}\mu
+\]
+\end{theorem}
+
+\begin{proof}
+还是利用切比雪夫不等式，从$\bar{X}$的表达式入手：
+\begin{align*}
+&\because \bar{X}=\frac{1}{n}\sum_{i=1}^n{X_i} \\
+&\therefore \begin{cases}
+	EZ=E\left( \frac{1}{n}\sum_{i=1}^n{X_i} \right) =\frac{1}{n}\sum_{i=1}^n{E\left( X_i \right)}=\frac{n\cdot \mu}{n}=\mu\\
+	DZ=D\left( \frac{1}{n}\sum_{i=1}^n{X_i} \right) =\frac{1}{n^2}\sum_{i=1}^n{D\left( X_i \right)}=\frac{\sigma ^2}{n}\\
+\end{cases}
+\end{align*}
+带入切比雪夫不等式，并两边取极限：
+\begin{align*}
+&\because P\left\{ \left| \bar{X}-\mu \right|<\varepsilon \right\} \geqslant 1-\frac{\sigma ^2}{\varepsilon ^2n} \\
+&\therefore \underset{n\rightarrow +\infty}{\lim}P\left\{ \left| \bar{X}-\mu \right|<\varepsilon \right\} \geqslant \underset{n\rightarrow +\infty}{\lim}\left[ 1-\frac{\sigma ^2}{\varepsilon ^2n} \right] =1
+\end{align*}
+夹逼定理，后略。
+\end{proof}
+
+辛钦大数定理反映了任意一种随机试验在重复大量次数后，均值趋于期望。
+伯努利大数定理是它的一个特例。
+
+从证明过程看，关键因素依然是$DZ=\frac{1}{n^2}\sum_{i=1}^n{D\left( X_i \right)}$，也即随机变量需要独立。
+
+\begin{theorem}[切比雪夫大数定理]
+设$X_1,X_2,\cdots ,X_n,\cdots $为独立随机变量，若它们都有各自的数学期望和方差，暂记数学期望为$\mu _i$，则有：
+\[
+\underset{n\rightarrow \infty}{\lim}\bar{X}\overset{P}{=}\frac{1}{n}\sum_{i=1}^n{\mu _i}
+\]
+\end{theorem}
+
+证明思路同上，略。
+
+%============================================================
+\subsection{大数定理的说明}
+
+广义上来讲，一切描述“独立试验”中$n\rightarrow \infty $时均值$\bar{X}$的极限的定理都是大数定理。
+
+伯努利大数定理最初限定在$n$重伯努利试验，论述$n\rightarrow \infty $时事件$A$的发生频率趋于概率。但可以放宽到有相同分布的独立变量，此时就是辛钦大数定理，在“教材\cite{book2}”中称为伯努利大数定理。如果进一步放宽条件到只要求相互独立，并不同分布，则是切比雪夫大数定理。
+
+大数定理体现的是“随着样本的增加，发生频率稳定趋于概率”这一人类经验认识，所以有时也被称为“大数定律”。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设$X$为一未知的一维随机变量，已知有期望和方差$\mu ,\sigma ^2$，分析$X$落在以$\left( \mu -3\sigma ,\mu +3\sigma \right) $内的概率。
+\end{example}
+
+解：
+
+根据切比雪夫不等式，有：
+\[
+P\left\{ \left| X-\mu \right|<3\sigma \right\} \geqslant 1-\frac{\sigma ^2}{\left( 3\sigma \right) ^2}=1-\frac{1}{9}=0.889
+\]
+$X$落在以$\left( \mu -3\sigma ,\mu +3\sigma \right) $内的概率大于0.889。
+
+~
+
+\begin{example}
+设$X$为一未知的一维随机变量，若能将其标准化为$X^*$，分析$X^*$落在以$\left( -2,2 \right) $内的概率。
+\end{example}
+
+解：
+
+由于$X^*$是标准化的随机变量，于是$E\left( X^* \right) =0,D\left( X^* \right) =1$，可得：
+\[
+P\left\{ \left| X^*-E\left( X^* \right) \right|<2 \right\} \geqslant 1-\frac{D\left( X^* \right)}{2^2}=\frac{3}{4}
+\]
+$X^*$落在以$\left( -2,2 \right) $内的概率大于$3/4$。
+
+
+
+

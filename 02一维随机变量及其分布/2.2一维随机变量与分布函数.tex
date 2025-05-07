@@ -1,0 +1,160 @@
+\section{一维随机变量与分布函数}
+
+本节介绍两个基本概念——一维随机变量和分布函数，为之后讨论奠定基础。
+
+本节要点：
+\begin{itemize}
+    \item 深刻掌握一维随机变量的概念；
+    \item 掌握分布函数的概念。
+\end{itemize}
+
+%============================================================
+\subsection{一维随机变量的概念}
+
+\begin{definition}[一维随机变量]
+设随机试验$E$的样本空间为$\varOmega $，若每个样本点$\omega$均有唯一确定的实数$X$与之对应，则称$X$为{\bf 定义在$\varOmega $上的一维随机变量}，也称{\bf 随机变量}或简称{\bf 变量}。
+\end{definition}
+
+随机变量将对样本点的文字描述投射到实数，注意，这里投射的是样本点，或者说是基本事件，而非任意事件。
+$X$的值在有些情况下可直观地赋予，如次品数量、人流数量、等待时间，但在有些情况下是人为赋予的，并没有特别的物理意义，如抛硬币的正反面，此时只要保证“唯一”、“确定”两个要求即可。
+
+于是，我们将事件$A$及其概率$P\left( A \right) $和变量$X$的取值范围$D$的概率$P\left\{ X\in D \right\} $等价起来：
+\[
+\begin{array}{l}
+	\omega\\
+	A\\
+	P\left( A \right)\\
+\end{array}\Leftrightarrow \begin{array}{l}
+	X\\
+	X\in D\\
+	P\left\{ X\in D \right\}\\
+\end{array}
+\]
+一维随机变量可视作一种特殊的变量，虽然其取值范围可以为$\mathbb{R} $，但与普通变量相比有如下特殊性：
+\begin{itemize}
+    \item 根据具体试验，随机变量有意义的取值是人为设定且事先已知的；
+    \item 但是在试验前，具体的取值无法预知；
+    \item 我们能知道的是每个取值的概率。
+\end{itemize}
+
+%============================================================
+\subsection{分布函数的概念}
+
+\begin{definition}[分布函数]
+设有随机变量$X$，对于$\forall x\in \mathbb{R} $，若$P\left\{ X\leqslant x \right\} $均有唯一的值与之对应，则称该对应关系为{\bf $X$的分布函数}，记作$F\left( x \right) $，即：
+\[
+F\left( x \right) := P\left\{ X\leqslant x \right\} ,\qquad x\in \mathbb{R}
+\]
+\end{definition}
+
+分布函数描述了$X$每个取值之前（包括该值）的所有概率之和，所以分布函数的差可以描述变量在一个范围内的概率，即$X$在$\left( a,b \right] $的概率可以表示为：
+\[
+P\left\{ a<X\leqslant b \right\} =F\left( b \right) -F\left( a \right)
+\]
+分布函数的定义还隐含了判断一个函数能否被视为分布函数的充要条件：
+\[
+F\left( X \right) \text{是分布函数}\Leftrightarrow \begin{cases}
+	0\leqslant F\left( x \right) \leqslant 1\\
+	\underset{x\rightarrow -\infty}{\lim}F\left( x \right) =P\left( \oslash \right) =0\\
+	\underset{x\rightarrow +\infty}{\lim}F\left( x \right) =P\left( \varOmega \right) =1\\
+\end{cases}
+\]
+分布函数还有以下性质：
+\begin{itemize}
+    \item $F\left( x \right) $必单调增，即$x_1<x_2\Rightarrow F\left( x_1 \right) \leqslant F\left( x_2 \right) $；
+    \item $F\left( x \right) $每个点$x_0$均右连续，即$\underset{x\rightarrow {x_0}^+}{\lim}F\left( x \right) =F\left( x_0 \right) $。
+\end{itemize}
+
+\begin{tcolorbox}
+我们对分布函数的要求非常低，只需要满足3个条件即可，没有连续、可导的要求。
+有些教材将充要条件视为分布函数的性质或定理，但其实这3个条件是概率的公理化定义的必然要求。
+所以本笔记更倾向于将这3个条件视作公理化条件。
+\end{tcolorbox}
+
+这里需要理解$X,x$两者的区别。
+$x$是普通变量，取值范围为$\mathbb{R} $，本身不承担物理意义，而$X$是随机变量，有意义的取值范围通过事件规定。
+如投硬币中，我们规定$X=1$表示正面向上，$X=0$表示反面向上，$X$取0、1之外的值是没有意义的，或者说$P\left\{ X\ne 0\mathrm{or}1 \right\} =0$。
+
+至此，我们将之前的概念和函数的概念统一了起来，我们用变量代替样本，用函数描述概率。
+\begin{table}[h]
+\centering
+\caption{事件和变量}
+\begin{tabular}{ll}
+    \toprule
+    \multicolumn{1}{c}{事件} & \multicolumn{1}{c}{变量}  \\
+    \midrule
+    样本点$\omega $ & 随机变量$X$\\
+    样本空间$\varOmega $ & $\mathbb{R} $\\
+    随机事件$A$ & 取值范围，如$\left\{ X=1 \right\} ,\left\{ X\geqslant b \right\} ,\left\{ a<X\leqslant b \right\} $\\
+    概率$P\left( A \right) $ & 分布函数的差，如$P\left\{ a<X\leqslant b \right\} =F\left( b \right) -F\left( a \right) $\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+常用公式：
+\begin{align*}
+&P\left\{ X=a \right\} =F\left( a \right) -F\left( a^- \right) \\
+&P\left\{ X>a \right\} =1-F\left( a \right) \\
+&P\left\{ X\geqslant a \right\} =1-F\left( a^- \right) \\
+&P\left\{ X<a \right\} =F\left( a^- \right) \\
+&P\left\{ a<X<b \right\} =F\left( b^- \right) -F\left( a \right) \\
+&P\left\{ a\leqslant X<b \right\} =F\left( b^- \right) -F\left( a^- \right) \\
+&P\left\{ a\leqslant X\leqslant b \right\} =F\left( b \right) -F\left( a^- \right)
+\end{align*}
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+在抛硬币的试验中，记事件$A$表示正面向上，若令$X=\begin{cases}
+	0,A\\
+	1,\bar{A}\\
+\end{cases}$，讨论$X$的分布函数$F\left( x \right) $。
+\end{example}
+
+解：
+
+由古典概型的计算方法易得$P\left( A \right) =P\left( \bar{A} \right) =\frac{1}{2}$，于是$P\left\{ X=0 \right\} =P\left\{ X=1 \right\} =\frac{1}{2}$，可得分布函数的表达式和图形：
+
+\begin{figure}[h]
+\centering
+    \begin{minipage}{0.48\linewidth}
+    \[
+    F\left( x \right) =\begin{cases}
+        0,&		x<0\\
+        \frac{1}{2},&		0\leqslant x<1\\
+        1,&		x\geqslant 1\\
+    \end{cases}
+    \]
+    \end{minipage}
+\hfill
+    \begin{minipage}{0.48\linewidth}
+    \centerline{\includegraphics[width=4cm]{2.2.png}}
+    \end{minipage}
+\end{figure}
+易见，$F\left( x \right) $在$x=0,1$有两个二类间断点，在间断点右连续。
+
+~
+
+\begin{example}
+如有分布函数$F\left( x \right) =a+b\mathrm{arc}\tan x$，计算$P\left\{ -1<X\leqslant 0 \right\} $。
+\end{example}
+
+解：
+
+题干的$F\left( x \right) $并不完整，需要计算$a,b$，根据分布函数的充要条件有：
+\begin{align*}
+&\because \begin{cases}
+	\underset{x\rightarrow -\infty}{\lim}F\left( x \right) =a+b\cdot \frac{\pi}{2}=1\\
+	\underset{x\rightarrow +\infty}{\lim}F\left( x \right) =a+b\cdot \left( -\frac{\pi}{2} \right) =0\\
+\end{cases}\Rightarrow \begin{cases}
+	a=\frac{1}{2}\\
+	b=\frac{1}{\pi}\\
+\end{cases} \\
+&\therefore F\left( x \right) =\frac{1}{2}+\frac{1}{\pi}\mathrm{arc}\tan x \\
+&\therefore P\left\{ -1<X\leqslant 0 \right\} =F\left( 0 \right) -F\left( -1 \right) =\frac{1}{2}-\left[ \frac{1}{2}+\frac{1}{\pi}\cdot \left( -\frac{\pi}{4} \right) \right] =\frac{1}{4}
+\end{align*}
+
+
+
+

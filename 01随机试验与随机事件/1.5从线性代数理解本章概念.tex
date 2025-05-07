@@ -1,0 +1,78 @@
+\section{从线性代数理解本章概念}
+
+本节从线性代数的角度考察本章的几个概念，以加深对这些概念的理解。
+
+%============================================================
+\subsection{完备组和规范正交基}
+
+完备组可以认为是样本空间的一组基，为方便讨论，假设完备组有限个，记作
+\[
+A=\left\{ P\left( A_1 \right) ,P\left( A_2 \right) ,\cdots ,P\left( A_n \right) \right\}
+\]
+其中：
+\begin{itemize}
+    \item $A$：基；
+    \item $P\left( A_i \right) $：$A_i$的坐标。
+\end{itemize}
+且这个完备组具备以下特征：
+\begin{itemize}
+    \item 由于$\sum_{i=1}^n{P\left( A_i \right)}=1$，所以可以认为该组基是规范的；
+    \item $A_i$由于互斥，所以可以认为该组基是正交的；
+    \item 更进一步，如果$P\left( A_1 \right) =P\left( A_2 \right) =\cdots =P\left( A_n \right) $，可以认为该组基是标准基。
+\end{itemize}
+
+
+%============================================================
+\subsection{全概率和坐标}
+
+全概率公式$P\left( B \right) =\sum_{i=1}^n{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]} $中，$P\left( B \middle| A_i \right) $可以认为是事件$B$在基$A_i$下的坐标分量，该分量越大，表示越可能发生。
+用线性代数的方式可以记作
+\[
+P\left( B \right) =\left[ \begin{matrix}
+	P\left( A_1 \right)&		P\left( A_2 \right)&		\cdots&		P\left( A_n \right)\\
+\end{matrix} \right] \left[ \begin{array}{c}
+	P\left( B \middle| A_1 \right)\\
+	P\left( B \middle| A_2 \right)\\
+	\cdots\\
+	P\left( B \middle| A_n \right)\\
+\end{array} \right] =A\left[ B \right] _A
+\]
+其中：
+\begin{itemize}
+    \item $\left[ B \right] _A=\left( \begin{matrix} P\left( B \middle| A_1 \right)&		P\left( B \middle| A_2 \right)&		\cdots&		P\left( B \middle| A_n \right) \end{matrix} \right) ^T$：向量$B$（也即事件$B$）在基$A$下的坐标向量。
+\end{itemize}
+
+这里与线性代数不一样，基$A$的表达并不是一个矩阵，而是一个向量，所以事件$B$在样本空间的坐标$P\left( B \right) $是一个标量。
+
+%============================================================
+\subsection{再论贝叶斯公式}
+
+由于$B,\bar{B}$也可以构成一个完备组，也是一组规范正交基。
+所以$P\left( A_i \middle| B \right) $表达的是基$A$中的$A_i$在基$\left\{ B,\bar{B} \right\} $中的$B$的坐标分量。
+贝叶斯公式提供了这个计算方法：
+\[
+P\left( A_i \middle| B \right) =\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{\sum_{i=1}^{\infty}{\left[ P\left( A_i \right) \cdot P\left( B \middle| A_i \right) \right]}}=\frac{P\left( A_i \right) P\left( B \middle| A_i \right)}{P\left( B \right)}
+\]
+
+结合中水文站的例子。
+通过贝叶斯公式，可以计算各个基$A_i$在$B$下的坐标。
+可见$A_5$，即“人员配合问题”这个基，在$B$下的坐标最大，越可能发生。
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        测不准的原因$A_i$ & $P\left( A_i \right) $ & $P\left( B \middle| A_i \right) $ & $P\left( A_i \middle| B \right) $\\
+        \midrule
+        流速计故障 & 0.01 & 0.90 & 0.05\\
+        绕道设备误差 & 0.05 & 0.80 & 0.24\\
+        水中有杂质 & 0.04 & 0.10 & 0.02\\
+        气象条件不佳 & 0.10 & 0.30 & 0.18\\
+        人员配合问题 & 0.10 & 0.80 & 0.47\\
+        其他 & 0.70 & 0.01 & 0.04\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+

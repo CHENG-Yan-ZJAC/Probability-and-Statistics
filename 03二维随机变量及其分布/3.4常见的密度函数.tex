@@ -1,0 +1,57 @@
+\section{常见的密度函数}
+
+本节介绍几个常见的二维连续变量的密度函数。
+
+本节要点：
+\begin{itemize}
+    \item 理解2个常见的密度函数及其应用场景；
+    \item 学会用这2个密度函数考察实际问题。
+\end{itemize}
+
+%============================================================
+\subsection{二维均匀分布}
+
+{\bf 二维均匀分布}，记作$U\left( D \right) $，描述了最简单的分布：
+\[
+f\left( x,y \right) =\begin{cases}
+	\frac{1}{S_D},&		\left( x,y \right) \in D\\
+	0,&		\left( x,y \right) \notin D\\
+\end{cases}
+\]
+其中：
+\begin{itemize}
+    \item $D$：表示变量$\left( X,Y \right) $的取值区域；
+    \item $S_D$：表示$D$的面积。
+\end{itemize}
+
+\begin{tcolorbox}
+二维均匀分布是一维均匀分布的扩展，和几何概型联系紧密。
+\end{tcolorbox}
+
+%============================================================
+\subsection{二维正态分布}
+{\bf 二维正态分布}，记作$N\left( \mu _1,\mu _2,{\sigma _1}^2,{\sigma _2}^2,\rho \right) $：
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=5.5cm]{3.3.png}
+\caption{二维正态分布}
+\end{figure}
+
+\begin{align*}
+&f\left( x,y \right) =\frac{1}{2\pi \sigma _1\sigma _2\sqrt{1-\rho ^2}}e^{-\frac{1}{2\left( 1-\rho ^2 \right)}\left[ \frac{\left( x-\mu _1 \right) ^2}{{\sigma _1}^2}-2\rho \frac{\left( x-\mu _1 \right) \left( y-\mu _2 \right)}{\sigma _1\sigma _2}+\frac{\left( y-\mu _2 \right) ^2}{{\sigma _2}^2} \right]} \\
+&\mu _1,\mu _2\in \mathbb{R}\qquad \sigma _1,\sigma _2>0\qquad \rho \in \left( -1,1 \right)
+\end{align*}
+
+特点：
+\begin{itemize}
+    \item $f\left( x,y \right) $是三维空间的一个钟形曲面，出现在\textit{xy}平面上方；
+    \item 曲面$f\left( x,y \right) $关于两个平面$x=\mu _1$和$y=\mu _2$对称；
+    \item $\mu _1,\mu _2,\sigma _1,\sigma _2$：描述各自的中心点和平坦度，与一维正态分布同理；
+    \item $\rho $：$X$和$Y$的相关系数$\rho _{XY}$，后面介绍；
+    \item \textit{xy}平面是$f\left( x,y \right) $的水平渐进面。
+\end{itemize}
+
+
+
+

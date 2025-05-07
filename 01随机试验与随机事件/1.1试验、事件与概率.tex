@@ -1,0 +1,254 @@
+\section{试验、事件与概率}
+
+本节介绍整个概率论中两个最基础的概念——事件和概率。
+
+本节要点：
+\begin{itemize}
+    \item 掌握随机试验和随机事件的概念；
+    \item 熟练掌握事件的运算法则，并熟练使用运算法则描述事件的组合；
+    \item 深刻理解概率的两种定义；
+    \item 熟练掌握概率计算公式，并熟练使用公式计算组合事件的概率。
+\end{itemize}
+
+%============================================================
+\subsection{随机试验和随机事件}
+
+\begin{definition}[随机试验]
+若某试验满足以下三个特点：
+\begin{itemize}
+    \item 重复性：在相同条件下试验可重复进行；
+    \item 明确性：试验的所有可能结果均事先已知；
+    \item 随机性：每次试验的具体结果在试验前无法预知，
+\end{itemize}
+则称此试验为{\bf 随机试验}，简称{\bf 试验}，记作$E$。试验$E$的每个可能的结果称为{\bf 试验$E$的样本点}，记作$\omega $。
+样本点的全体称为{\bf 试验$E$的样本空间}，记作$\varOmega $。
+\end{definition}
+
+\begin{definition}[随机事件]
+我们称具有某种特征的样本点的集合为{\bf 随机事件}，简称{\bf 事件}，记作$A,B,C$等。
+特别地，由一个样本点构成的单点集称为{\bf 基本事件}。任何随机事件都是样本空间$\varOmega $的子集。
+若试验结果的样本点属于事件$A$，则称{\bf 事件$A$发生}，否则就称{\bf 事件$A$不发生}。
+若每次试验，事件$A$必然发生，则称事件$A$为{\bf 必然事件}，显然$\varOmega $是必然事件；反之若事件$A$必然不发生，称事件$A$为{\bf 不可能事件}，显然$\oslash $是不可能事件。
+\end{definition}
+
+我们在集合论的基础上讨论随机，随机事件就是样本点的集合。
+
+%============================================================
+\subsection{事件的关系及运算法则}
+
+事件的关系：
+\begin{itemize}
+    \item {\bf 包含}：若事件$A$发生必有事件$B$发生，则称事件$A$包含于事件$B$，也称事件$A$是事件$B$的子集，记作$A\subset B$。
+    \item {\bf 相等}：若事件$A,B$相互包含，则称事件$A,B$相等，记作$A=B$。
+    \item {\bf 并}：若事件$A,B$至少发生一个，则称事件$A,B$的并事件，记作$A\cup B$。
+    \item {\bf 交}：若事件$A,B$都发生，则称事件$A,B$的交事件，记作$A\cap B$。
+    \item {\bf 差}：若事件$A$发生，且事件$B$不发生，则称事件$A$和事件$B$的差事件，记作$A\cap \bar{B}$。
+    \item {\bf 互斥}：若事件$A,B$不可能同时发生，则称事件$A,B$互斥，即$A\cap B=\oslash $，也称事件$A,B${\bf 互不相容}。互斥表示$A,B$没有共同样本点。
+    \item {\bf 对立}：若事件$A,B$互斥，且必然发生一个，称事件$A,B$相互对立，记作$A=\bar{B}$。对立事件瓜分了整个样本空间。显然对立必互斥，而互斥并不一定对立。
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=4cm]{1.1.png}
+\caption{事件的关系}
+\end{figure}
+
+事件的关系除逻辑符号外，还可使用算术符号描述：
+
+\begin{table}[h]
+\centering
+\caption{事件的运算}
+\begin{tabular}{ccc}
+    \toprule
+    运算 & 逻辑符号 & 算术符号\\
+    \midrule
+    并事件 & $A\cup B$ & $A+B$\\
+    交事件 & $A\cap B$ & $AB$\\
+    差事件 & $A\cap \bar{B}$ & $A-B$\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+事件的运算使得我们可以用一些简单事件的组合描述一个复杂事件。
+但要注意，这里的运算是逻辑运算，而非算术运算。
+
+\begin{tcolorbox}
+为统一符号，本笔记后续$A\cup B$都记作$A+B$，$A\cap B$都记作$AB$。
+\end{tcolorbox}
+
+事件的运算法则：
+\begin{itemize}
+    \item {\bf 交换律}：$AB=BA$
+    \item {\bf 结合律}：$\left( A+B \right) +C=A+\left( B+C \right) ,\left( AB \right) C=A\left( BC \right) $
+    \item {\bf 分配律}：$\left( A+B \right) C=\left( AC \right) +\left( AB \right) ,\left( AB \right) +C=\left( A+C \right) \left( B+C \right) $
+    \item {\bf 德摩根律}：$\overline{A+B}=\bar{A}\bar{B},\overline{AB}=\bar{A}+\bar{B}$
+\end{itemize}
+
+~
+
+其他常用运算公式：
+\begin{align*}
+& AB\subset A\subset A+B,\qquad AB\subset B\subset A+B \\
+& AA=A \\
+& A+A=A \\
+& A+\bar{A}=\varOmega \\
+& A-B=A\bar{B}=A-AB \\
+& \left( A-B \right) +B=A+B
+\end{align*}
+
+
+%============================================================
+\subsection{概率的概念和性质}
+
+\begin{definition}[统计定义]
+将试验$E$重复$n$次，若事件$A$发生了$k$次，则称$k$为{\bf 事件$A$发生的频数}，称$\frac{k}{n}$为{\bf 事件$A$发生的频率}。
+若当$n\rightarrow \infty$时，$\frac{k}{n}$有极限，则称该极限为{\bf 事件$A$的概率}，记作$P\left( A \right) $，即：
+\[
+P\left( A \right) := \underset{n\rightarrow \infty}{\lim}\frac{k}{n}
+\]
+\end{definition}
+
+\begin{definition}[公理化定义]
+设试验$E$的样本空间为$\varOmega$，对于其每个事件$A$赋予一个实数$P\left( A \right) $，若满足：
+\begin{itemize}
+    \item 非负性：$P\left( A \right) \geqslant 0$；
+    \item 规范性：$P\left( \oslash \right) =0,P\left( \varOmega \right) =1$；
+    \item 可列可加性：若事件$A_i$两两互斥，有$P\left( \bigcup_i{A_i} \right) =\sum_i{P\left( A_i \right)}$，
+\end{itemize}
+就称$P\left( A \right)$为{\bf 事件$A$的概率}。
+\end{definition}
+
+\begin{tcolorbox}
+统计定义给出了概率的计算方法，但定义本身需要证明，具体证明在大数定理中给出。
+公理化定义则不需要证明，其意义在于为一种普遍而严格的数学化概率理论奠定了基础，但缺点是没有给出具体计算方法。
+还需特别注意，公理化定义中的可列可加性不是定义，而是公理！
+\end{tcolorbox}
+
+概率的性质：
+\begin{itemize}
+    \item {\bf 非负性}：对于任何事件$A$，有$0\leqslant P\left( A \right) \leqslant 1$；
+    \item {\bf 规范性}：$P\left( \varOmega \right) =1,P\left( \oslash \right) =0$；
+    \item {\bf 对立事件概率}：对于任何事件$A$，有$P\left( \bar{A} \right) =1-P\left( A \right) $；
+    \item {\bf 并事件概率}：设任意事件$A,B$，有
+    
+    $P\left( A+B \right) =P\left( A \right) +P\left( B \right) -P\left( AB \right) $；
+    \item {\bf 推论}：设任意事件$A,B,C$，有
+    
+    $P\left( A+B+C \right) =P\left( A \right) +P\left( B \right) +P\left( C \right) -P\left( AB \right) -P\left( AC \right) -P\left( BC \right) +P\left( ABC \right) $；
+    \item {\bf 差事件概率}：设任意事件$A,B$，有$P\left( A-B \right) =P\left( A \right) -P\left( AB \right) $；
+    \item {\bf 推论}：当$B\subset A$时，有$P\left( B \right) \leqslant P\left( A \right) $，且$P\left( A-B \right) =P\left( A \right) -P\left( B \right) $。
+\end{itemize}
+
+~
+
+要点：
+\begin{itemize}
+    \item 我们只要记住并事件有$P\left( A+B \right) =P\left( A \right) +P\left( B \right) -P\left( AB \right) $，差事件有$P\left( A-B \right) =P\left( A \right) -P\left( AB \right) $；
+    \item 特别地，若互斥$A\cap B=\oslash$，则$P\left( A+B \right) =P\left( A \right) +P\left( B \right) $；
+    \item 特别地，若包含$B\subset A$，则$P\left( A-B \right) =P\left( A \right) -P\left( B \right) $。
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{1.2.png}
+\caption{概率的加和减}
+\end{figure}
+
+%============================================================
+\subsection{概率的常用公式}
+
+常用公式：
+\begin{align*}
+& P\left( \bar{A} \right) =1-P\left( A \right) \\
+& P\left( A+B \right) =P\left( A \right) +P\left( B \right) -P\left( AB \right) \\
+& P\left( A-B \right) =P\left( A \right) -P\left( AB \right) \\
+& P\left( \bar{A}+\bar{B} \right) =P\left( \overline{AB} \right) =1-P\left( AB \right) \\
+& P\left( \overline{A+B} \right) =P\left( \bar{A}\bar{B} \right) =1-P\left( A \right) -P\left( B \right) +P\left( AB \right)
+\end{align*}
+
+简单证明：
+\begin{itemize}
+    \item 1～3很显然，略；
+    \item 4，第一个等号用德摩根律，第二个等号用公式1；
+    \item 5，第一个等号用德摩根律，第二个等号考虑$P\left( \overline{A+B} \right) =1-P\left( A+B \right) $并结合公式1，略。
+\end{itemize}
+
+%============================================================
+\subsection{概率的物理意义}
+
+概率描述了事件发生的可能性的大小，若试验$E$包含了$n$个等概率的基本事件$\omega _1,\omega _2,\cdots ,\omega _n$，显然若事件$A$包含的基本事件越多，其概率越大，越容易发生。
+
+在物理上，概率可以类比很多物理量，如物体的密度，密度越高的地方，单位体积越重，又如电荷分布，电荷密度越高的地方，电荷量越大，又如浓度，浓度越高的地方，物质含量越高。
+不同的是概率在定义上是一个比值，无量纲。
+对于大概率事件，我们也通常会用“大”、“多”、“集中发生”、“容易发生”等词语表述，需要根据上下文具体理解。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+设$A,B,C$为3个随机事件，用$A,B,C$表示下列事件：
+\begin{enumerate}
+    \item $A,B,C$中至少发生一个
+    \item $A,B,C$都发生
+    \item $A,B,C$中恰好发生一个
+    \item $A,B,C$中至少发生两个
+    \item $A$发生，且$B,C$至少一个不发生
+\end{enumerate}
+\end{example}
+
+解：
+
+\begin{enumerate}
+    \item $A+B+C$
+    \item $ABC$
+    \item $A\bar{B}\bar{C}+\bar{A}B\bar{C}+\bar{A}\bar{B}C$
+    \item $AB\bar{C}+A\bar{B}C+\bar{A}BC+ABC$
+    \item $A\left( \bar{B}+\bar{C}+\bar{B}\bar{C} \right) =A\left( \bar{B}+\bar{C} \right) =A\left( \overline{BC} \right) =A-ABC$
+\end{enumerate}
+
+\begin{tcolorbox}
+随机事件的相互关系，在数学上表达为集合的关系，再加之德摩根律，所以表达式并不唯一。
+\end{tcolorbox}
+
+~
+
+\begin{example}
+设$A,B$两个随机事件，已知有概率$P\left( A \right) =0.5$，$P\left( B \right) =0.4$，$P\left( A+B \right) =0.6$，计算：
+\begin{enumerate}
+    \item $P\left( AB \right) $
+    \item $P\left( A\bar{B} \right) $
+    \item $P\left( \bar{A}+\bar{B} \right) $
+    \item $P\left( A+\bar{B} \right) $
+\end{enumerate}
+\end{example}
+
+解：
+
+\begin{enumerate}
+    \item $\because P\left( A+B \right) =P\left( A \right) +P\left( B \right) -P\left( AB \right) \\
+    \therefore P\left( AB \right) =P\left( A \right) +P\left( B \right) -P\left( A+B \right) =0.3$
+    \item $P\left( A\bar{B} \right) =P\left( A-B \right) =P\left( A \right) -P\left( AB \right) =0.2$
+    \item $P\left( \bar{A}+\bar{B} \right) =P\left( \overline{AB} \right) =1-P\left( AB \right) =0.7$
+    \item $P\left( A+\bar{B} \right) =P\left( A \right) +P\left( \bar{B} \right) -P\left( A\bar{B} \right) =0.5+0.6-0.2=0.9$
+\end{enumerate}
+
+~
+
+\begin{example}
+设$A,B,C$三个随机事件，若$P\left( A \right) =P\left( B \right) =P\left( C \right) =\frac{1}{4}$，$P\left( AB \right) =0$，$P\left( AC \right) =P\left( BC \right) =\frac{1}{16}$，求$A,B,C$都不发生的概率。
+\end{example}
+
+解：
+
+首先易得3个事件的德摩根律$\bar{A}\bar{B}\bar{C}=\overline{A+B+C}$，由于$P\left( AB \right) =0$则$P\left( ABC \right) =0$，于是：
+\begin{align*}
+&P\left( \bar{A}\bar{B}\bar{C} \right) \\
+&=P\left( \overline{A+B+C} \right) =1-P\left( A+B+C \right) \\
+&=1-\left[ P\left( A \right) +P\left( B \right) +P \left( C \right) -P\left( AB \right) -P\left( AC \right) -P\left( BC \right) +P\left( ABC \right) \right] \\
+&=1-\left( \frac{1}{4}+\frac{1}{4}+\frac{1}{4}-\frac{1}{16}-\frac{1}{16} \right) \\
+&=\frac{6}{16}
+\end{align*}
+
+
+
+

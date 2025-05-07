@@ -1,0 +1,339 @@
+\section{数学期望和中位数}
+
+本节介绍一维随机变量的第一个重要数字特征——数学期望，也即平均值，顺带介绍中位数。
+
+本节要点：
+\begin{itemize}
+    \item 掌握数学期望的概念；
+    \item 理解数学期望的数学意义和物理意义；
+    \item 了解中位数的概念。
+\end{itemize}
+
+%============================================================
+\subsection{一维随机变量数学期望的概念}
+
+\begin{definition}[一维随机变量的数学期望]
+设离散变量$X$有分布律$p_i$，若无穷级数$\sum_{i=1}^{+\infty}{x_i\cdot p_i}$绝对收敛（即$\sum_{i=1}^{+\infty}{\left| x_i\cdot p_i \right|}$收敛），则称该无穷级数为$X$的{\bf 数学期望}或{\bf 均值}，记作$E\left( X \right) $或$EX$。
+设连续变量$X$有密度函数$f\left( x \right) $，若反常积分$\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}$绝对收敛（形式同上），则称该积分为$X$的{\bf 数学期望}或{\bf 均值}，同样记$E\left( X \right) $或$EX$：
+\begin{align*}
+&EX:=\sum_{i=1}^{+\infty}{x_i\cdot p_i} \\
+&EX:=\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}
+\end{align*}
+若离散变量取值为有限个，则必有数学期望，若连续变量为定积分，也必有数学期望。
+\end{definition}
+
+一般，我们用$E\left( X \right) $表示谓词，即计算$X$的数学期望这个过程，用$EX$表示名词，即数学期望这个值。
+$E$是Expectation的首字母。
+
+\begin{tcolorbox}
+级数有个现象，如果调换各项的顺序，收敛性可能发生改变，即便收敛，也可能收敛到不同的值，而在概率论中，随机变量的取值和顺序无关，所以这里要求绝对收敛。
+\end{tcolorbox}
+
+\begin{definition}[一维随机变量函数的数学期望]
+设一维离散变量$X$有分布律$p_i$，若有另一随机变量$Y=g\left( X \right) $，且无穷级数$\sum_{i=1}^{+\infty}{g\left( x_i \right) p_i}$绝对收敛，则称$E\left[ g\left( X \right) \right] $为{\bf 函数$Y=g\left( X \right) $的数学期望}。
+同样定义，设连续变量$X$有密度函数$f\left( x \right) $，若有另一随机变量$Y=g\left( X \right) $，且反常积分$\int_{-\infty}^{+\infty}{g\left( x \right) f\left( x \right) \cdot dx}$绝对收敛，则称$E\left[ g\left( X \right) \right] $为{\bf 函数$Y=g\left( X \right) $的数学期望}：
+\begin{align*}
+&EY:=\sum_{i=1}^{+\infty}{g\left( x_i \right) \cdot p_i} \\
+&EY:=\int_{-\infty}^{+\infty}{g\left( x \right) f\left( x \right) \cdot dx}
+\end{align*}
+\end{definition}
+
+该公式的意义在于，有时候我们很难获得$Y$的具体分布规律，但可以通过已知的$X$和$Y=g\left( X \right) $获得$Y$的数学期望。
+
+\begin{theorem}
+设一维随机变量$X$有分布函数$F\left( x \right) $和密度函数$f\left( x \right) $，若$f\left( x \right) $连续，则$E\left[ F\left( x \right) \right] =\frac{1}{2}$。
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+    E\left[ F\left( x \right) \right] &=\int_{-\infty}^{+\infty}{F\left( x \right) f\left( x \right) \cdot dx}=\int_{-\infty}^{+\infty}{F\left( x \right) \cdot F'\left( x \right) \cdot dx}\\
+    &=\int_{-\infty}^{+\infty}{F\left( x \right) \cdot d\left( F\left( x \right) \right)}=\left. \frac{1}{2}F^2\left( x \right) \right|_{-\infty}^{+\infty}=\frac{1}{2}
+\end{align*}
+\end{proof}
+
+%============================================================
+\subsection{二维随机变量数学期望的概念}
+
+\begin{definition}[二维随机变量的数学期望]
+设二维离散变量$\left( X,Y \right) $有分布律$p_{ij}$，若下列式子中相应的无穷级数绝对收敛，则称该无穷级数为{\bf 二维离散变量对$X$（或$Y$）的数学期望}，即：
+\begin{align*}
+&EX:=\sum_i{\sum_j{x_i\cdot p_{ij}}}=\sum_i{\left( x_i\cdot \sum_j{p_{ij}} \right)}=\sum_i{x_i\cdot p_{i\cdot}} \\
+&EY:=\sum_j{\sum_i{y_j\cdot p_{ij}}}=\sum_j{\left( y_j\cdot \sum_i{p_{ij}} \right)}=\sum_j{y_j\cdot p_{\cdot j}}
+\end{align*}
+同样定义，设二维连续变量$\left( X,Y \right) $有密度函数$f\left( x,y \right) $，若下列式子中相应的反常积分绝对收敛，则称该积分为{\bf 二维连续变量对$X$（或$Y$）的数学期望}，即：
+\begin{align*}
+EX:&=\iint\limits_{\mathbb{R} \times \mathbb{R}}{xf\left( x,y \right) \cdot d\sigma}=\int_{-\infty}^{+\infty}{\left( xdx\int_{-\infty}^{+\infty}{f\left( x,y \right) \cdot dy} \right)} \\
+&=\int_{-\infty}^{+\infty}{xf_X\left( x \right) \cdot dx} \\
+EY:&=\iint\limits_{\mathbb{R} \times \mathbb{R}}{yf\left( x,y \right) \cdot d\sigma}=\int_{-\infty}^{+\infty}{\left( ydy\int_{-\infty}^{+\infty}{f\left( x,y \right) \cdot dx} \right)} \\
+&=\int_{-\infty}^{+\infty}{yf_Y\left( y \right) \cdot dy} \\
+d\sigma &=dxdy
+\end{align*}
+\end{definition}
+
+\begin{tcolorbox}
+对比一维变量的数学期望：
+\begin{align*}
+&EX:=\sum_{i=1}^{+\infty}{x_i\cdot p_i} \\
+&EX:=\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}
+\end{align*}
+二维变量对某个变量的数学期望和一维变量在原理上一致，只是分布从一维变量的分布变成了二维变量的边缘分布。
+\end{tcolorbox}
+
+\begin{definition}[二维随机变量函数的数学期望]
+若二维离散变量$\left( X,Y \right) $有分布律$p_{ij}$，若$Z=z\left( X,Y \right) $且$\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{z\left( x_i,y_j \right) \cdot p_{ij}}}$绝对收敛，则称该级数为{\bf 二维变量函数$Z=z\left( X,Y \right) $的数学期望}，记作$E\left( Z \right) $或$EZ$。
+同样定义，设二维连续变量$\left( X,Y \right) $有密度函数$f\left( x,y \right) $，若$Z=z\left( X,Y \right) $且反常积分$\iint\limits_{\mathbb{R} \times \mathbb{R}}{z\left( x,y \right) f\left( x,y \right) \cdot d\sigma},  d\sigma =dxdy$绝对收敛，则称该积分为{\bf 二维变量函数$Z=z\left( X,Y \right) $的数学期望}，同样记作$E\left( Z \right) $或$EZ$：
+\begin{align*}
+&EZ:=\sum_i{\sum_j{z\left( x_i,y_j \right) \cdot p_{ij}}} \\
+&EZ:=\iint\limits_{\mathbb{R} \times \mathbb{R}}{z\left( x,y \right) f\left( x,y \right) \cdot d\sigma} \\
+&d\sigma =dxdy
+\end{align*}
+\end{definition}
+
+在二维变量中，我们很少考虑单变量的期望，而是考虑两个变量关系的期望，如$X+Y,XY$等。
+
+%============================================================
+\subsection{数学期望的数学意义}
+
+数学期望是随机变量的加权和，权重是概率，由于总概率为1，于是$EX<x_{+\infty}$，所以期望也称加权平均。
+任何一个给定的随机变量，若有数学期望，则都是一个固定的、可计算的常量。
+
+从线性代数看，数学期望是随机变量构成的向量及其分布规律构成的向量的标量积。以离散型随机变量为例：
+\begin{align*}
+&EX:=\sum_{i=1}^{+\infty}{x_ip_i}=\boldsymbol{x}^T\boldsymbol{p} \\
+&\begin{cases}
+	\boldsymbol{x}=\left( x_1,x_2,\cdots ,x_n,\cdots \right)\\
+	\boldsymbol{p}=\left( p_1,p_2,\cdots ,p_n,\cdots \right)\\
+\end{cases}
+\end{align*}
+$EX$越大表示$\boldsymbol{p}$和$\boldsymbol{x}$的契合度越高，或者说越靠后的事件越容易发生。
+
+\begin{tcolorbox}
+这里的数学意义更多是为意义而意义，是一个“形象的比喻”，不用太过深究。
+\end{tcolorbox}
+
+%============================================================
+\subsection{数学期望的物理意义}
+
+先考虑一维物体的转动，如下图。长度为$L$的细长杆质量$M$且分布不均匀，有线密度$\rho \left( x \right) ,x\in \left[ d,d+L \right] $，一端距原点$d$，绕原点匀速转动且有角速度$\omega $，分析所需的向心力。可以认为是同质量的质点在$x_0$处以通常角速度转动所需的向心力。
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{4.1.png}
+\end{figure}
+
+可以假设细长杆的一个微元可视为质点，则向心力微元和整体向心力：
+\begin{align*}
+&dF=\rho \left( x \right) dx\cdot \omega ^2\cdot x\quad \left[ \mathrm{N} \right] \\
+&F=\int_d^{d+L}{dF}=\int_d^{d+L}{\rho \left( x \right) dx\cdot \omega ^2\cdot x}=\omega ^2\int_d^{d+L}{x\rho \left( x \right) \cdot dx}\quad \left[ \mathrm{N} \right]
+\end{align*}
+若将其视为质点，则向心力等价为质量$M$的质点小球在$x_0$处以角速度$\omega $匀速转动，有：
+\[
+\omega ^2\int_d^{d+L}{x\rho \left( x \right) \cdot dx}=M\cdot \omega ^2\cdot x_0\quad \left[ \mathrm{N} \right]
+\]
+于是可得：
+\[
+x_0=\frac{\int_d^{d+L}{x\rho \left( x \right) \cdot dx}}{M}=\int_d^{d+L}{x\frac{\rho \left( x \right)}{M}\cdot dx}\quad \left[ \mathrm{m} \right]
+\]
+对比一维变量的数学期望定义式：
+\[
+EX=\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}
+\]
+{\bf 数学期望的物理意义为绕原点匀速转动时的质心位置，有量纲$\left[ \mathrm{m} \right] $}。
+
+简单来讲就是细长杆的质心，之所以要特别强调转动，是为了下面的二维考虑，其次，在考察方差的物理意义时，还会联系转动惯量和平行轴定理。
+
+考虑二维平面，如下图，面密度$\rho \left( x,y \right) $的平面$D$，绕{\it y}轴匀速转动$\omega $ ，在{\it x}轴方向的向心力$F$等效到质点小球$M$产生的向心力。
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{4.2.png}
+\end{figure}
+\begin{align*}
+F&=\iint\limits_D{dF}=\iint\limits_D{\rho \left( x,y \right) d\sigma \cdot \omega ^2\cdot x} \\
+&=\omega ^2\iint\limits_D{x\rho \left( x,y \right) \cdot d\sigma}=M\cdot \omega ^2\cdot x_0 \quad \left[ \mathrm{N} \right]
+\end{align*}
+对比二维变量的数学期望定义式：
+\[
+EX=\iint\limits_{\mathbb{R} \times \mathbb{R}}{xf\left( x,y \right) \cdot d\sigma}
+\]
+{\bf 二维变量$\left( X,Y \right) $的数学期望$EX$的物理意义为平面绕{\it y}轴匀速转动时在{\it x}方向的质心位置，有量纲$\left[ \mathrm{m} \right] $。}
+$EY$的物理意义同样可得，略。
+
+\begin{tcolorbox}
+对于函数的数学期望，由于函数无固定形态，所以量纲也无具体表达。
+\end{tcolorbox}
+
+%============================================================
+\subsection{数学期望的性质}
+
+{\bf 性质1}：常数的数学期望为其本身，即$E\left( c \right) =c$。
+
+{\bf 性质2}：$X\geqslant a\Rightarrow EX\geqslant a,X\leqslant a\Rightarrow EX\leqslant a$
+
+{\bf 性质3}：$E\left( kX \right) =k\cdot E\left( X \right) $
+
+{\bf 性质4}：$E\left( kX+c \right) =k\cdot E\left( X \right) +c$，由性质1+3可证。
+
+{\bf 性质5}：设$\left( X,Y \right) $为二维随机变量，则$E\left( X\pm Y \right) =E\left( X \right) \pm E\left( Y \right) $
+
+{\bf 性质6}：设$\left( X,Y \right) $为二维随机变量，若$X,Y$相互独立$\Rightarrow E\left( XY \right) =E\left( X \right) \cdot E\left( Y \right) $
+
+{\bf 性质7}：设$\left( X,Y \right) $为二维随机变量，则$\left[ E\left( XY \right) \right] ^2\leqslant E\left( X^2 \right) \cdot E\left( Y^2 \right) $
+
+~
+
+性质1表示了常数$c$的分布，其实就是质点小球，自然质心位置为$c$。
+\begin{figure}[h]
+    \begin{minipage}{0.48\linewidth}
+    \centerline{\includegraphics[width=4.5cm]{4.3.png}}
+    \end{minipage}
+\hfill
+    \begin{minipage}{0.48\linewidth}
+    \[
+    X\sim \left( \begin{array}{l} c\\ 1\\ \end{array} \right)
+    \]
+    \end{minipage}
+\end{figure}
+
+性质2表示了质心的范围，物理意义也很明显，质心位置肯定不会落到物体之外。
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.5cm]{4.4.png}
+\end{figure}
+
+性质3表达当{\it x}轴拉伸时，质心也有同样的拉伸，压缩亦然。
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.5cm]{4.5.png}
+\end{figure}
+
+\begin{tcolorbox}
+这三个性质可结合物理意义理解。
+\end{tcolorbox}
+
+性质5用定义即可证明：
+\begin{align*}
+E\left( X\pm Y \right) &=\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{\left( x_i\pm y_j \right) \cdot p_{ij}}}=\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{\left( x_ip_{ij}\pm y_jp_{ij} \right)}} \\
+&=\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{x_ip_{ij}}}\pm \sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{y_jp_{ij}}} \\
+&=E\left( X \right) \pm E\left( Y \right)
+\end{align*}
+
+性质6，独立则有$p_{ij}=p_{i\cdot}\cdot p_{\cdot j}$，于是：
+\begin{align*}
+E\left( XY \right) &=\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{\left( x_iy_j \right) \cdot p_{ij}}}=\sum_{i=1}^{+\infty}{\sum_{j=1}^{+\infty}{\left( x_iy_j \right) \cdot p_{i\cdot}\cdot p_{\cdot j}}} \\
+&=\sum_{i=1}^{+\infty}{\left( x_ip_{i\cdot}\cdot \sum_{j=1}^{+\infty}{y_jp_{\cdot j}} \right)}=\sum_{i=1}^{+\infty}{\left[ x_ip_{i\cdot}\cdot E\left( Y \right) \right]} \\
+&=E\left( X \right) \cdot E\left( Y \right)
+\end{align*}
+
+\begin{tcolorbox}
+数学期望的性质常用于随机变量组合成新变量的数学期望的计算。
+由于数学期望是线性运算，所以有
+\[
+E\left( aX+bY+c \right) =aEX+bEY+c
+\]
+但对于非线性组合，会有一些前置条件或者为不等式。
+\end{tcolorbox}
+
+\begin{tcolorbox}
+$\left( EX \right) ^2$不大于$E\left( X^2 \right) $，证明关系留到介绍方差后再给出。
+\end{tcolorbox}
+
+%============================================================
+\subsection{数学期望的范围}
+
+数学期望的范围是变量的范围，这点从数学期望的物理意义也很好理解，特别是当变量的分布为常数分布时，取到最大值。
+此时，随机事件变成确定性事件。对应地，函数的数学期望的范围是函数的值域。
+\begin{figure}[h]
+    \begin{minipage}{0.48\linewidth}
+    \centerline{\includegraphics[width=4.5cm]{4.3.png}}
+    \end{minipage}
+\hfill
+    \begin{minipage}{0.48\linewidth}
+    \[
+    X\sim \left( \begin{array}{l} c\\ 1\\ \end{array} \right)
+    \]
+    \end{minipage}
+\end{figure}
+
+%============================================================
+\subsection{中位数的概念}
+
+\begin{definition}[中位数]
+若随机变量$X$有分布函数$F\left( x \right) $，若$m$满足
+\[
+F\left( m \right) =\frac{1}{2}
+\]
+则称$m$为{\bf 随机变量$X$的中位数}。
+\end{definition}
+
+数学期望和中位数都反映了随机变量的一个均值情况。中位数表示了该点前后的概率是一样的，优点是受特大值、特小值影响小，而且必然存在，缺点是处理不方便（如两个随机变量加减乘除后的中位数），而且不唯一，特别在离散型随机变量，由于取值的离散型，中位数大多不会精确的存在。
+
+%============================================================
+\subsection{例}
+
+\begin{example}
+若盒子中有2个红球1个白球，先分别采取不放回抽取和放回抽取两种策略，记$X$为首次抽中红球时的取球的次数，分别计算$EX$。
+\end{example}
+
+解：
+
+1. 不放回抽取时，$X$只能为$1,2$，且易得$P\left\{ X=1 \right\} =\frac{2}{3},P\left\{ X=2 \right\} =\frac{1}{3}\cdot \frac{2}{2}=\frac{1}{3}$，于是：
+\[
+EX=1\cdot \frac{2}{3}+2\cdot \frac{1}{3}=\frac{4}{3}
+\]
+
+2. 放回抽取时，$X=1,2,\cdots $，且有$P\left\{ X=i \right\} =\left( \frac{1}{3} \right) ^{i-1}\cdot \frac{2}{3}$，于是$EX=\frac{2}{3}\cdot \sum_{i=1}^{+\infty}{i\cdot \left( \frac{1}{3} \right) ^{i-1}}$，对于该无穷级数，等号两边都乘以$1/3$：
+\begin{align*}
+&\because \frac{1}{3}EX=\frac{2}{3}\cdot \sum_{i=1}^{+\infty}{i\cdot \left( \frac{1}{3} \right) ^i} \\
+&\begin{aligned}
+	\therefore \frac{2}{3}EX&=EX-\frac{1}{3}EX=\frac{2}{3}\cdot \left[ \sum_{i=1}^{+\infty}{i\cdot \left( \frac{1}{3} \right) ^{i-1}}-\sum_{i=1}^{+\infty}{i\cdot \left( \frac{1}{3} \right) ^i} \right]\\
+	&=\frac{2}{3}\cdot \sum_{i=1}^{+\infty}{\left( \frac{1}{3} \right) ^{i-1}}=\frac{2}{3}\cdot \frac{1}{1-\frac{1}{3}}=1\\
+\end{aligned} \\
+&\therefore EX=\frac{3}{2}
+\end{align*}
+
+~
+
+\begin{example}
+若变量$X$的密度函数$f\left( x \right) =2x,x\in \left( 0,1 \right) $，求$X$和$X^2$的数学期望。
+\end{example}
+
+解：
+\begin{align*}
+&E\left( X \right) =\int_{-\infty}^{+\infty}{xf\left( x \right) \cdot dx}=\int_0^1{x\cdot 2x\cdot dx}=\left. \frac{2}{3}x^3 \right|_{0}^{1}=\frac{2}{3} \\
+&E\left( X^2 \right) =\int_{-\infty}^{+\infty}{x^2f\left( x \right) \cdot dx}=\int_0^1{x^2\cdot 2x\cdot dx}=\left. \frac{1}{2}x^4 \right|_{0}^{1}=\frac{1}{2}
+\end{align*}
+
+~
+
+\begin{example}
+设离散随机变量$X$和连续随机变量$Y$如下
+\begin{align*}
+&X~\left( \begin{matrix}
+    0&		10\\
+    \frac{3}{5}&		\frac{2}{5}\\
+\end{matrix} \right) \\
+&f\left( y \right) =\frac{1}{2}e^{-\left| y \right|}
+\end{align*}
+且$X,Y$相互独立，求$E\left( XY^2-2X^2Y+1 \right) $。
+\end{example}
+
+解：
+
+由于且$X,Y$相互独立，所以$X,Y^2$相互独立、$X^2,Y$相互独立，于是：
+\begin{align*}
+E\left( XY^2-2X^2Y+1 \right) &=E\left( XY^2 \right) -2E\left( X^2Y \right) +E\left( 1 \right) \\
+&=E\left( X \right) \cdot E\left( Y^2 \right) -2E\left( X^2 \right) \cdot E\left( Y \right) +1
+\end{align*}
+先分别计算$E\left( X \right) $、$E\left( X^2 \right) $、$E\left( Y \right) $和$E\left( Y^2 \right) $，然后计算结果：
+\begin{align*}
+&\because \begin{cases}
+	E\left( X \right) =0\cdot \frac{3}{5}+10\cdot \frac{2}{5}=4\\
+	E\left( X^2 \right) =0^2\cdot \frac{3}{5}+10^2\cdot \frac{2}{5}=40\\
+	E\left( Y \right) =\int_{-\infty}^{+\infty}{y\frac{1}{2}e^{-\left| y \right|}\cdot dy}=0\\
+	E\left( Y^2 \right) =\int_{-\infty}^{+\infty}{y^2\frac{1}{2}e^{-\left| y \right|}\cdot dy}=\int_0^{+\infty}{y^2e^{-y}\cdot dy}=2\\
+\end{cases} \\
+&\therefore E\left( X \right) \cdot E\left( Y^2 \right) -2E\left( X^2 \right) \cdot E\left( Y \right) +1=4\cdot 2-2\cdot 40\cdot 0+1=9
+\end{align*}
+
+
+
+
