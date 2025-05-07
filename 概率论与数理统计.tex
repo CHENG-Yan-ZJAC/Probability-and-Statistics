@@ -1,0 +1,96 @@
+%\documentclass[utf8]{book}
+\documentclass[10.5pt,a4paper]{ctexbook} % 五号字，A4
+
+
+%========== 包 ==========
+%\usepackage[UTF8]{ctex}                   % chinese
+\usepackage{anyfontsize}                  % 10.5pt in ctexbook
+\usepackage{booktabs}                     % \newpage
+\usepackage{tcolorbox}                    % frame box
+\usepackage{enumitem}                     % item
+\usepackage{graphicx}                     % images
+\usepackage{amsmath, amsthm, amssymb, bm} % math
+\usepackage{hyperref, mathrsfs}           % ref
+\usepackage{esint}                        % closed geometry integral symbol
+
+
+%========== 环境 ==========
+\newtheorem{definition}{定义}[section]
+\newtheorem{example}{例}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+
+%========== enum和item设置 ==========
+%\ctexset{section={beforeskip=50.0ex plus 0.2ex minus .2ex}}
+%\ctexset{section={beforeskip=\doublespace}}
+%\ctexset{section={format=\heiti\centering\zihao{-3},beforeskip=20cm},subsection={beforeskip=6ex}}
+\ctexset{section={beforeskip=5ex},subsection={beforeskip=5ex}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt,left=\parindent}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt,left=\parindent}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\graphicspath{{./figures}}
+
+
+%========== 文档 ==========
+\raggedbottom
+\begin{document}
+
+
+%========== 封面 ==========
+\title{{\Huge{\textbf{概率论与数理统计}}}\\——学习笔记}
+\author{程琰}
+\date{\today}
+%\linespread{1.5}
+\maketitle
+
+
+% %========== 前言 ==========
+% \newpage
+% \pagenumbering{roman}
+% \setcounter{page}{1}
+% \begin{center}
+%     \Huge\textbf{前言}
+% \end{center}
+
+% 这是笔记的前言部分。这是笔记的前言部分。这是笔记的前言部分。这是笔记的前言部分。这是笔记的前言部分。这是笔记的前言部分。这是笔记的前言部分。
+
+% \begin{flushright}
+%     \begin{tabular}{c}
+%         程琰\\
+%         \today
+%     \end{tabular}
+% \end{flushright}
+
+
+%========== 目录 ==========
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+
+
+%========== 正文 ==========
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\input{01随机试验与随机事件/01随机试验与随机事件}
+\input{02一维随机变量及其分布/02一维随机变量及其分布}
+\input{03二维随机变量及其分布/03二维随机变量及其分布}
+\input{04随机变量的数字特征/04随机变量的数字特征}
+\input{05大数定理和中心极限定理/05大数定理和中心极限定理}
+\input{06数理统计基础/06数理统计基础}
+\input{07参数估计/07参数估计}
+\input{08假设检验/08假设检验}
+\input{参考文献/参考文献}
+
+
+\end{document}
+
+
+
+
